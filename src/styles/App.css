@@ -3,3 +3,29 @@
   height: 100vh;
   text-align: center;
 }
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.main-container {
+  width: 70vw;
+  height: 100%;
+  background-color: lightcyan;
+  text-align: left;
+}
+
+.iconTextButtons {
+  width: 100px;
+  height: 140px;
+  background-color: lightgoldenrodyellow;
+}
+
+img {
+  max-width: 100%;
+}

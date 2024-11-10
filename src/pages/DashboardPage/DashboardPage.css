@@ -1,0 +1,7 @@
+#dashboardPage-twoHalvesMiddleSection {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: azure;
+  height: 60vh;
+}

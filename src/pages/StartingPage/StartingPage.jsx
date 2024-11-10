@@ -3,7 +3,7 @@ import "./StartingPage.css";
 
 const StartingPage = () => {
   return (
-    <div className="startingPage-container">
+    <div className="page" id="startingPage-container">
       <button
         id="startButton"
         onClick={() => {

@@ -1,11 +1,5 @@
-.startingPage-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+#startingPage-container {
   background-image: url("../../assets/images/backgrounds/grassland-background.png");
-  background-size: cover;
-  background-position: center;
 }
 
 #startButton {
