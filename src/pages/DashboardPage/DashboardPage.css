@@ -1,7 +1,20 @@
+@font-face {
+  font-family: "PixelifySans";
+  src: url("/fonts/PixelifySans.ttf") format("truetype");
+}
+
 #dashboardPage-twoHalvesMiddleSection {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   background-color: azure;
   height: 60vh;
+}
+
+#dashboardPage-signBoard {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
