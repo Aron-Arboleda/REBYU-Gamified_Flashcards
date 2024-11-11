@@ -24,7 +24,7 @@ const OpenedDeckPage = () => {
         <Header>
           <h1>{userDecks[1].deck_title}</h1>
           <div className="headerColumn2">
-            <ExitButton />
+            <ExitButton url="/decks" />
           </div>
         </Header>
         <ScrollContainer>

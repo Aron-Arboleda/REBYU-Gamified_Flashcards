@@ -15,7 +15,7 @@ const DecksPage = () => {
         <Header>
           <h1>Decks</h1>
           <div className="headerColumn2">
-            <ExitButton />
+            <ExitButton url="/dashboard" />
           </div>
         </Header>
         <ScrollContainer>

@@ -88,7 +88,7 @@ const StudyPage = () => {
         <Header>
           <h1>{userDecks[6].deck_title}</h1>
           <div className="headerColumn2">
-            <ExitButton />
+            <ExitButton url="/opened_deck" />
           </div>
         </Header>
         <div className="healthBarContainer">

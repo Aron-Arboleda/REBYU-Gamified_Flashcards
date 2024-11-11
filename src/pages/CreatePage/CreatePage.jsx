@@ -38,7 +38,7 @@ const CreatePage = () => {
         <Header>
           <h1>Create a deck</h1>
           <div className="headerColumn2">
-            <ExitButton />
+            <ExitButton url="/dashboard" />
           </div>
         </Header>
         <ScrollContainer>
