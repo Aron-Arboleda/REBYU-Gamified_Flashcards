@@ -11,10 +11,15 @@ const DashboardPage = () => {
     <Page>
       <MainContainer>
         <Header></Header>
-        <button className="iconTextButtons" onClick={() => redirectTo("/shop")}>
-          <img src={shopIcon} alt="" />
-          <p>Shop</p>
-        </button>
+        <div id="dashboardPage-shopIconContainer">
+          <button
+            className="iconTextButtons"
+            onClick={() => redirectTo("/shop")}
+          >
+            <img src={shopIcon} alt="" />
+            <p>Shop</p>
+          </button>
+        </div>
         <div id="dashboardPage-twoHalvesMiddleSection">
           <div>Character</div>
           <div>

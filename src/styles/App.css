@@ -17,12 +17,12 @@
   width: 70vw;
   height: 100%;
   background-color: lightcyan;
-  text-align: left;
+  text-align: center;
 }
 
 .iconTextButtons {
-  width: 100px;
-  height: 140px;
+  width: 60px;
+  height: 80px;
   background-color: lightgoldenrodyellow;
 }
 

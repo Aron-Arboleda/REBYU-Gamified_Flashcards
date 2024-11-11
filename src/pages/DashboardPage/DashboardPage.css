@@ -6,6 +6,11 @@
   height: 60vh;
 }
 
+#dashboardPage-shopIconContainer {
+  display: flex;
+  justify-content: left;
+}
+
 #dashboardPage-signBoard {
   display: flex;
   padding: 20px;
