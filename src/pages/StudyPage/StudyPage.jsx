@@ -6,14 +6,16 @@ import Page from "../../components/Page/Page";
 import { userDecks } from "../../utils/mocks";
 import pixelHeart from "../../assets/images/icons/pixelHeart.png";
 import "./StudyPage.css";
+import { redirectTo } from "../../utils/helpers";
 
 const StudyPage = () => {
   const [currentCard, setCurrentCard] = useState(0); // Track current flashcard
   const [previousCard, setPreviousCard] = useState(null); // Track previous card for undo
   const [health, setHealth] = useState(100); // 100% health at start
   const [showTerm, setShowTerm] = useState(true); // Show term or definition
-  const [deck, setDeck] = useState(userDecks[1].deck_cards); // Deck of cards
+  const [deck, setDeck] = useState(userDecks[6].deck_cards); // Deck of cards
   const [isShuffled, setIsShuffled] = useState(false); // Track if deck is shuffled
+  const [hasWon, setHasWon] = useState(false); // Track if the user has won
   const totalFlashcards = deck.length; // Total cards in the deck
   const healthStep = 100 / totalFlashcards; // Health change per card
 
@@ -31,7 +33,7 @@ const StudyPage = () => {
 
   // Function to restore the deck to its original order
   const restoreDeck = () => {
-    setDeck(userDecks[1].deck_cards); // Restore the original deck
+    setDeck(userDecks[6].deck_cards); // Restore the original deck
     setCurrentCard(0); // Start at the first card after restoring
     setHealth(100); // Reset health to 100
   };
@@ -43,6 +45,8 @@ const StudyPage = () => {
       setCurrentCard(currentCard + 1);
       setHealth((prevHealth) => Math.max(0, prevHealth - healthStep));
       setShowTerm(true); // Reset to show term on new card
+    } else {
+      setHasWon(true); // Set win state when user reaches the last card
     }
   };
 
@@ -82,7 +86,7 @@ const StudyPage = () => {
     <Page>
       <MainContainer>
         <Header>
-          <h1>{userDecks[1].deck_title}</h1>
+          <h1>{userDecks[6].deck_title}</h1>
           <div className="headerColumn2">
             <ExitButton />
           </div>
@@ -121,14 +125,13 @@ const StudyPage = () => {
             </div>
           </div>
         </div>
-
         <div className="navigationButtons">
           <button onClick={handlePrevious} disabled={currentCard === 0}>
             {"<--"}
           </button>
           <button
             onClick={handleNext}
-            disabled={currentCard === totalFlashcards - 1}
+            disabled={hasWon} // Disable if the user has won
           >
             {"-->"}
           </button>
@@ -141,6 +144,24 @@ const StudyPage = () => {
             Shuffle
           </label>
         </div>
+        {hasWon && (
+          <div className="darkbackgroundContainer">
+            <div className="darkbackgroundContainer-wrapper">
+              <h2>You Win!</h2>
+              <button
+                onClick={() => {
+                  setHasWon(false);
+                  restoreDeck();
+                }}
+              >
+                Battle Again!
+              </button>
+              <button onClick={() => redirectTo("/opened_deck")}>
+                Back to Deck
+              </button>
+            </div>
+          </div>
+        )}
       </MainContainer>
     </Page>
   );

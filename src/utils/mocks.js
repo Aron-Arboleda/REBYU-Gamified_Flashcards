@@ -20,6 +20,118 @@ export let userDecks = [
   },
   {
     deck_id: 2,
+    deck_title: "Basic Physics Concepts",
+    deck_description:
+      "Key concepts in physics, including laws of motion and energy.",
+    deck_cards: [
+      {
+        term: "Newton's First Law",
+        definition:
+          "An object at rest stays at rest and an object in motion stays in motion unless acted upon by an external force.",
+      },
+      {
+        term: "Kinetic Energy",
+        definition:
+          "The energy possessed by an object due to its motion, calculated as 1/2 mv^2.",
+      },
+      {
+        term: "Thermodynamics",
+        definition:
+          "The study of the relationship between heat, work, and energy in a system.",
+      },
+    ],
+  },
+  {
+    deck_id: 3,
+    deck_title: "Basic Algebra",
+    deck_description:
+      "Essential algebraic terms and rules for solving equations.",
+    deck_cards: [
+      {
+        term: "Variable",
+        definition:
+          "A symbol, usually a letter, that represents an unknown number in equations.",
+      },
+      {
+        term: "Quadratic Equation",
+        definition:
+          "An equation of the form ax^2 + bx + c = 0, where a, b, and c are constants.",
+      },
+      {
+        term: "Slope",
+        definition:
+          "The measure of the steepness of a line, calculated as rise over run.",
+      },
+    ],
+  },
+  {
+    deck_id: 4,
+    deck_title: "Engineering Mechanics",
+    deck_description:
+      "Key principles in engineering mechanics, including forces and equilibrium.",
+    deck_cards: [
+      {
+        term: "Force",
+        definition:
+          "An interaction that changes the motion of an object, measured in newtons (N).",
+      },
+      {
+        term: "Equilibrium",
+        definition:
+          "A state where all forces acting on an object are balanced, resulting in no net movement.",
+      },
+      {
+        term: "Moment",
+        definition:
+          "The tendency of a force to rotate an object around an axis, equal to force times distance.",
+      },
+    ],
+  },
+  {
+    deck_id: 5,
+    deck_title: "Introduction to Philosophy",
+    deck_description: "Fundamental philosophical concepts and ideas.",
+    deck_cards: [
+      {
+        term: "Empiricism",
+        definition:
+          "The theory that knowledge is primarily derived from sensory experience.",
+      },
+      {
+        term: "Existentialism",
+        definition:
+          "A philosophical movement emphasizing individual freedom, choice, and responsibility.",
+      },
+      {
+        term: "Dualism",
+        definition:
+          "The belief that reality consists of two distinct, independent elements: mind and matter.",
+      },
+    ],
+  },
+  {
+    deck_id: 6,
+    deck_title: "Biology: Cell Structure",
+    deck_description: "Overview of cell organelles and their functions.",
+    deck_cards: [
+      {
+        term: "Nucleus",
+        definition:
+          "The control center of a cell, containing the genetic material (DNA).",
+      },
+      {
+        term: "Mitochondria",
+        definition:
+          "The powerhouse of the cell, responsible for producing energy (ATP).",
+      },
+      {
+        term: "Ribosome",
+        definition: "The site of protein synthesis in the cell.",
+      },
+    ],
+  },
+  {
+    deck_id: 7,
     deck_title: "Programming Concepts",
     deck_description: "Test your knowledge of programming concepts.",
     deck_cards: [
@@ -122,6 +234,48 @@ export let userDecks = [
         term: "What is a Stack?",
         definition:
           "A stack is a data structure that follows a last-in, first-out (LIFO) order for accessing elements.",
+      },
+    ],
+  },
+  {
+    deck_id: 8,
+    deck_title: "Physics Fundamentals",
+    deck_description: "Explore basic concepts in physics.",
+    deck_cards: [
+      {
+        term: "Newton's First Law",
+        definition:
+          "An object will remain at rest or in uniform motion unless acted upon by a force.",
+      },
+      {
+        term: "Gravitational Constant (G)",
+        definition: "6.67430 × 10^-11 m^3 kg^-1 s^-2",
+      },
+      {
+        term: "Speed of Light",
+        definition: "Approximately 299,792,458 meters per second.",
+      },
+    ],
+  },
+  {
+    deck_id: 9,
+    deck_title: "Ethics in Philosophy",
+    deck_description: "Study key terms in philosophical ethics.",
+    deck_cards: [
+      {
+        term: "Utilitarianism",
+        definition:
+          "The doctrine that actions are right if they are useful or for the benefit of a majority.",
+      },
+      {
+        term: "Deontology",
+        definition:
+          "An ethical theory that uses rules to distinguish right from wrong.",
+      },
+      {
+        term: "Virtue Ethics",
+        definition:
+          "A philosophy developed by Aristotle, focusing on character and virtues.",
       },
     ],
   },

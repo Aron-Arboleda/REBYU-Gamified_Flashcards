@@ -1,0 +1,8 @@
+#decksPage-decksContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  overflow: auto;
+  max-height: 100%;
+}
