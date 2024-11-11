@@ -4,6 +4,7 @@ import StartingScreen from "./pages/StartingPage/StartingPage";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import CreatePage from "./pages/CreatePage/CreatePage";
 import OpenedDeckPage from "./pages/OpenedDeckPage/OpenedDeckPage";
+import StudyPage from "./pages/StudyPage/StudyPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/create" element={<CreatePage />} />
         {/* <Route path="/opened_deck/:deck_id" element={<OpenedDeckPage />} /> */}
         <Route path="/opened_deck" element={<OpenedDeckPage />} />
+        <Route path="/study" element={<StudyPage />} />
       </Routes>
     </Router>
   );

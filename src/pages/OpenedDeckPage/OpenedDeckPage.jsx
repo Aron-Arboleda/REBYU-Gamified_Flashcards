@@ -42,7 +42,7 @@ const OpenedDeckPage = () => {
             ))}
           </div>
         </ScrollContainer>
-        <button onClick={() => redirectTo("/battle")}>Go to Battle!</button>
+        <button onClick={() => redirectTo("/study")}>Go to Battle!</button>
       </MainContainer>
     </Page>
   );
