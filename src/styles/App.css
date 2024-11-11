@@ -30,11 +30,18 @@ img {
   max-width: 100%;
 }
 
-h1 {
+h1,
+h2 {
   font-family: "PixelifySans";
   margin: 0;
-  font-size: 2.7rem;
   text-align: left;
+}
+h1 {
+  font-size: 2.7rem;
+}
+
+h2 {
+  font-size: 2rem;
 }
 
 p {
