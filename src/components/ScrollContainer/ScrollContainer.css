@@ -1,0 +1,8 @@
+.scrollContainer {
+  max-width: 600px;
+  height: 70vh;
+  background-color: rgb(248, 243, 187);
+  border-radius: 20px;
+  margin: 20px auto;
+  padding: 2rem;
+}

@@ -1,0 +1,12 @@
+.createPage-deckInitialInputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.createPage-cardsContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+  gap: 10px;
+}

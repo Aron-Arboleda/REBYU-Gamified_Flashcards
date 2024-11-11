@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "PixelifySans";
-  src: url("/fonts/PixelifySans.ttf") format("truetype");
-}
-
 #dashboardPage-twoHalvesMiddleSection {
   width: 100%;
   display: grid;

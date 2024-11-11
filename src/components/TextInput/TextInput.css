@@ -1,0 +1,18 @@
+.textarea {
+  border: none;
+  border-bottom: 2px solid black;
+  background-color: transparent;
+  font-size: 1.2rem;
+  font-family: "Segoe UI";
+  overflow: hidden;
+  resize: none;
+  display: block;
+  padding: 5px 6px;
+  line-height: 20px;
+}
+
+.textarea[contenteditable]:empty::before {
+  content: attr(data-placeholder);
+  color: rgba(0, 0, 0, 0.701);
+  font-weight: 300;
+}

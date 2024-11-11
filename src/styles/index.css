@@ -35,6 +35,11 @@ h1 {
   line-height: 1.1;
 }
 
+@font-face {
+  font-family: "PixelifySans";
+  src: url("/fonts/PixelifySans.ttf") format("truetype");
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;
