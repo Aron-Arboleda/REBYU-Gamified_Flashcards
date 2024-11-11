@@ -1,0 +1,25 @@
+.openedDeckPage-cardsContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+  gap: 10px;
+  overflow: auto;
+  max-height: 400px;
+}
+
+.openedDeckPage-cardPreview {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  background-color: white;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.openedDeckPage-cardPreviewTerm {
+  border-right: 2px solid #e6e6e690;
+}
+
+.openedDeckPage-cardPreviewDefinition,
+.openedDeckPage-cardPreviewTerm {
+  padding: 5px 10px;
+}

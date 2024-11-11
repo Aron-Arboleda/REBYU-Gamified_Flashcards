@@ -92,7 +92,7 @@ const CreatePage = () => {
               deck_cards: cards,
             };
 
-            navigate(`/opened_deck/${id}`, {
+            navigate(`/opened_deck`, {
               state: { deck: newDeck }, // Pass the new deck as state
             });
           }}

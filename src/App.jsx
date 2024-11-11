@@ -12,7 +12,8 @@ function App() {
         <Route path="/" element={<StartingScreen />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/create" element={<CreatePage />} />
-        <Route path="/opened_deck/:deck_id" element={<OpenedDeckPage />} />
+        {/* <Route path="/opened_deck/:deck_id" element={<OpenedDeckPage />} /> */}
+        <Route path="/opened_deck" element={<OpenedDeckPage />} />
       </Routes>
     </Router>
   );

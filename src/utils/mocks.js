@@ -1,20 +1,42 @@
 export let userDecks = [
   {
     deck_id: 1,
-    deck_title: "Deck 1",
-    deck_description: "Description 1",
+    deck_title: "Countries and Capitals",
+    deck_description: "Test your knowledge of countries and their capitals.",
     deck_cards: [
       {
-        term: "Term 1",
-        definition: "Definition 1",
+        term: "France",
+        definition: "Paris",
       },
       {
-        term: "Term 2",
-        definition: "Definition 2",
+        term: "China",
+        definition: "Beijing",
       },
       {
-        term: "Term 3",
-        definition: "Definition 3",
+        term: "India",
+        definition: "New Delhi",
+      },
+    ],
+  },
+  {
+    deck_id: 2,
+    deck_title: "Programming Concepts",
+    deck_description: "Test your knowledge of programming concepts.",
+    deck_cards: [
+      {
+        term: "What is Object-Oriented Programming?",
+        definition:
+          "Object-oriented programming is a programming paradigm that uses objects and classes to organize and structure the code.",
+      },
+      {
+        term: "What is a Class?",
+        definition:
+          "A class is a blueprint for creating objects that contain the same characteristics and behavior.",
+      },
+      {
+        term: "What is a Method?",
+        definition:
+          "A method is a function that is associated with an object or class.",
       },
     ],
   },
