@@ -7,6 +7,7 @@ import OpenedDeckPage from "./pages/OpenedDeckPage/OpenedDeckPage";
 import StudyPage from "./pages/StudyPage/StudyPage";
 import DecksPage from "./pages/DecksPage/DecksPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/study" element={<StudyPage />} />
         <Route path="/decks" element={<DecksPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   );

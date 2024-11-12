@@ -5,23 +5,18 @@ import shopIcon from "@assets/images/icons/icon-shop.png";
 import "./DashboardPage.css";
 import SignboardButton from "../../components/SignboardButton/SignboardButton";
 import { redirectTo } from "../../utils/helpers";
+import ProfileSection from "../../components/ProfileSection/ProfileSection";
 
 const DashboardPage = () => {
   return (
     <Page>
       <MainContainer>
-        <Header></Header>
-        <div id="dashboardPage-shopIconContainer">
-          <button
-            className="iconTextButtons"
-            onClick={() => redirectTo("/shop")}
-          >
-            <img src={shopIcon} alt="" />
-            <p>Shop</p>
-          </button>
-        </div>
+        <Header>
+          <ProfileSection />
+        </Header>
+
         <div id="dashboardPage-twoHalvesMiddleSection">
-          <div>Character</div>
+          <div></div>
           <div>
             <div id="dashboardPage-signBoard">
               <SignboardButton text="Create" pageToRedirect="/create" />
