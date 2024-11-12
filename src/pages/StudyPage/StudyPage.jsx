@@ -7,6 +7,7 @@ import { userDecks } from "../../utils/mocks";
 import pixelHeart from "../../assets/images/icons/pixelHeart.png";
 import "./StudyPage.css";
 import { redirectTo } from "../../utils/helpers";
+import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer/DarkBackgroundContainer";
 
 const StudyPage = () => {
   const [currentCard, setCurrentCard] = useState(0); // Track current flashcard
@@ -145,7 +146,7 @@ const StudyPage = () => {
           </label>
         </div>
         {hasWon && (
-          <div className="darkbackgroundContainer">
+          <DarkBackgroundContainer>
             <div className="darkbackgroundContainer-wrapper">
               <h2>You Win!</h2>
               <button
@@ -160,7 +161,7 @@ const StudyPage = () => {
                 Back to Deck
               </button>
             </div>
-          </div>
+          </DarkBackgroundContainer>
         )}
       </MainContainer>
     </Page>

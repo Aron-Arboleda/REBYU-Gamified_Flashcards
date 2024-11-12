@@ -18,7 +18,7 @@ const ProfilePage = () => {
         <div id="profilePage-mainContainer">
           <div></div>
           <div id="profilePage-profileInfo">
-            <ScrollContainer>
+            <ScrollContainer height="50vh" maxWidth="300px">
               <h2>Info</h2>
               <div id="profileInfo-editable">
                 <p>Name: Aron Rez Arboleda</p>
