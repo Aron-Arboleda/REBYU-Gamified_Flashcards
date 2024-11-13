@@ -7,8 +7,12 @@ import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import { userDecks } from "../../utils/mocks";
 import "./DecksPage.css";
 import { redirectTo } from "../../utils/helpers";
+import { useContext } from "react";
+import AuthContext from "../../contexts/AuthContext";
 
 const DecksPage = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <Page>
       <MainContainer>
@@ -20,14 +24,19 @@ const DecksPage = () => {
         </Header>
         <ScrollContainer>
           <div id="decksPage-decksContainer">
-            {userDecks.map((deck, index) => {
-              return (
-                <Deck
-                  deckTitle={deck.deck_title}
-                  onClickEvent={() => redirectTo("/opened_deck")}
-                />
-              );
-            })}
+            {userDecks
+              .filter((deck) => deck.user_id === user.user_id)
+              .map((deck, index) => {
+                return (
+                  <Deck
+                    key={index}
+                    deckTitle={deck.deck_title}
+                    onClickEvent={() =>
+                      redirectTo(`/opened_deck/${deck.deck_id}`)
+                    }
+                  />
+                );
+              })}
           </div>
         </ScrollContainer>
       </MainContainer>

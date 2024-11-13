@@ -6,13 +6,17 @@ import "./DashboardPage.css";
 import SignboardButton from "../../components/SignboardButton/SignboardButton";
 import { redirectTo } from "../../utils/helpers";
 import ProfileSection from "../../components/ProfileSection/ProfileSection";
+import { useContext } from "react";
+import AuthContext from "../../contexts/AuthContext";
 
 const DashboardPage = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <Page>
       <MainContainer>
         <Header>
-          <ProfileSection />
+          <h1>{user.user_username}</h1>
         </Header>
 
         <div id="dashboardPage-twoHalvesMiddleSection">

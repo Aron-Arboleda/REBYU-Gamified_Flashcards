@@ -3,19 +3,28 @@ import MainContainer from "../../components/MainContainer/MainContainer";
 import Header from "../../components/Header/Header";
 import ExitButton from "../../components/ExitButton/ExitButton";
 import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
-import "./CreatePage.css";
+import "./MainDeckEditingPage.css";
 import TextInput from "../../components/TextInput/TextInput";
 import CardContainer from "../../components/CardContainer/CardContainer";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RectangleContainer from "../../components/RectangleContainer/RectangleContainer";
 import { useNavigate } from "react-router-dom";
 import { userDecks as initialDecks } from "../../utils/mocks"; // Import userDecks
+import { updateDeck, createDeck, redirectTo } from "../../utils/helpers";
 
-const CreatePage = () => {
+const MainDeckEditingPage = ({ mode, initialDeck }) => {
   const [deckTitle, setDeckTitle] = useState("");
   const [deckDescription, setDeckDescription] = useState("");
   const [cards, setCards] = useState([{ term: "", definition: "" }]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (mode === "edit" && initialDeck) {
+      setDeckTitle(initialDeck.deck_title);
+      setDeckDescription(initialDeck.deck_description);
+      setCards(initialDeck.deck_cards);
+    }
+  }, [mode, initialDeck]);
 
   const handleInputChange = (index, field, value) => {
     const updatedCards = [...cards];
@@ -32,17 +41,30 @@ const CreatePage = () => {
     setCards(cards.filter((_, i) => i !== index));
   };
 
+  const handleCreateDeck = () => {
+    const id = initialDecks.length + 1; // New deck ID
+    const newDeck = {
+      deck_id: id,
+      deck_title: deckTitle,
+      deck_description: deckDescription,
+      deck_cards: cards,
+    };
+
+    createDeck(newDeck);
+    redirectTo(`/opened_deck/${id}`);
+  };
+
   return (
     <Page>
       <MainContainer>
         <Header>
-          <h1>Create a deck</h1>
+          {mode === "edit" ? <h1>Update deck</h1> : <h1>Create a deck</h1>}
           <div className="headerColumn2">
             <ExitButton url="/dashboard" />
           </div>
         </Header>
         <ScrollContainer>
-          <div className="createPage-deckInitialInputsContainer">
+          <div className="mainDeckEditingPage-deckInitialInputsContainer">
             <input
               type="text"
               placeholder="Enter deck title"
@@ -56,7 +78,7 @@ const CreatePage = () => {
               onChange={(e) => setDeckDescription(e.target.value)}
             />
           </div>
-          <div className="createPage-cardsContainer">
+          <div className="mainDeckEditingPage-cardsContainer">
             {cards.map((card, index) => (
               <RectangleContainer key={index}>
                 <input
@@ -82,26 +104,26 @@ const CreatePage = () => {
           </div>
         </ScrollContainer>
         <button
-          id="createPage-createButton"
+          id="mainDeckEditingPage-createButton"
           onClick={() => {
-            const id = initialDecks.length + 1; // New deck ID
-            const newDeck = {
-              deck_id: id,
-              deck_title: deckTitle,
-              deck_description: deckDescription,
-              deck_cards: cards,
-            };
-
-            navigate(`/opened_deck`, {
-              state: { deck: newDeck }, // Pass the new deck as state
-            });
+            if (mode === "edit") {
+              updateDeck({
+                deck_id: initialDeck.deck_id,
+                deck_title: deckTitle,
+                deck_description: deckDescription,
+                deck_cards: cards,
+              });
+              redirectTo(`/opened_deck/${initialDeck.deck_id}`);
+            } else {
+              handleCreateDeck();
+            }
           }}
         >
-          CREATE
+          {mode === "edit" ? "Done" : "Create"}
         </button>
       </MainContainer>
     </Page>
   );
 };
 
-export default CreatePage;
+export default MainDeckEditingPage;

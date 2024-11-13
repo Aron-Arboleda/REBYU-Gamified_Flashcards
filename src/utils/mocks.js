@@ -1,4 +1,4 @@
-export let userDecks = [
+export const userDecks = [
   {
     deck_id: 1,
     deck_title: "Countries and Capitals",
@@ -17,6 +17,7 @@ export let userDecks = [
         definition: "New Delhi",
       },
     ],
+    user_id: 1,
   },
   {
     deck_id: 2,
@@ -40,6 +41,7 @@ export let userDecks = [
           "The study of the relationship between heat, work, and energy in a system.",
       },
     ],
+    user_id: 1,
   },
   {
     deck_id: 3,
@@ -63,6 +65,7 @@ export let userDecks = [
           "The measure of the steepness of a line, calculated as rise over run.",
       },
     ],
+    user_id: 1,
   },
   {
     deck_id: 4,
@@ -86,6 +89,7 @@ export let userDecks = [
           "The tendency of a force to rotate an object around an axis, equal to force times distance.",
       },
     ],
+    user_id: 1,
   },
   {
     deck_id: 5,
@@ -108,6 +112,7 @@ export let userDecks = [
           "The belief that reality consists of two distinct, independent elements: mind and matter.",
       },
     ],
+    user_id: 1,
   },
   {
     deck_id: 6,
@@ -129,6 +134,7 @@ export let userDecks = [
         definition: "The site of protein synthesis in the cell.",
       },
     ],
+    user_id: 1,
   },
   {
     deck_id: 7,
@@ -236,6 +242,7 @@ export let userDecks = [
           "A stack is a data structure that follows a last-in, first-out (LIFO) order for accessing elements.",
       },
     ],
+    user_id: 2,
   },
   {
     deck_id: 8,
@@ -256,6 +263,7 @@ export let userDecks = [
         definition: "Approximately 299,792,458 meters per second.",
       },
     ],
+    user_id: 2,
   },
   {
     deck_id: 9,
@@ -278,5 +286,25 @@ export let userDecks = [
           "A philosophy developed by Aristotle, focusing on character and virtues.",
       },
     ],
+    user_id: 2,
+  },
+];
+
+export const users = [
+  {
+    user_id: 1,
+    user_firstName: "John",
+    user_lastName: "Doe",
+    user_username: "user1",
+    user_email: "a@example.com",
+    user_password: "12345678",
+  },
+  {
+    user_id: 2,
+    user_firstName: "Jane",
+    user_lastName: "Smith",
+    user_username: "user2",
+    user_email: "useremail2@gmail.com",
+    user_password: "12345678",
   },
 ];
