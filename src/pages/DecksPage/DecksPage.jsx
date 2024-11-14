@@ -9,9 +9,12 @@ import "./DecksPage.css";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import DecksContext from "../../contexts/DecksContext";
 
 const DecksPage = () => {
   const { user } = useContext(AuthContext);
+  const { decks } = useContext(DecksContext);
+
   const navigate = useNavigate();
 
   return (
@@ -25,19 +28,15 @@ const DecksPage = () => {
         </Header>
         <ScrollContainer>
           <div id="decksPage-decksContainer">
-            {userDecks
-              .filter((deck) => deck.user_id === user.user_id)
-              .map((deck, index) => {
-                return (
-                  <Deck
-                    key={index}
-                    deckTitle={deck.deck_title}
-                    onClickEvent={() =>
-                      navigate(`/opened_deck/${deck.deck_id}`)
-                    }
-                  />
-                );
-              })}
+            {decks.map((deck, index) => {
+              return (
+                <Deck
+                  key={index}
+                  deckTitle={deck.deck_title}
+                  onClickEvent={() => navigate(`/opened_deck/${deck.deck_id}`)}
+                />
+              );
+            })}
           </div>
         </ScrollContainer>
       </MainContainer>

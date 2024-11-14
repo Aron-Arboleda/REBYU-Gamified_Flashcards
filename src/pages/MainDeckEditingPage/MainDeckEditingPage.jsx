@@ -6,16 +6,19 @@ import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import "./MainDeckEditingPage.css";
 import TextInput from "../../components/TextInput/TextInput";
 import CardContainer from "../../components/CardContainer/CardContainer";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RectangleContainer from "../../components/RectangleContainer/RectangleContainer";
 import { useNavigate } from "react-router-dom";
-import { userDecks as initialDecks } from "../../utils/mocks"; // Import userDecks
+import { userDecks } from "../../utils/mocks"; // Import userDecks
 import { updateDeck, createDeck } from "../../utils/helpers";
+import DecksContext from "../../contexts/DecksContext";
 
 const MainDeckEditingPage = ({ mode, initialDeck }) => {
   const [deckTitle, setDeckTitle] = useState("");
   const [deckDescription, setDeckDescription] = useState("");
   const [cards, setCards] = useState([{ term: "", definition: "" }]);
+  const { decks, setDecks } = useContext(DecksContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,8 +44,25 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
     setCards(cards.filter((_, i) => i !== index));
   };
 
+  const handleUpdateDeck = () => {
+    const updatedDeck = {
+      deck_id: initialDeck.deck_id,
+      deck_title: deckTitle,
+      deck_description: deckDescription,
+      deck_cards: cards,
+    };
+
+    const updatedDecks = decks.map((deck) =>
+      deck.deck_id === initialDeck.deck_id ? updatedDeck : deck
+    );
+
+    setDecks(updatedDecks);
+    updateDeck(updatedDeck);
+    navigate(`/opened_deck/${initialDeck.deck_id}`);
+  };
+
   const handleCreateDeck = () => {
-    const id = initialDecks.length + 1; // New deck ID
+    const id = userDecks.length + 1; // New deck ID
     const newDeck = {
       deck_id: id,
       deck_title: deckTitle,
@@ -50,7 +70,8 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
       deck_cards: cards,
     };
 
-    createDeck(newDeck);
+    const updatedDecks = [...decks, newDeck];
+    setDecks(updatedDecks);
     navigate(`/opened_deck/${id}`);
   };
 
@@ -107,13 +128,7 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
           id="mainDeckEditingPage-createButton"
           onClick={() => {
             if (mode === "edit") {
-              updateDeck({
-                deck_id: initialDeck.deck_id,
-                deck_title: deckTitle,
-                deck_description: deckDescription,
-                deck_cards: cards,
-              });
-              navigate(`/opened_deck/${initialDeck.deck_id}`);
+              handleUpdateDeck();
             } else {
               handleCreateDeck();
             }

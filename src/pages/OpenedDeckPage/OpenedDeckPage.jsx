@@ -1,5 +1,4 @@
-//import { useLocation, useParams } from "react-router-dom";
-import { userDecks } from "../../utils/mocks";
+import { useContext } from "react";
 import Page from "../../components/Page/Page";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Header from "../../components/Header/Header";
@@ -7,12 +6,18 @@ import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import "./OpenedDeckPage.css";
 import ExitButton from "../../components/ExitButton/ExitButton";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchDeckById } from "../../utils/helpers";
+import DecksContext from "../../contexts/DecksContext";
 
 const OpenedDeckPage = () => {
   const { deck_id } = useParams();
-  const active_deck = fetchDeckById(Number(deck_id));
+  const { decks } = useContext(DecksContext);
+  const active_deck = decks.find((deck) => deck.deck_id === Number(deck_id));
   const navigate = useNavigate();
+
+  if (!active_deck) {
+    return <p>Deck not found</p>;
+  }
+
   return (
     <Page>
       <MainContainer>
