@@ -6,8 +6,8 @@ import Page from "../../components/Page/Page";
 import { userDecks } from "../../utils/mocks";
 import pixelHeart from "../../assets/images/icons/pixelHeart.png";
 import "./StudyPage.css";
-import { redirectTo } from "../../utils/helpers";
 import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer/DarkBackgroundContainer";
+import { useNavigate } from "react-router-dom";
 
 const StudyPage = () => {
   const [currentCard, setCurrentCard] = useState(0); // Track current flashcard
@@ -19,6 +19,8 @@ const StudyPage = () => {
   const [hasWon, setHasWon] = useState(false); // Track if the user has won
   const totalFlashcards = deck.length; // Total cards in the deck
   const healthStep = 100 / totalFlashcards; // Health change per card
+
+  const navigate = useNavigate();
 
   // Function to shuffle the deck using Fisher-Yates algorithm
   const shuffleDeck = () => {
@@ -157,7 +159,7 @@ const StudyPage = () => {
               >
                 Battle Again!
               </button>
-              <button onClick={() => redirectTo("/opened_deck")}>
+              <button onClick={() => navigate("/opened_deck")}>
                 Back to Deck
               </button>
             </div>

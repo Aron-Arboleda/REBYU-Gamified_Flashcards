@@ -1,11 +1,8 @@
 import Page from "../../components/Page/Page";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Header from "../../components/Header/Header";
-import shopIcon from "@assets/images/icons/icon-shop.png";
 import "./DashboardPage.css";
 import SignboardButton from "../../components/SignboardButton/SignboardButton";
-import { redirectTo } from "../../utils/helpers";
-import ProfileSection from "../../components/ProfileSection/ProfileSection";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 
@@ -23,7 +20,7 @@ const DashboardPage = () => {
           <div></div>
           <div>
             <div id="dashboardPage-signBoard">
-              <SignboardButton text="Create" pageToRedirect="/create" />
+              <SignboardButton text="Create" pageToRedirect="/edit_deck/new" />
               <SignboardButton text="Decks" pageToRedirect="/decks" />
               <SignboardButton text="About" pageToRedirect="/about" />
             </div>

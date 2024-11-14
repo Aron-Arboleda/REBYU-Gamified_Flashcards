@@ -18,6 +18,4 @@ const updateDeck = (id, updatedDeck) => {
   return false;
 };
 
-const redirectTo = (url) => (window.location.href = url);
-
-export { redirectTo, fetchDeckById, updateDeck, createDeck };
+export { fetchDeckById, updateDeck, createDeck };

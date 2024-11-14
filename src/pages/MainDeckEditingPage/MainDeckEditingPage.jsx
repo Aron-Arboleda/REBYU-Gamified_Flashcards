@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import RectangleContainer from "../../components/RectangleContainer/RectangleContainer";
 import { useNavigate } from "react-router-dom";
 import { userDecks as initialDecks } from "../../utils/mocks"; // Import userDecks
-import { updateDeck, createDeck, redirectTo } from "../../utils/helpers";
+import { updateDeck, createDeck } from "../../utils/helpers";
 
 const MainDeckEditingPage = ({ mode, initialDeck }) => {
   const [deckTitle, setDeckTitle] = useState("");
@@ -51,7 +51,7 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
     };
 
     createDeck(newDeck);
-    redirectTo(`/opened_deck/${id}`);
+    navigate(`/opened_deck/${id}`);
   };
 
   return (
@@ -113,7 +113,7 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
                 deck_description: deckDescription,
                 deck_cards: cards,
               });
-              redirectTo(`/opened_deck/${initialDeck.deck_id}`);
+              navigate(`/opened_deck/${initialDeck.deck_id}`);
             } else {
               handleCreateDeck();
             }

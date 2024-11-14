@@ -6,14 +6,13 @@ import Header from "../../components/Header/Header";
 import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import "./OpenedDeckPage.css";
 import ExitButton from "../../components/ExitButton/ExitButton";
-import { redirectTo } from "../../utils/helpers";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchDeckById } from "../../utils/helpers";
 
 const OpenedDeckPage = () => {
   const { deck_id } = useParams();
   const active_deck = fetchDeckById(Number(deck_id));
-
+  const navigate = useNavigate();
   return (
     <Page>
       <MainContainer>
@@ -39,12 +38,12 @@ const OpenedDeckPage = () => {
           </div>
         </ScrollContainer>
         <button
-          onClick={() => redirectTo(`/edit_deck/update/${active_deck.deck_id}`)}
+          onClick={() => navigate(`/edit_deck/update/${active_deck.deck_id}`)}
         >
           Update
         </button>
-        <button onClick={() => redirectTo("/study")}>Delete</button>
-        <button onClick={() => redirectTo("/study")}>Go to Battle!</button>
+        <button onClick={() => navigate("/study")}>Delete</button>
+        <button onClick={() => navigate("/study")}>Go to Battle!</button>
       </MainContainer>
     </Page>
   );

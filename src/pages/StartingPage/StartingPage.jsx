@@ -1,11 +1,12 @@
 import React from "react";
 import "./StartingPage.css";
-import { redirectTo } from "../../utils/helpers";
+import { useNavigate } from "react-router-dom";
 
 const StartingPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="page" id="startingPage-container">
-      <button id="startButton" onClick={() => redirectTo("/login")}>
+      <button id="startButton" onClick={() => navigate("/login")}>
         Start Game
       </button>
     </div>

@@ -1,11 +1,13 @@
-import { redirectTo } from "../../utils/helpers";
+import { useNavigate } from "react-router-dom";
 import "./SignboardButton.css";
 
 const SignboardButton = ({ text, pageToRedirect }) => {
+  const navigate = useNavigate();
+
   return (
     <button
       className="dashboardPage-navButtons"
-      onClick={() => redirectTo(pageToRedirect)}
+      onClick={() => navigate(pageToRedirect)}
     >
       {text}
     </button>

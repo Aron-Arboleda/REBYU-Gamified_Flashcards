@@ -6,12 +6,13 @@ import Page from "../../components/Page/Page";
 import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import { userDecks } from "../../utils/mocks";
 import "./DecksPage.css";
-import { redirectTo } from "../../utils/helpers";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const DecksPage = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return (
     <Page>
@@ -32,7 +33,7 @@ const DecksPage = () => {
                     key={index}
                     deckTitle={deck.deck_title}
                     onClickEvent={() =>
-                      redirectTo(`/opened_deck/${deck.deck_id}`)
+                      navigate(`/opened_deck/${deck.deck_id}`)
                     }
                   />
                 );
