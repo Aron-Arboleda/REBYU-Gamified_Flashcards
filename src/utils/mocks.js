@@ -16,6 +16,22 @@ export const userDecks = [
         term: "India",
         definition: "New Delhi",
       },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
     ],
     user_id: 1,
   },
@@ -39,6 +55,22 @@ export const userDecks = [
         term: "Thermodynamics",
         definition:
           "The study of the relationship between heat, work, and energy in a system.",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
       },
     ],
     user_id: 1,
@@ -64,6 +96,18 @@ export const userDecks = [
         definition:
           "The measure of the steepness of a line, calculated as rise over run.",
       },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
     ],
     user_id: 1,
   },
@@ -88,6 +132,14 @@ export const userDecks = [
         definition:
           "The tendency of a force to rotate an object around an axis, equal to force times distance.",
       },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
     ],
     user_id: 1,
   },
@@ -110,6 +162,18 @@ export const userDecks = [
         term: "Dualism",
         definition:
           "The belief that reality consists of two distinct, independent elements: mind and matter.",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
+      },
+      {
+        term: "India",
+        definition: "New Delhi",
       },
     ],
     user_id: 1,

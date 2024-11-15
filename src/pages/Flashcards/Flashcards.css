@@ -1,0 +1,112 @@
+/* Flashcards container */
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+/* Card container */
+.card-container {
+  position: relative;
+  perspective: 1000px;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* General Card styles */
+.card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  backface-visibility: hidden;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  opacity: 1;
+}
+
+/* Card flip effect */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.2s;
+}
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Card front and back */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.card-front {
+  background-color: #f8f9fa;
+}
+
+.card-back {
+  background-color: #007bff;
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+
+/* Hidden cards are positioned off-screen */
+.previous-card {
+  transform: translateX(-100%);
+}
+
+.next-card {
+  transform: translateX(100%);
+}
+
+/* Fade-out effect for transitions */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Carousel button styles */
+.carousel-controls {
+  margin-top: 20px;
+}
+
+.carousel-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.carousel-button:hover {
+  background-color: #0056b3;
+}
+
+.displayNone {
+  display: none;
+}

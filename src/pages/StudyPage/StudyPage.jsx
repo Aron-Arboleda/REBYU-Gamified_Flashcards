@@ -15,16 +15,76 @@ const StudyPage = () => {
   const { decks } = useContext(DecksContext);
   const active_deck = decks.find((deck) => deck.deck_id === Number(deck_id));
 
-  const [currentCard, setCurrentCard] = useState(0); // Track current flashcard
-  const [previousCard, setPreviousCard] = useState(null); // Track previous card for undo
+  // const [currentCard, setCurrentCard] = useState(0); // Track current flashcard
+  // const [previousCard, setPreviousCard] = useState(null); // Track previous card for undo
   const [health, setHealth] = useState(100); // 100% health at start
-  const [showTerm, setShowTerm] = useState(true); // Show term or definition
+  //const [showTerm, setShowTerm] = useState(true); // Show term or definition
   const [deck, setDeck] = useState(active_deck.deck_cards); // Deck of cards
   const [isShuffled, setIsShuffled] = useState(false); // Track if deck is shuffled
   const [isFlipped, setIsFlipped] = useState(true); // Track if terms and definitions are flipped
   const [hasWon, setHasWon] = useState(false); // Track if the user has won
   const totalFlashcards = deck.length; // Total cards in the deck
   const healthStep = 100 / totalFlashcards; // Health change per card
+
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [flipStates, setFlipStates] = useState(deck.map(() => false)); // Track flipped state for each card
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const getPrevIndex = () =>
+    currentCardIndex === 0 ? deck.length - 1 : currentCardIndex - 1;
+  const getNextIndex = () =>
+    currentCardIndex === deck.length - 1 ? 0 : currentCardIndex + 1;
+
+  const handlePrev = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentCardIndex(getPrevIndex());
+      setHealth((prevHealth) => Math.min(100, prevHealth + healthStep));
+      setIsTransitioning(false);
+      setFlipStates((prevState) => {
+        const newFlipStates = [...prevState];
+        newFlipStates[currentCardIndex - 1] = false; // Flip only the clicked card
+        newFlipStates[currentCardIndex + 1] = false; // Flip only the clicked card
+        return newFlipStates;
+      });
+    }, 500); // Time for fade effect
+  };
+
+  const handleNext = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      if (currentCardIndex < totalFlashcards - 1) {
+        setCurrentCardIndex(getNextIndex());
+        setIsTransitioning(false);
+        setHealth((prevHealth) => Math.max(0, prevHealth - healthStep));
+        setFlipStates((prevState) => {
+          const newFlipStates = [...prevState];
+          newFlipStates[currentCardIndex - 1] = false; // Flip only the clicked card
+          newFlipStates[currentCardIndex + 1] = false; // Flip only the clicked card
+          return newFlipStates;
+        });
+      } else {
+        setCurrentCardIndex(getNextIndex());
+        setIsTransitioning(false);
+        setHealth(0);
+        setHasWon(true); // Set win state when user reaches the last card
+      }
+    }, 500); // Time for fade effect
+  };
+
+  const toggleFlip = (index) => {
+    if (!isTransitioning) {
+      setFlipStates((prevState) => {
+        const newFlipStates = [...prevState];
+        newFlipStates[index] = !newFlipStates[index]; // Flip only the clicked card
+        // newFlipStates[index - 1] = false; // Flip only the clicked card
+        // newFlipStates[index + 1] = false; // Flip only the clicked card
+        return newFlipStates;
+      });
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -36,39 +96,39 @@ const StudyPage = () => {
       [shuffledDeck[i], shuffledDeck[j]] = [shuffledDeck[j], shuffledDeck[i]]; // Swap
     }
     setDeck(shuffledDeck); // Update the deck to be shuffled
-    setCurrentCard(0); // Start at the first card after shuffle
+    setCurrentCardIndex(0); // Start at the first card after shuffle
     setHealth(100); // Reset health to 100
   };
 
   // Function to restore the deck to its original order
   const restoreDeck = () => {
     setDeck(active_deck.deck_cards); // Restore the original deck
-    setCurrentCard(0); // Start at the first card after restoring
+    setCurrentCardIndex(0); // Start at the first card after restoring
     setHealth(100); // Reset health to 100
   };
 
   // Handle next card navigation
-  const handleNext = () => {
-    if (currentCard < totalFlashcards - 1) {
-      setPreviousCard(currentCard); // Save the current card before moving to next
-      setCurrentCard(currentCard + 1);
-      setHealth((prevHealth) => Math.max(0, prevHealth - healthStep));
-      setShowTerm(true); // Reset to show term on new card
-    } else {
-      setHealth(0);
-      setHasWon(true); // Set win state when user reaches the last card
-    }
-  };
+  // const handleNext = () => {
+  //   if (currentCard < totalFlashcards - 1) {
+  //     setPreviousCard(currentCard); // Save the current card before moving to next
+  //     setCurrentCard(currentCard + 1);
+  //     setHealth((prevHealth) => Math.max(0, prevHealth - healthStep));
+  //     setShowTerm(true); // Reset to show term on new card
+  //   } else {
+  //     setHealth(0);
+  //     setHasWon(true); // Set win state when user reaches the last card
+  //   }
+  // };
 
-  // Handle previous card navigation
-  const handlePrevious = () => {
-    if (currentCard > 0) {
-      setPreviousCard(currentCard); // Save the current card before going to previous
-      setCurrentCard(currentCard - 1);
-      setHealth((prevHealth) => Math.min(100, prevHealth + healthStep));
-      setShowTerm(true); // Reset to show term on previous card
-    }
-  };
+  // // Handle previous card navigation
+  // const handlePrevious = () => {
+  //   if (currentCard > 0) {
+  //     setPreviousCard(currentCard); // Save the current card before going to previous
+  //     setCurrentCard(currentCard - 1);
+  //     setHealth((prevHealth) => Math.min(100, prevHealth + healthStep));
+  //     setShowTerm(true); // Reset to show term on previous card
+  //   }
+  // };
 
   // Handle shuffle switch toggle
   const toggleShuffle = () => {
@@ -80,37 +140,37 @@ const StudyPage = () => {
     setIsShuffled(!isShuffled); // Toggle shuffle state
   };
 
-  const toggleFlip = () => setShowTerm(!showTerm);
+  // const toggleFlip = () => setShowTerm(!showTerm);
 
   const toggleTermsAndDefinitionsFlipped = () => {
     setIsFlipped((prev) => !prev);
   };
 
-  const renderCardContent = (card) => {
-    if (isFlipped) {
-      return (
-        <>
-          <div className="flashcard-front">
-            <p>{card.definition}</p>
-          </div>
-          <div className="flashcard-back">
-            <p>{card.term}</p>
-          </div>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <div className="flashcard-front">
-            <p>{card.term}</p>
-          </div>
-          <div className="flashcard-back">
-            <p>{card.definition}</p>
-          </div>
-        </>
-      );
-    }
-  };
+  // const renderCardContent = (card) => {
+  //   if (isFlipped) {
+  //     return (
+  //       <>
+  //         <div className="flashcard-front">
+  //           <p>{card.definition}</p>
+  //         </div>
+  //         <div className="flashcard-back">
+  //           <p>{card.term}</p>
+  //         </div>
+  //       </>
+  //     );
+  //   } else {
+  //     return (
+  //       <>
+  //         <div className="flashcard-front">
+  //           <p>{card.term}</p>
+  //         </div>
+  //         <div className="flashcard-back">
+  //           <p>{card.definition}</p>
+  //         </div>
+  //       </>
+  //     );
+  //   }
+  // };
 
   return (
     <Page>
@@ -137,21 +197,89 @@ const StudyPage = () => {
 
         <div className="counterContainer">
           <p>
-            {currentCard + 1} / {totalFlashcards}
+            {currentCardIndex + 1} / {totalFlashcards}
           </p>
         </div>
 
-        {/* Flashcard with flip functionality */}
-        <div
-          className={`flashcard ${showTerm ? "" : "flipped"}`}
-          onClick={toggleFlip}
-        >
-          <div className="flashcard-inner">
-            {renderCardContent(deck[currentCard])}
+        {/* Flashcards */}
+        <div className="carousel">
+          <div className="card-container">
+            {/* Previous Card */}
+            {/* <div
+              className={`card displayNone previous-card ${
+                isTransitioning ? "fade-out" : ""
+              }`}
+            >
+              <div
+                className={`card-inner ${
+                  flipStates[getPrevIndex()] ? "flipped" : ""
+                }`}
+                onClick={() => toggleFlip(getPrevIndex())}
+              >
+                <div className="card-front">
+                  <h3>{deck[getPrevIndex()].definition}</h3>
+                </div>
+                <div className="card-back">
+                  <p>{deck[getPrevIndex()].term}</p>
+                </div>
+              </div>
+            </div> */}
+
+            {/* Current Card */}
+            <div
+              className={`card current-card ${
+                isTransitioning ? "fade-out" : ""
+              }`}
+              onClick={() => toggleFlip(currentCardIndex)}
+            >
+              <div
+                className={`card-inner ${
+                  flipStates[currentCardIndex] ? "flipped" : ""
+                }`}
+              >
+                <div className="card-front">
+                  <h3>{deck[currentCardIndex].definition}</h3>
+                </div>
+                <div className="card-back">
+                  <p>{deck[currentCardIndex].term}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Next Card
+            <div
+              className={`card displayNone next-card ${
+                isTransitioning ? "fade-out" : ""
+              }`}
+            >
+              <div
+                className={`card-inner ${
+                  flipStates[getNextIndex()] ? "flipped" : ""
+                }`}
+                onClick={() => toggleFlip(getNextIndex())}
+              >
+                <div className="card-front">
+                  <h3>{deck[getNextIndex()].definition}</h3>
+                </div>
+                <div className="card-back">
+                  <p>{deck[getNextIndex()].term}</p>
+                </div>
+              </div>
+            </div> */}
           </div>
+          {/* <div className="carousel-controls">
+            <button onClick={handlePrev} className="carousel-button">
+              Previous
+            </button>
+            <button onClick={handleNext} className="carousel-button">
+              Next
+            </button>
+          </div> */}
         </div>
+
+        {/* NAVIGATIONS */}
         <div className="navigationButtons">
-          <button onClick={handlePrevious} disabled={currentCard === 0}>
+          <button onClick={handlePrev} disabled={currentCardIndex === 0}>
             {"<--"}
           </button>
           <button
@@ -168,14 +296,14 @@ const StudyPage = () => {
             />
             Shuffle
           </label>
-          <label className="flipSwitch">
+          {/* <label className="flipSwitch">
             <input
               type="checkbox"
               checked={isFlipped}
               onChange={toggleTermsAndDefinitionsFlipped}
             />
             Flip Term and Definition
-          </label>
+          </label> */}
         </div>
         {hasWon && (
           <DarkBackgroundContainer>
