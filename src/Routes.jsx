@@ -18,7 +18,7 @@ const AppRoutes = () => {
       <Route path="/opened_deck/:deck_id" element={<OpenedDeckPage />} />
       <Route path="/edit_deck/new" element={<NewDeckPage />} />
       <Route path="/edit_deck/update/:deck_id" element={<UpdateDeckPage />} />
-      <Route path="/study" element={<StudyPage />} />
+      <Route path="/study/:deck_id" element={<StudyPage />} />
       <Route path="/decks" element={<DecksPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/login" element={<LoginPage />} />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ExitButton from "../../components/ExitButton/ExitButton";
 import Header from "../../components/Header/Header";
 import MainContainer from "../../components/MainContainer/MainContainer";
@@ -7,15 +7,21 @@ import { userDecks } from "../../utils/mocks";
 import pixelHeart from "../../assets/images/icons/pixelHeart.png";
 import "./StudyPage.css";
 import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer/DarkBackgroundContainer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import DecksContext from "../../contexts/DecksContext";
 
 const StudyPage = () => {
+  const { deck_id } = useParams();
+  const { decks } = useContext(DecksContext);
+  const active_deck = decks.find((deck) => deck.deck_id === Number(deck_id));
+
   const [currentCard, setCurrentCard] = useState(0); // Track current flashcard
   const [previousCard, setPreviousCard] = useState(null); // Track previous card for undo
   const [health, setHealth] = useState(100); // 100% health at start
   const [showTerm, setShowTerm] = useState(true); // Show term or definition
-  const [deck, setDeck] = useState(userDecks[6].deck_cards); // Deck of cards
+  const [deck, setDeck] = useState(active_deck.deck_cards); // Deck of cards
   const [isShuffled, setIsShuffled] = useState(false); // Track if deck is shuffled
+  const [isFlipped, setIsFlipped] = useState(true); // Track if terms and definitions are flipped
   const [hasWon, setHasWon] = useState(false); // Track if the user has won
   const totalFlashcards = deck.length; // Total cards in the deck
   const healthStep = 100 / totalFlashcards; // Health change per card
@@ -36,7 +42,7 @@ const StudyPage = () => {
 
   // Function to restore the deck to its original order
   const restoreDeck = () => {
-    setDeck(userDecks[6].deck_cards); // Restore the original deck
+    setDeck(active_deck.deck_cards); // Restore the original deck
     setCurrentCard(0); // Start at the first card after restoring
     setHealth(100); // Reset health to 100
   };
@@ -49,6 +55,7 @@ const StudyPage = () => {
       setHealth((prevHealth) => Math.max(0, prevHealth - healthStep));
       setShowTerm(true); // Reset to show term on new card
     } else {
+      setHealth(0);
       setHasWon(true); // Set win state when user reaches the last card
     }
   };
@@ -60,16 +67,6 @@ const StudyPage = () => {
       setCurrentCard(currentCard - 1);
       setHealth((prevHealth) => Math.min(100, prevHealth + healthStep));
       setShowTerm(true); // Reset to show term on previous card
-    }
-  };
-
-  // Undo button functionality
-  const handleUndo = () => {
-    if (previousCard !== null) {
-      setCurrentCard(previousCard); // Go back to the previous card
-      setPreviousCard(null); // Reset previous card after undoing
-      setHealth((prevHealth) => Math.min(100, prevHealth + healthStep)); // Restore health
-      setShowTerm(true); // Reset to show term
     }
   };
 
@@ -85,13 +82,43 @@ const StudyPage = () => {
 
   const toggleFlip = () => setShowTerm(!showTerm);
 
+  const toggleTermsAndDefinitionsFlipped = () => {
+    setIsFlipped((prev) => !prev);
+  };
+
+  const renderCardContent = (card) => {
+    if (isFlipped) {
+      return (
+        <>
+          <div className="flashcard-front">
+            <p>{card.definition}</p>
+          </div>
+          <div className="flashcard-back">
+            <p>{card.term}</p>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="flashcard-front">
+            <p>{card.term}</p>
+          </div>
+          <div className="flashcard-back">
+            <p>{card.definition}</p>
+          </div>
+        </>
+      );
+    }
+  };
+
   return (
     <Page>
       <MainContainer>
         <Header>
-          <h1>{userDecks[6].deck_title}</h1>
+          <h1>{active_deck.deck_title}</h1>
           <div className="headerColumn2">
-            <ExitButton url="/opened_deck" />
+            <ExitButton url={`/opened_deck/${active_deck.deck_id}`} />
           </div>
         </Header>
         <div className="healthBarContainer">
@@ -120,12 +147,7 @@ const StudyPage = () => {
           onClick={toggleFlip}
         >
           <div className="flashcard-inner">
-            <div className="flashcard-front">
-              <h2>{deck[currentCard].term}</h2>
-            </div>
-            <div className="flashcard-back">
-              <p>{deck[currentCard].definition}</p>
-            </div>
+            {renderCardContent(deck[currentCard])}
           </div>
         </div>
         <div className="navigationButtons">
@@ -146,6 +168,14 @@ const StudyPage = () => {
             />
             Shuffle
           </label>
+          <label className="flipSwitch">
+            <input
+              type="checkbox"
+              checked={isFlipped}
+              onChange={toggleTermsAndDefinitionsFlipped}
+            />
+            Flip Term and Definition
+          </label>
         </div>
         {hasWon && (
           <DarkBackgroundContainer>
@@ -159,7 +189,7 @@ const StudyPage = () => {
               >
                 Battle Again!
               </button>
-              <button onClick={() => navigate("/opened_deck")}>
+              <button onClick={() => navigate(`/opened_deck/${deck_id}`)}>
                 Back to Deck
               </button>
             </div>

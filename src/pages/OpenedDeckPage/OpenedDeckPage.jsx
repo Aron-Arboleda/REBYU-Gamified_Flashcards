@@ -48,7 +48,9 @@ const OpenedDeckPage = () => {
           Update
         </button>
         <button onClick={() => navigate("/study")}>Delete</button>
-        <button onClick={() => navigate("/study")}>Go to Battle!</button>
+        <button onClick={() => navigate(`/study/${active_deck.deck_id}`)}>
+          Go to Battle!
+        </button>
       </MainContainer>
     </Page>
   );
