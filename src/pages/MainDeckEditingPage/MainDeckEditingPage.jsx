@@ -1,31 +1,28 @@
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Page from "../../components/Page/Page";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Header from "../../components/Header/Header";
 import ExitButton from "../../components/ExitButton/ExitButton";
 import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
-import "./MainDeckEditingPage.css";
-import TextInput from "../../components/TextInput/TextInput";
-import CardContainer from "../../components/CardContainer/CardContainer";
-import React, { useContext, useEffect, useState } from "react";
 import RectangleContainer from "../../components/RectangleContainer/RectangleContainer";
-import { useNavigate } from "react-router-dom";
-import { userDecks } from "../../utils/mocks"; // Import userDecks
-import { updateDeck, createDeck } from "../../utils/helpers";
+import "./MainDeckEditingPage.css";
 import DecksContext from "../../contexts/DecksContext";
+import AuthContext from "../../contexts/AuthContext";
 
 const MainDeckEditingPage = ({ mode, initialDeck }) => {
+  const { user } = useContext(AuthContext);
   const [deckTitle, setDeckTitle] = useState("");
   const [deckDescription, setDeckDescription] = useState("");
-  const [cards, setCards] = useState([{ term: "", definition: "" }]);
+  const [cards, setCards] = useState([{ card_term: "", card_definition: "" }]);
   const { decks, setDecks } = useContext(DecksContext);
-
   const navigate = useNavigate();
 
   useEffect(() => {
     if (mode === "edit" && initialDeck) {
       setDeckTitle(initialDeck.deck_title);
       setDeckDescription(initialDeck.deck_description);
-      setCards(initialDeck.deck_cards);
+      setCards(initialDeck.deck_cards || []);
     }
   }, [mode, initialDeck]);
 
@@ -36,43 +33,54 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
   };
 
   const addCard = () => {
-    setCards([...cards, { term: "", definition: "" }]);
+    setCards([...cards, { card_term: "", card_definition: "" }]);
   };
 
-  // Handler to remove a card
   const removeCard = (index) => {
     setCards(cards.filter((_, i) => i !== index));
   };
 
-  const handleUpdateDeck = () => {
-    const updatedDeck = {
-      deck_id: initialDeck.deck_id,
+  const handleCreateDeck = async () => {
+    const payload = {
       deck_title: deckTitle,
+      user_id: user.user_id,
       deck_description: deckDescription,
-      deck_cards: cards,
+      cards: cards.filter(
+        (card) => card.card_term.trim() && card.card_definition.trim()
+      ),
     };
 
-    const updatedDecks = decks.map((deck) =>
-      deck.deck_id === initialDeck.deck_id ? updatedDeck : deck
-    );
+    try {
+      console.log("Payload:", JSON.stringify(payload));
 
-    setDecks(updatedDecks);
-    updateDeck(updatedDeck);
-    navigate(`/opened_deck/${initialDeck.deck_id}`);
+      const response = await fetch(
+        "http://localhost/REBYU-Gamified_Flashcards/includes/decks/create.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("An error occurred while creating the deck.");
+      }
+
+      const data = await response.json();
+      alert("Deck created successfully!");
+      setDecks([...decks, { ...payload, deck_id: data.deck_id }]);
+      navigate(`/opened_deck/${data.deck_id}`);
+    } catch (error) {
+      console.error("Error creating deck:", error);
+      alert("An error occurred while creating the deck.");
+    }
   };
 
-  const handleCreateDeck = () => {
-    const id = userDecks.length + 1; // New deck ID
-    const newDeck = {
-      deck_id: id,
-      deck_title: deckTitle,
-      deck_description: deckDescription,
-      deck_cards: cards,
-    };
-
-    const updatedDecks = [...decks, newDeck];
-    setDecks(updatedDecks);
-    navigate(`/opened_deck/${id}`);
+  const handleUpdateDeck = () => {
+    // Logic for updating the deck
+    // This part will use a separate API endpoint for updates
   };
 
   return (
@@ -105,17 +113,17 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
                 <input
                   type="text"
                   placeholder="Enter term"
-                  value={card.term}
+                  value={card.card_term}
                   onChange={(e) =>
-                    handleInputChange(index, "term", e.target.value)
+                    handleInputChange(index, "card_term", e.target.value)
                   }
                 />
                 <input
                   type="text"
                   placeholder="Enter definition"
-                  value={card.definition}
+                  value={card.card_definition}
                   onChange={(e) =>
-                    handleInputChange(index, "definition", e.target.value)
+                    handleInputChange(index, "card_definition", e.target.value)
                   }
                 />
                 <button onClick={() => removeCard(index)}>Remove</button>
