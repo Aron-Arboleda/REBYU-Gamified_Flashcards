@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Page from "../../components/Page/Page";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Header from "../../components/Header/Header";
@@ -11,14 +11,48 @@ import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/Da
 
 const OpenedDeckPage = () => {
   const { deck_id } = useParams();
-  const { decks, setDecks } = useContext(DecksContext);
-  const active_deck = decks.find((deck) => deck.deck_id === Number(deck_id));
+  //const { decks, setDecks } = useContext(DecksContext);
   const navigate = useNavigate();
   const [clickedDelete, setClickedDelete] = useState(false);
+  const [deckData, setDeckData] = useState(null); // State to store deck and cards
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
-  if (!active_deck) {
-    return <p>Deck not found</p>;
+  useEffect(() => {
+    // Fetch deck data from the backend
+    const fetchDeckData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost/REBYU-Gamified_Flashcards/includes/decks/read_deckWithCards.php?deck_id=${deck_id}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch deck data");
+        }
+        const data = await response.json();
+        setDeckData(data); // Store the deck and cards
+        setLoading(false); // Stop loading
+      } catch (err) {
+        setError(err.message); // Handle error
+        setLoading(false); // Stop loading
+      }
+    };
+
+    fetchDeckData();
+  }, [deck_id]); // Run when deck_id changes
+
+  if (loading) {
+    return <p>Loading...</p>; // Show loading indicator
   }
+
+  if (error) {
+    return <p>Error: {error}</p>; // Show error message
+  }
+
+  if (!deckData) {
+    return <p>Deck not found</p>; // Show if no deck is found
+  }
+
+  const { deck, cards } = deckData;
 
   const handleDeleteConfirm = () => {
     setDecks((prevDecks) =>
@@ -31,40 +65,38 @@ const OpenedDeckPage = () => {
     <Page>
       <MainContainer>
         <Header>
-          <h1>{active_deck.deck_title}</h1>
+          <h1>{deck.deck_title}</h1>
           <div className="headerColumn2">
             <ExitButton url="/decks" />
           </div>
         </Header>
         <ScrollContainer>
-          <p>{active_deck.deck_description}</p>
+          <p>{deck.deck_description}</p>
           <div id="openedDeckPage-cardsContainer">
-            {active_deck.deck_cards.map((card, index) => (
+            {cards.map((card, index) => (
               <div className="openedDeckPage-cardPreview" key={index}>
                 <div className="openedDeckPage-cardPreviewTerm">
-                  {card.term}
+                  {card.card_term}
                 </div>
                 <div className="openedDeckPage-cardPreviewDefinition">
-                  {card.definition}
+                  {card.card_definition}
                 </div>
               </div>
             ))}
           </div>
         </ScrollContainer>
-        <button
-          onClick={() => navigate(`/edit_deck/update/${active_deck.deck_id}`)}
-        >
+        <button onClick={() => navigate(`/edit_deck/update/${deck.deck_id}`)}>
           Update
         </button>
         <button onClick={() => setClickedDelete(true)}>Delete</button>
-        <button onClick={() => navigate(`/study/${active_deck.deck_id}`)}>
+        <button onClick={() => navigate(`/study/${deck.deck_id}`)}>
           Go to Battle!
         </button>
         {clickedDelete && (
           <DarkBackgroundContainer>
             <div className="deleteContainer">
               <h1 className="hDelete">Destroy this deck? </h1>
-              <h2 className="hDelete">{active_deck.deck_title}</h2>
+              <h2 className="hDelete">{deck.deck_title}</h2>
 
               <p className="pDelete">
                 Are you truly ready to destroy this deck? This isn't just a

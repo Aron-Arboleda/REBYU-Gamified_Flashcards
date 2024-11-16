@@ -6,7 +6,8 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 $routes = [
     'GET' => [
         '/users' => 'includes/users/read.php',
-        '/decks' => 'includes/decks/read.php',
+        '/decks' => 'includes/decks/read_deckWithCards.php',
+        '/decks' => 'includes/decks/read_decksOfUser.php',
     ],
     'POST' => [
         '/users' => 'includes/users/create.php',
