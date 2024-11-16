@@ -1,10 +1,66 @@
+import React, { useState } from "react";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Page from "../../components/Page/Page";
 import StandardContainer from "../../components/StandardContainer/StandardContainer";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
-  const handleOnSubmit = () => {
-    redirectTo("/login");
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    user_username: "",
+    user_first_name: "",
+    user_last_name: "",
+    user_email: "",
+    user_password: "",
+  });
+
+  const [responseMessage, setResponseMessage] = useState("");
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value, // Update the correct key in the state
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        "http://localhost/REBYU-Gamified_Flashcards/includes/users/create.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setResponseMessage(data.message); // Success message
+        // Optionally clear the form
+        setFormData({
+          user_username: "",
+          user_first_name: "",
+          user_last_name: "",
+          user_email: "",
+          user_password: "",
+        });
+      } else {
+        setResponseMessage(data.message || "An error occurred");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setResponseMessage("Failed to create user.");
+    }
   };
 
   return (
@@ -13,53 +69,71 @@ const SignupPage = () => {
         <div className="container-centered">
           <StandardContainer>
             <h1 style={{ textAlign: "center" }}>Register</h1>
-            <form onSubmit={handleOnSubmit} className="mainForm">
+            <form onSubmit={handleSubmit} className="mainForm">
               <div className="formContainer">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="user_username">Username</label>
                 <input
                   type="text"
-                  name="username"
-                  id="username"
+                  name="user_username" // Ensure name matches formData key
+                  id="user_username"
                   className="inputs"
+                  value={formData.user_username} // Bind value to formData
+                  onChange={handleChange} // Correct handler
+                  required
                 />
-                <label htmlFor="firstname">First Name</label>
+                <label htmlFor="user_first_name">First Name</label>
                 <input
                   type="text"
-                  name="firstname"
-                  id="firstname"
+                  name="user_first_name" // Ensure name matches formData key
+                  id="user_first_name"
                   className="inputs"
+                  value={formData.user_first_name}
+                  onChange={handleChange}
+                  required
                 />
-                <label htmlFor="lastname">Last Name</label>
+                <label htmlFor="user_last_name">Last Name</label>
                 <input
                   type="text"
-                  name="lastname"
-                  id="lastname"
+                  name="user_last_name" // Ensure name matches formData key
+                  id="user_last_name"
                   className="inputs"
+                  value={formData.user_last_name}
+                  onChange={handleChange}
+                  required
                 />
-                <label htmlFor="email">Email</label>
+                <label htmlFor="user_email">Email</label>
                 <input
                   type="email"
-                  name="email"
-                  id="email"
+                  name="user_email" // Ensure name matches formData key
+                  id="user_email"
                   className="inputs"
+                  value={formData.user_email}
+                  onChange={handleChange}
+                  required
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="user_password">Password</label>
                 <input
                   type="password"
-                  name="password"
-                  id="password"
+                  name="user_password" // Ensure name matches formData key
+                  id="user_password"
                   className="inputs"
+                  value={formData.user_password}
+                  onChange={handleChange}
+                  required
                 />
               </div>
               <div className="buttonContainer">
                 <button type="submit">Sign Up</button>
               </div>
             </form>
+            {responseMessage && (
+              <p style={{ textAlign: "center", marginTop: "1rem" }}>
+                {responseMessage}
+              </p>
+            )}
             <p>
-              Already have an account?
-              <a href="/login">
-                <button>log in</button>
-              </a>
+              Already have an account?{" "}
+              <button onClick={() => navigate("/login")}>Log in</button>
             </p>
           </StandardContainer>
         </div>

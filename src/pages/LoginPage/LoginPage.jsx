@@ -5,28 +5,53 @@ import StandardContainer from "../../components/StandardContainer/StandardContai
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import AuthContext from "../../contexts/AuthContext";
-import { users } from "../../utils/mocks";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const validate = (email, password) => {
-    return users.find(
-      (user) => user.user_email === email && user.user_password === password
-    );
+  const [formData, setFormData] = useState({
+    user_email: "",
+    user_password: "",
+  });
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleOnSubmit = (e) => {
+  // Handle form submission
+  const handleOnSubmit = async (e) => {
     e.preventDefault(); // Prevents the form's default action (page reload)
-    const user = validate(email, password);
-    if (user) {
-      login(user);
-      navigate("/dashboard"); // Redirects to the dashboard
-    } else {
-      alert("Invalid credentials");
+
+    try {
+      const response = await fetch(
+        "http://localhost/REBYU-Gamified_Flashcards/includes/users/login.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        login(data.data); // Save the logged-in user's data to the AuthContext
+        navigate("/dashboard"); // Redirects to the dashboard
+      } else {
+        setErrorMessage(data.message || "Invalid email or password");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setErrorMessage("An error occurred during login. Please try again.");
     }
   };
 
@@ -38,33 +63,38 @@ const LoginPage = () => {
             <h1 style={{ textAlign: "center" }}>Login</h1>
             <form onSubmit={handleOnSubmit} className="mainForm">
               <div className="formContainer">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="user_email">Email</label>
                 <input
                   type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="user_email"
+                  id="user_email"
+                  value={formData.user_email}
+                  onChange={handleChange}
+                  required
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="user_password">Password</label>
                 <input
                   type="password"
-                  name="password"
-                  id="password"
+                  name="user_password"
+                  id="user_password"
                   className="inputs"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.user_password}
+                  onChange={handleChange}
+                  required
                 />
               </div>
+              {errorMessage && (
+                <p style={{ color: "red", textAlign: "center" }}>
+                  {errorMessage}
+                </p>
+              )}
               <div className="buttonContainer">
                 <button type="submit">Login</button>
               </div>
             </form>
             <p>
-              Don't have an account?
-              <a href="/signup">
-                <button>Register</button>
-              </a>
+              Don't have an account?{" "}
+              <button onClick={() => navigate("/signup")}>Register</button>
             </p>
           </StandardContainer>
         </div>
