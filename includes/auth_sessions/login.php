@@ -2,42 +2,15 @@
 // Include the database connection
 include '../config.php';
 
-// Handle CORS preflight request
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: POST, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type, Authorization");
-    http_response_code(200);
-    exit(0);
-}
+ini_set('session.cookie_lifetime', 259200); // 3 days 
+ini_set('session.gc_maxlifetime', 259200);
+ini_set('session.cookie_path', '/'); // Makes session cookies accessible site-wide
+ini_set('session.cookie_samesite', 'None');
+ini_set('session.cookie_secure', true); // Only if using HTTPS
 
-// Regular request headers for CORS
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Content-Type: application/json");
-
-// ini_set('session.cookie_lifetime', 259200); // 3 days 
-// ini_set('session.gc_maxlifetime', 259200);
 
 // Start session
-//session_start();
-
-// Check if the user is already logged in
-// if (isset($_SESSION['user_id'])) {
-//     http_response_code(200);
-//     echo json_encode([
-//         "message" => "User already logged in.",
-//         "data" => [
-//             "user_id" => $_SESSION['user_id'],
-//             "user_email" => $_SESSION['user_email'],
-//             "user_username" => $_SESSION['user_username'],
-//             "user_first_name" => $_SESSION['user_first_name'],
-//             "user_last_name" => $_SESSION['user_last_name']
-//         ]
-//     ]);
-//     exit;
-// }
+session_start();
 
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -78,19 +51,21 @@ try {
             // Regenerate session ID for security
             // session_regenerate_id(true);
 
-            // // Store user details in the session
-            // $_SESSION['user_id'] = $user['user_id'];
-            // $_SESSION['user_email'] = $user['user_email'];
-            // $_SESSION['user_username'] = $user['user_username'];
-            // $_SESSION['user_first_name'] = $user['user_first_name'];
-            // $_SESSION['user_last_name'] = $user['user_last_name'];
+            // Store user details in the session
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['user_email'] = $user['user_email'];
+            $_SESSION['user_username'] = $user['user_username'];
+            $_SESSION['user_first_name'] = $user['user_first_name'];
+            $_SESSION['user_last_name'] = $user['user_last_name'];
 
             // Return success response
             http_response_code(200); // OK
             unset($user['user_password']); // Remove the hashed password from the response
             echo json_encode([
                 "message" => "Login successful.",
-                "data" => $user
+                "data" => [
+                    "user" => $user
+                ]
             ]);
         } else {
             http_response_code(401); // Unauthorized

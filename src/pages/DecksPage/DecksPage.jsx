@@ -8,20 +8,21 @@ import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import "./DecksPage.css";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext"; // Still need this to access the authenticated user
+import useSessionCheck from "../../hooks/useSessionCheck";
 
 const DecksPage = () => {
-  const { user } = useContext(AuthContext); // Access user info from AuthContext
+  const { user, setUser } = useContext(AuthContext); // Access user info from AuthContext
   const [decks, setDecks] = useState([]); // Local state for decks
   const [loading, setLoading] = useState(true); // Track loading state
   const [error, setError] = useState(null); // Track error state
   const navigate = useNavigate();
 
-  // Fetch decks when the component mounts
   useEffect(() => {
     const fetchUserDecks = async () => {
       if (!user || !user.user_id) {
         setError("User not authenticated.");
         setLoading(false);
+
         return;
       }
 

@@ -9,7 +9,8 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import NewDeckPage from "./pages/NewDeckPage/NewDeckPage";
 import UpdateDeckPage from "./pages/UpdateDeckPage/UpdateDeckPage";
-import Flashcards from "./pages/Flashcards/Flashcards";
+//import Flashcards from "./pages/Flashcards/Flashcards";
+//import ProtectedRoute from "./components/ProtectedRoute";
 
 const AppRoutes = () => {
   return (

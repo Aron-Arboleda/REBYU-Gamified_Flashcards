@@ -38,16 +38,18 @@ const LoginPage = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
+          credentials: "include",
         }
       );
 
-      const data = await response.json();
+      const responseJSON = await response.json();
 
       if (response.ok) {
-        login(data.data); // Save the logged-in user's data to the AuthContext
+        console.log("responseJSON.data.user:", responseJSON.data.user);
+        login(responseJSON.data.user); // Save the logged-in user's data to the AuthContext
         navigate("/dashboard"); // Redirects to the dashboard
       } else {
-        setErrorMessage(data.message || "Invalid email or password");
+        setErrorMessage(responseJSON.message || "Invalid email or password");
       }
     } catch (error) {
       console.error("Login error:", error);
