@@ -7,7 +7,7 @@ import ExitButton from "../../components/ExitButton/ExitButton";
 import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import RectangleContainer from "../../components/RectangleContainer/RectangleContainer";
 import "./MainDeckEditingPage.css";
-import DecksContext from "../../contexts/DecksContext";
+// import DecksContext from "../../contexts/DecksContext";
 import AuthContext from "../../contexts/AuthContext";
 
 const MainDeckEditingPage = ({ mode, initialDeck }) => {
@@ -15,14 +15,14 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
   const [deckTitle, setDeckTitle] = useState("");
   const [deckDescription, setDeckDescription] = useState("");
   const [cards, setCards] = useState([{ card_term: "", card_definition: "" }]);
-  const { decks, setDecks } = useContext(DecksContext);
+  // const { decks, setDecks } = useContext(DecksContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (mode === "edit" && initialDeck) {
-      setDeckTitle(initialDeck.deck_title);
-      setDeckDescription(initialDeck.deck_description);
-      setCards(initialDeck.deck_cards || []);
+      setDeckTitle(initialDeck.deck.deck_title);
+      setDeckDescription(initialDeck.deck.deck_description);
+      setCards(initialDeck.cards || []);
     }
   }, [mode, initialDeck]);
 
@@ -70,7 +70,7 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
 
       const data = await response.json();
       alert("Deck created successfully!");
-      setDecks([...decks, { ...payload, deck_id: data.deck_id }]);
+      // setDecks([...decks, { ...payload, deck_id: data.deck_id }]);
       navigate(`/opened_deck/${data.deck_id}`);
     } catch (error) {
       console.error("Error creating deck:", error);
@@ -78,9 +78,48 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
     }
   };
 
-  const handleUpdateDeck = () => {
-    // Logic for updating the deck
-    // This part will use a separate API endpoint for updates
+  const handleUpdateDeck = async () => {
+    const payload = {
+      deck_id: initialDeck.deck.deck_id,
+      deck_title: deckTitle,
+      deck_description: deckDescription,
+      cards: cards.filter(
+        (card) => card.card_term.trim() && card.card_definition.trim()
+      ),
+    };
+
+    try {
+      console.log("Update Payload:", JSON.stringify(payload));
+
+      const response = await fetch(
+        "http://localhost/REBYU-Gamified_Flashcards/includes/decks/update.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("An error occurred while updating the deck.");
+      }
+
+      const data = await response.json();
+      alert("Deck updated successfully!");
+      // setDecks(
+      //   decks.map((deck) =>
+      //     deck.deck_id === initialDeck.deck.deck_id
+      //       ? { ...deck, ...payload }
+      //       : deck
+      //   )
+      // );
+      navigate(`/opened_deck/${initialDeck.deck.deck_id}`);
+    } catch (error) {
+      console.error("Error updating deck:", error);
+      alert("An error occurred while updating the deck.");
+    }
   };
 
   return (
