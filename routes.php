@@ -12,6 +12,7 @@ $routes = [
     'POST' => [
         '/users' => 'includes/users/create.php',
         '/decks' => 'includes/decks/create.php',
+        '/auth_sessions' => 'includes/auth_sessions/login.php',
     ],
     'PUT' => [
         '/decks' => 'includes/decks/update.php',

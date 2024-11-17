@@ -31,7 +31,7 @@ const LoginPage = () => {
 
     try {
       const response = await fetch(
-        "http://localhost/REBYU-Gamified_Flashcards/includes/users/login.php",
+        "http://localhost/REBYU-Gamified_Flashcards/includes/auth_sessions/login.php",
         {
           method: "POST",
           headers: {

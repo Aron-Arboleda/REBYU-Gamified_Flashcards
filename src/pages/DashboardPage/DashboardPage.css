@@ -18,3 +18,41 @@
   align-items: center;
   gap: 20px;
 }
+
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  border: 2px solid black;
+  cursor: pointer;
+  max-width: 100px;
+}
+
+.logoutContainer {
+  display: flex;
+  max-width: 500px;
+  padding: 30px;
+  border-radius: 20px;
+  flex-direction: column;
+  text-align: left;
+  background-color: rgb(252, 233, 191);
+}
+
+.pLogout {
+  font-size: small;
+  color: rgb(20, 19, 19);
+}
+
+.hLogout {
+  color: rgb(20, 19, 19);
+}
+
+.cancelAndLogoutContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  gap: 10px;
+  padding-top: 20px;
+}
