@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import useCheckSession from "../../hooks/useSessionCheck";
 
 const DashboardPage = () => {
-  useCheckSession();
+  //useCheckSession();
 
   const { user, logout, setUser } = useContext(AuthContext);
   const navigate = useNavigate();

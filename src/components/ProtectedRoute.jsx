@@ -18,10 +18,10 @@ const ProtectedRoute = ({ children }) => {
         );
         const data = await response.json();
 
-        console.log("data:", data);
+        //console.log("data:", data);
 
         if (data.loggedIn === true) {
-          console.log("data.user:", data.user);
+          console.log("Checked session. User is logged in");
           setUser(data.user);
         } else {
           setUser(null);

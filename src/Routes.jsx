@@ -16,7 +16,14 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<StartingScreen />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/opened_deck/:deck_id" element={<OpenedDeckPage />} />
       <Route path="/edit_deck/new" element={<NewDeckPage />} />
       <Route path="/edit_deck/update/:deck_id" element={<UpdateDeckPage />} />
