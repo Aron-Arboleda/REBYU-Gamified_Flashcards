@@ -6,17 +6,17 @@ import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import "./OpenedDeckPage.css";
 import ExitButton from "../../components/ExitButton/ExitButton";
 import { useNavigate, useParams } from "react-router-dom";
-import DecksContext from "../../contexts/DecksContext";
 import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer/DarkBackgroundContainer";
 
 const OpenedDeckPage = () => {
   const { deck_id } = useParams();
-  //const { decks, setDecks } = useContext(DecksContext);
   const navigate = useNavigate();
   const [clickedDelete, setClickedDelete] = useState(false);
   const [deckData, setDeckData] = useState(null); // State to store deck and cards
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
+  const [deleteError, setDeleteError] = useState(null); // Error state for delete
+  const [deleteLoading, setDeleteLoading] = useState(false); // Loading state for delete
 
   useEffect(() => {
     // Fetch deck data from the backend
@@ -40,6 +40,39 @@ const OpenedDeckPage = () => {
     fetchDeckData();
   }, [deck_id]); // Run when deck_id changes
 
+  const handleDeleteConfirm = async () => {
+    setDeleteLoading(true); // Start loading for delete action
+    setDeleteError(null); // Clear previous delete error
+
+    try {
+      const response = await fetch(
+        "http://localhost/REBYU-Gamified_Flashcards/includes/decks/delete.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ deck_id }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete the deck.");
+      }
+
+      const data = await response.json();
+      if (data.message === "Deck and associated cards deleted successfully.") {
+        navigate("/decks"); // Redirect to decks page
+      } else {
+        throw new Error(data.message || "Unknown error during deletion.");
+      }
+    } catch (err) {
+      setDeleteError(err.message); // Handle deletion error
+    } finally {
+      setDeleteLoading(false); // Stop loading for delete action
+    }
+  };
+
   if (loading) {
     return <p>Loading...</p>; // Show loading indicator
   }
@@ -53,13 +86,6 @@ const OpenedDeckPage = () => {
   }
 
   const { deck, cards } = deckData;
-
-  const handleDeleteConfirm = () => {
-    setDecks((prevDecks) =>
-      prevDecks.filter((deck) => deck.deck_id !== Number(deck_id))
-    );
-    navigate("/decks"); // Navigate to the decks page or any other page
-  };
 
   return (
     <Page>
@@ -111,9 +137,12 @@ const OpenedDeckPage = () => {
                   irreversible... proceed with caution, hero.
                 </b>
               </p>
+              {deleteError && <p className="error">{deleteError}</p>}
               <div className="cancelAndDeleteContainer">
                 <button onClick={() => setClickedDelete(false)}>Cancel</button>
-                <button onClick={handleDeleteConfirm}>Annihilate</button>
+                <button onClick={handleDeleteConfirm} disabled={deleteLoading}>
+                  {deleteLoading ? "Annihilating..." : "Annihilate"}
+                </button>
               </div>
             </div>
           </DarkBackgroundContainer>
