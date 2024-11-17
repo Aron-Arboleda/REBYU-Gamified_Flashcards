@@ -1,22 +1,42 @@
 // ProtectedRoute.jsx
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  // Wait until session validation is complete
-  if (loading) {
-    return <div>Loading...</div>; // Optionally, replace with a loading spinner
-  }
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost/REBYU-Gamified_Flashcards/includes/auth_sessions/session_check.php",
+          {
+            credentials: "include",
+          }
+        );
+        const data = await response.json();
 
-  // Redirect to login if no user is found
-  // if (!user) {
-  //   return <Navigate to="/login" replace />;
-  // }
+        console.log("data:", data);
 
-  // Allow access if user is authenticated
+        if (data.loggedIn === true) {
+          console.log("data.user:", data.user);
+          setUser(data.user);
+        } else {
+          setUser(null);
+          navigate("/"); // Redirect to login if not logged in
+        }
+      } catch (error) {
+        console.error("Session check failed:", error);
+        setUser(null);
+        //navigate("/"); // Redirect to login on error
+      }
+    };
+
+    checkSession();
+  }, [navigate, setUser]);
+
   return children;
 };
 

@@ -10,7 +10,7 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import NewDeckPage from "./pages/NewDeckPage/NewDeckPage";
 import UpdateDeckPage from "./pages/UpdateDeckPage/UpdateDeckPage";
 //import Flashcards from "./pages/Flashcards/Flashcards";
-//import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const AppRoutes = () => {
   return (
@@ -21,7 +21,14 @@ const AppRoutes = () => {
       <Route path="/edit_deck/new" element={<NewDeckPage />} />
       <Route path="/edit_deck/update/:deck_id" element={<UpdateDeckPage />} />
       <Route path="/study/:deck_id" element={<StudyPage />} />
-      <Route path="/decks" element={<DecksPage />} />
+      <Route
+        path="/decks"
+        element={
+          <ProtectedRoute>
+            <DecksPage />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />

@@ -19,31 +19,32 @@ const DecksPage = () => {
 
   useEffect(() => {
     const fetchUserDecks = async () => {
-      if (!user || !user.user_id) {
-        setError("User not authenticated.");
-        setLoading(false);
+      // if (!user || !user.user_id) {
+      //   setError("User not authenticated.");
+      //   setLoading(false);
 
-        return;
-      }
+      //   return;
+      // }
+      if (user) {
+        try {
+          const response = await fetch(
+            `http://localhost/REBYU-Gamified_Flashcards/includes/decks/read_decksOfUser.php?user_id=${user.user_id}`
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch decks.");
+          }
 
-      try {
-        const response = await fetch(
-          `http://localhost/REBYU-Gamified_Flashcards/includes/decks/read_decksOfUser.php?user_id=${user.user_id}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch decks.");
+          const data = await response.json();
+          if (data.decks) {
+            setDecks(data.decks); // Set the decks data locally
+          } else {
+            setError("No decks found for this user.");
+          }
+        } catch (err) {
+          setError(err.message); // Handle fetch errors
+        } finally {
+          setLoading(false);
         }
-
-        const data = await response.json();
-        if (data.decks) {
-          setDecks(data.decks); // Set the decks data locally
-        } else {
-          setError("No decks found for this user.");
-        }
-      } catch (err) {
-        setError(err.message); // Handle fetch errors
-      } finally {
-        setLoading(false);
       }
     };
 
