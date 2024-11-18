@@ -1,0 +1,17 @@
+.signup-form-labels {
+  font-size: 1.5rem;
+}
+
+.form-title {
+  text-align: center;
+}
+
+@media (max-width: 635px) {
+  .form-title {
+    font-size: 1.8rem;
+  }
+  .signup-form-labels {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+}

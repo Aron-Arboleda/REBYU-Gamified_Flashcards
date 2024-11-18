@@ -74,6 +74,7 @@ input {
 }
 
 button:hover,
+button:focus,
 input:focus {
   background-color: #faeec5;
 }

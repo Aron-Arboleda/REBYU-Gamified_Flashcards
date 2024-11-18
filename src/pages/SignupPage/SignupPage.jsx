@@ -3,6 +3,7 @@ import MainContainer from "../../components/MainContainer/MainContainer";
 import Page from "../../components/Page/Page";
 import StandardContainer from "../../components/StandardContainer/StandardContainer";
 import { useNavigate } from "react-router-dom";
+import "./SignupPage.css";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -68,62 +69,74 @@ const SignupPage = () => {
       <MainContainer>
         <div className="container-centered">
           <StandardContainer>
-            <h1 style={{ textAlign: "center" }}>Register</h1>
+            <h1 className="form-title">REGISTER</h1>
             <form onSubmit={handleSubmit} className="mainForm">
               <div className="formContainer">
-                <label htmlFor="user_username">Username</label>
+                <label htmlFor="user_username" className="signup-form-labels">
+                  Username:
+                </label>
                 <input
                   type="text"
                   name="user_username" // Ensure name matches formData key
                   id="user_username"
-                  className="inputs"
+                  className="form-textboxes"
                   value={formData.user_username} // Bind value to formData
                   onChange={handleChange} // Correct handler
                   required
                 />
-                <label htmlFor="user_first_name">First Name</label>
+                <label htmlFor="user_first_name" className="signup-form-labels">
+                  First Name:
+                </label>
                 <input
                   type="text"
                   name="user_first_name" // Ensure name matches formData key
                   id="user_first_name"
-                  className="inputs"
+                  className="form-textboxes"
                   value={formData.user_first_name}
                   onChange={handleChange}
                   required
                 />
-                <label htmlFor="user_last_name">Last Name</label>
+                <label htmlFor="user_last_name" className="signup-form-labels">
+                  Last Name:
+                </label>
                 <input
                   type="text"
                   name="user_last_name" // Ensure name matches formData key
                   id="user_last_name"
-                  className="inputs"
+                  className="form-textboxes"
                   value={formData.user_last_name}
                   onChange={handleChange}
                   required
                 />
-                <label htmlFor="user_email">Email</label>
+                <label htmlFor="user_email" className="signup-form-labels">
+                  Email:
+                </label>
                 <input
                   type="email"
                   name="user_email" // Ensure name matches formData key
                   id="user_email"
-                  className="inputs"
+                  className="form-textboxes"
                   value={formData.user_email}
                   onChange={handleChange}
                   required
                 />
-                <label htmlFor="user_password">Password</label>
+                <label htmlFor="user_password" className="signup-form-labels">
+                  Password:
+                </label>
                 <input
                   type="password"
                   name="user_password" // Ensure name matches formData key
                   id="user_password"
-                  className="inputs"
+                  className="form-textboxes"
                   value={formData.user_password}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="buttonContainer">
-                <button type="submit">Sign Up</button>
+                <button type="submit" className="form-submit">
+                  Sign Up
+                </button>
               </div>
             </form>
             {responseMessage && (

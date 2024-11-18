@@ -3,7 +3,7 @@
   flex-direction: column;
   width: 100%;
   max-width: 400px;
-  height: 50vh;
+  height: auto;
   background-color: #eec39a;
   border-radius: 88px;
   border: 88px solid transparent; /* Reserve space for the border */
@@ -16,8 +16,8 @@
   gap: 2rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 685px) {
   .standard-container {
-    gap: 1rem;
+    gap: 0.8rem;
   }
 }
