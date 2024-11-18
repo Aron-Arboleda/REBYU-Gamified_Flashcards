@@ -62,24 +62,29 @@ const LoginPage = () => {
       <MainContainer>
         <div className="container-centered">
           <StandardContainer>
-            <h1 style={{ textAlign: "center" }}>Login</h1>
+            <h1 style={{ textAlign: "center" }}>LOG IN </h1>
             <form onSubmit={handleOnSubmit} className="mainForm">
               <div className="formContainer">
-                <label htmlFor="user_email">Email</label>
+                <label htmlFor="user_email" className="form-labels">
+                  Email:
+                </label>
                 <input
                   type="email"
                   name="user_email"
                   id="user_email"
+                  className="form-textboxes"
                   value={formData.user_email}
                   onChange={handleChange}
                   required
                 />
-                <label htmlFor="user_password">Password</label>
+                <label htmlFor="user_password" className="form-labels">
+                  Password:
+                </label>
                 <input
                   type="password"
                   name="user_password"
                   id="user_password"
-                  className="inputs"
+                  className="form-textboxes"
                   value={formData.user_password}
                   onChange={handleChange}
                   required
@@ -91,12 +96,19 @@ const LoginPage = () => {
                 </p>
               )}
               <div className="buttonContainer">
-                <button type="submit">Login</button>
+                <button type="submit" className="form-submit">
+                  Login
+                </button>
               </div>
             </form>
             <p>
               Don't have an account?{" "}
-              <button onClick={() => navigate("/signup")}>Register</button>
+              <button
+                className="form-redirect"
+                onClick={() => navigate("/signup")}
+              >
+                Register
+              </button>
             </p>
           </StandardContainer>
         </div>

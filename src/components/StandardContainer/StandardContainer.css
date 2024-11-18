@@ -1,0 +1,23 @@
+.standard-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  height: 50vh;
+  background-color: #eec39a;
+  border-radius: 88px;
+  border: 88px solid transparent; /* Reserve space for the border */
+  border-image: url(/images/pixel_art_graphics/tilesets/standard_container1.png)
+    286 stretch;
+  /* background-size: cover; */ /* Stretch the image to cover the container */
+  /* background-repeat: no-repeat; */ /* Specify the image */
+  border-image-outset: 0;
+  font-family: SmallPixel;
+  gap: 2rem;
+}
+
+@media (max-width: 600px) {
+  .standard-container {
+    gap: 1rem;
+  }
+}
