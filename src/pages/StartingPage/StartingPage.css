@@ -1,9 +1,24 @@
 #startingPage-container {
-  background-image: url("../../assets/images/backgrounds/grassland-background.png");
+  background-image: url("/images/pixel_art_graphics/backgrounds/movingclouds_with_title.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #startButton {
-  margin-top: 200px;
+  background-image: url("/images/pixel_art_graphics/buttons/start_game_inactive.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  border: none;
+  width: 200px;
+  height: 50px;
+  margin-top: 400px;
   font-size: 1.7rem;
   padding: 5px 40px;
+  cursor: pointer;
+  outline: none;
+}
+
+#startButton:active {
+  background-image: url("/images/pixel_art_graphics/buttons/start_game_active.png");
 }

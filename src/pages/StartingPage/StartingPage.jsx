@@ -6,9 +6,7 @@ const StartingPage = () => {
   const navigate = useNavigate();
   return (
     <div className="page" id="startingPage-container">
-      <button id="startButton" onClick={() => navigate("/login")}>
-        Start Game
-      </button>
+      <button id="startButton" onClick={() => navigate("/login")}></button>
     </div>
   );
 };
