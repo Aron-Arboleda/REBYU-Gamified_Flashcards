@@ -1,5 +1,5 @@
 #startButton {
-  background-image: url("/images/pixel_art_graphics/buttons/start_game_inactive.png");
+  background-image: url("/images/pixel_art_graphics/UIs/buttons/start_game_inactive.png");
   background-repeat: no-repeat;
   background-color: transparent;
   background-size: contain;
@@ -14,7 +14,7 @@
 }
 
 #startButton:active {
-  background-image: url("/images/pixel_art_graphics/buttons/start_game_active.png");
+  background-image: url("/images/pixel_art_graphics/UIs/buttons/start_game_active.png");
 }
 
 @media (min-width: 768px) {

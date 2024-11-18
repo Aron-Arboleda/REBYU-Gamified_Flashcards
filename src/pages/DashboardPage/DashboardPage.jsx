@@ -31,41 +31,11 @@ const DashboardPage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const checkSession = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "http://localhost/REBYU-Gamified_Flashcards/includes/auth_sessions/session_check.php",
-  //         {
-  //           credentials: "include",
-  //         }
-  //       );
-  //       const data = await response.json();
-
-  //       console.log("data:", data);
-
-  //       if (data.loggedIn === true) {
-  //         console.log("data.user:", data.user);
-  //         setUser(data.user);
-  //       } else {
-  //         setUser(null);
-  //         navigate("/"); // Redirect to login if not logged in
-  //       }
-  //     } catch (error) {
-  //       console.error("Session check failed:", error);
-  //       setUser(null);
-  //       //navigate("/"); // Redirect to login on error
-  //     }
-  //   };
-
-  //   checkSession();
-  // }, [navigate, setUser]);
-
-  //const { user, logout } = useContext(AuthContext); // Add logout to AuthContext
-
   const [clickedLogout, setClickedLogout] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [logoutError, setLogoutError] = useState(null);
+
+  const [clickedProfile, setClickedProfile] = useState(false);
 
   const handleLogoutConfirm = async () => {
     try {
@@ -82,26 +52,79 @@ const DashboardPage = () => {
 
   return (
     <Page>
-      <MainContainer>
-        <Header>
-          <h1>{user ? user.user_username : "Loading..."}</h1>
-          <button
+      <Header>
+        <div className="menu_title_container">
+          <div className="menu_container">
+            <img src="/images/pixel_art_graphics/UIs/menu_button.png" alt="" />
+          </div>
+          <div className="title_container">
+            <img
+              src="/images/pixel_art_graphics/backgrounds/title_without_card.png"
+              alt=""
+            />
+          </div>
+        </div>
+        <div className="name_profile_container">
+          <h1 className="name_heading">
+            {user
+              ? `${user.user_first_name} ${user.user_last_name}`
+              : "Loading..."}
+          </h1>
+          <div
+            className="dashboard_profile_container"
+            onClick={() =>
+              clickedProfile
+                ? setClickedProfile(false)
+                : setClickedProfile(true)
+            }
+          >
+            <img
+              src="/images/pixel_art_graphics/UIs/profile_placeholder.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+
+        {/* <button
             onClick={() => {
               checkSession();
             }}
           >
             Check Session
-          </button>
-          <button
-            className="logout-button"
-            onClick={() => {
-              setClickedLogout(true);
-            }}
-          >
-            Log Out
-          </button>
-        </Header>
-
+          </button> */}
+        {/*  */}
+      </Header>
+      {clickedProfile && (
+        <div className="profile_panel">
+          <div className="profile_panel_info_container">
+            <div className="dashboard_profile_container">
+              <img
+                src="/images/pixel_art_graphics/UIs/profile_placeholder.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <p className="profile_panel_p">
+                {user ? user.user_username : "Loading..."}
+              </p>
+              <p className="profile_panel_p">
+                {user ? user.user_email : "Loading..."}
+              </p>
+            </div>
+          </div>
+          <div>
+            <button
+              className="logout-button"
+              onClick={() => {
+                setClickedLogout(true);
+              }}
+            >
+              Log Out
+            </button>
+          </div>
+        </div>
+      )}
+      <MainContainer>
         <div id="dashboardPage-twoHalvesMiddleSection">
           <div></div>
           <div>

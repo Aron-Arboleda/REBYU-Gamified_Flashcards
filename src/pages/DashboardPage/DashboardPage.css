@@ -2,7 +2,6 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background-color: azure;
   height: 60vh;
 }
 
@@ -22,6 +21,18 @@
 .logout-button {
   background-color: #f44336;
   color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  border: 2px solid black;
+  cursor: pointer;
+  max-width: 100px;
+}
+
+.logout-button:hover,
+.logout-button:focus {
+  background-color: white;
+  color: #f44336;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;

@@ -59,60 +59,58 @@ const LoginPage = () => {
 
   return (
     <Page>
-      <MainContainer>
-        <div className="container-centered">
-          <StandardContainer>
-            <h1 style={{ textAlign: "center" }}>LOG IN </h1>
-            <form onSubmit={handleOnSubmit} className="mainForm">
-              <div className="formContainer">
-                <label htmlFor="user_email" className="form-labels">
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  name="user_email"
-                  id="user_email"
-                  className="form-textboxes"
-                  value={formData.user_email}
-                  onChange={handleChange}
-                  required
-                />
-                <label htmlFor="user_password" className="form-labels">
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  name="user_password"
-                  id="user_password"
-                  className="form-textboxes"
-                  value={formData.user_password}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              {errorMessage && (
-                <p style={{ color: "red", textAlign: "center" }}>
-                  {errorMessage}
-                </p>
-              )}
-              <div className="buttonContainer">
-                <button type="submit" className="form-submit">
-                  Log in
-                </button>
-              </div>
-            </form>
-            <p>
-              Don't have an account?{" "}
-              <button
-                className="form-redirect"
-                onClick={() => navigate("/signup")}
-              >
-                Register
+      <div className="center_x_y_container">
+        <StandardContainer>
+          <h1 style={{ textAlign: "center" }}>LOG IN </h1>
+          <form onSubmit={handleOnSubmit} className="mainForm">
+            <div className="formContainer">
+              <label htmlFor="user_email" className="form-labels">
+                Email:
+              </label>
+              <input
+                type="email"
+                name="user_email"
+                id="user_email"
+                className="form-textboxes"
+                value={formData.user_email}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="user_password" className="form-labels">
+                Password:
+              </label>
+              <input
+                type="password"
+                name="user_password"
+                id="user_password"
+                className="form-textboxes"
+                value={formData.user_password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            {errorMessage && (
+              <p style={{ color: "red", textAlign: "center" }}>
+                {errorMessage}
+              </p>
+            )}
+            <div className="buttonContainer">
+              <button type="submit" className="form-submit">
+                Log in
               </button>
-            </p>
-          </StandardContainer>
-        </div>
-      </MainContainer>
+            </div>
+          </form>
+          <p>
+            Don't have an account?{" "}
+            <button
+              className="form-redirect"
+              onClick={() => navigate("/signup")}
+            >
+              Register
+            </button>
+          </p>
+        </StandardContainer>
+      </div>
     </Page>
   );
 };

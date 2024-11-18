@@ -66,91 +66,89 @@ const SignupPage = () => {
 
   return (
     <Page>
-      <MainContainer>
-        <div className="container-centered">
-          <StandardContainer>
-            <h1 className="form-title">REGISTER</h1>
-            <form onSubmit={handleSubmit} className="mainForm">
-              <div className="formContainer">
-                <label htmlFor="user_username" className="signup-form-labels">
-                  Username:
-                </label>
-                <input
-                  type="text"
-                  name="user_username" // Ensure name matches formData key
-                  id="user_username"
-                  className="form-textboxes"
-                  value={formData.user_username} // Bind value to formData
-                  onChange={handleChange} // Correct handler
-                  required
-                />
-                <label htmlFor="user_first_name" className="signup-form-labels">
-                  First Name:
-                </label>
-                <input
-                  type="text"
-                  name="user_first_name" // Ensure name matches formData key
-                  id="user_first_name"
-                  className="form-textboxes"
-                  value={formData.user_first_name}
-                  onChange={handleChange}
-                  required
-                />
-                <label htmlFor="user_last_name" className="signup-form-labels">
-                  Last Name:
-                </label>
-                <input
-                  type="text"
-                  name="user_last_name" // Ensure name matches formData key
-                  id="user_last_name"
-                  className="form-textboxes"
-                  value={formData.user_last_name}
-                  onChange={handleChange}
-                  required
-                />
-                <label htmlFor="user_email" className="signup-form-labels">
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  name="user_email" // Ensure name matches formData key
-                  id="user_email"
-                  className="form-textboxes"
-                  value={formData.user_email}
-                  onChange={handleChange}
-                  required
-                />
-                <label htmlFor="user_password" className="signup-form-labels">
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  name="user_password" // Ensure name matches formData key
-                  id="user_password"
-                  className="form-textboxes"
-                  value={formData.user_password}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="buttonContainer">
-                <button type="submit" className="form-submit">
-                  Sign Up
-                </button>
-              </div>
-            </form>
-            {responseMessage && (
-              <p style={{ textAlign: "center", marginTop: "1rem" }}>
-                {responseMessage}
-              </p>
-            )}
-            <p>
-              Already have an account?{" "}
-              <button onClick={() => navigate("/login")}>Log in</button>
+      <div className="center_x_y_container">
+        <StandardContainer>
+          <h1 className="form-title">REGISTER</h1>
+          <form onSubmit={handleSubmit} className="mainForm">
+            <div className="formContainer">
+              <label htmlFor="user_username" className="signup-form-labels">
+                Username:
+              </label>
+              <input
+                type="text"
+                name="user_username" // Ensure name matches formData key
+                id="user_username"
+                className="form-textboxes"
+                value={formData.user_username} // Bind value to formData
+                onChange={handleChange} // Correct handler
+                required
+              />
+              <label htmlFor="user_first_name" className="signup-form-labels">
+                First Name:
+              </label>
+              <input
+                type="text"
+                name="user_first_name" // Ensure name matches formData key
+                id="user_first_name"
+                className="form-textboxes"
+                value={formData.user_first_name}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="user_last_name" className="signup-form-labels">
+                Last Name:
+              </label>
+              <input
+                type="text"
+                name="user_last_name" // Ensure name matches formData key
+                id="user_last_name"
+                className="form-textboxes"
+                value={formData.user_last_name}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="user_email" className="signup-form-labels">
+                Email:
+              </label>
+              <input
+                type="email"
+                name="user_email" // Ensure name matches formData key
+                id="user_email"
+                className="form-textboxes"
+                value={formData.user_email}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="user_password" className="signup-form-labels">
+                Password:
+              </label>
+              <input
+                type="password"
+                name="user_password" // Ensure name matches formData key
+                id="user_password"
+                className="form-textboxes"
+                value={formData.user_password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="buttonContainer">
+              <button type="submit" className="form-submit">
+                Sign Up
+              </button>
+            </div>
+          </form>
+          {responseMessage && (
+            <p style={{ textAlign: "center", marginTop: "1rem" }}>
+              {responseMessage}
             </p>
-          </StandardContainer>
-        </div>
-      </MainContainer>
+          )}
+          <p>
+            Already have an account?{" "}
+            <button onClick={() => navigate("/login")}>Log in</button>
+          </p>
+        </StandardContainer>
+      </div>
     </Page>
   );
 };
