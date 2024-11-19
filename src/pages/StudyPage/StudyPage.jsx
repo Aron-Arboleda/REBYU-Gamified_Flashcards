@@ -5,7 +5,7 @@ import MainContainer from "../../components/MainContainer/MainContainer";
 import Page from "../../components/Page/Page";
 import pixelHeart from "../../assets/images/icons/pixelHeart.png";
 import "./StudyPage.css";
-import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer/DarkBackgroundContainer";
+import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer";
 import { useNavigate, useParams } from "react-router-dom";
 
 const StudyPage = () => {

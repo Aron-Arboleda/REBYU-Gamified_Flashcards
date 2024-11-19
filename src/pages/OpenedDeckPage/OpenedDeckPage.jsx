@@ -6,7 +6,7 @@ import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import "./OpenedDeckPage.css";
 import ExitButton from "../../components/ExitButton/ExitButton";
 import { useNavigate, useParams } from "react-router-dom";
-import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer/DarkBackgroundContainer";
+import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer";
 
 const OpenedDeckPage = () => {
   const { deck_id } = useParams();

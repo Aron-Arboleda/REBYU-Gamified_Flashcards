@@ -32,6 +32,7 @@ const SideBar = ({ clickedMenu, setClickedMenu }) => {
         </div>
         <ul className="menu-list">
           <li onClick={() => handleMenuItemClick("/")}>Game Screen</li>
+          <li onClick={() => handleMenuItemClick("/dashboard")}>Dashboard</li>
           <li onClick={() => handleMenuItemClick("/edit_deck/new")}>Create</li>
           <li onClick={() => handleMenuItemClick("/decks")}>Decks</li>
           <li onClick={() => handleMenuItemClick("/about")}>About</li>
