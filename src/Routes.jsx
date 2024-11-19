@@ -48,7 +48,14 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-      <Route path="/study/:deck_id" element={<StudyPage />} />
+      <Route
+        path="/study/:deck_id"
+        element={
+          <ProtectedRoute>
+            <StudyPage />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/decks"
         element={

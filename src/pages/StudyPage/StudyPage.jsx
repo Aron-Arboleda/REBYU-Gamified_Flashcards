@@ -7,6 +7,8 @@ import pixelHeart from "../../assets/images/icons/pixelHeart.png";
 import "./StudyPage.css";
 import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer";
 import { useNavigate, useParams } from "react-router-dom";
+import ContentArea from "../../components/ContentArea/ContentArea";
+import TitleHeading from "../../components/TitleHeading/TitleHeading";
 
 const StudyPage = () => {
   const { deck_id } = useParams();
@@ -143,97 +145,93 @@ const StudyPage = () => {
 
   return (
     <Page>
+      <Header />
       <MainContainer>
-        <Header>
-          <h1>{deck.deck_title}</h1>
-          <div className="headerColumn2">
-            <ExitButton url={`/opened_deck/${deck.deck_id}`} />
-          </div>
-        </Header>
-        <div className="healthBarContainer">
-          <img
-            className="healthBarHeartIcon"
-            src={pixelHeart}
-            alt="Heart Icon"
-          />
-          <div className="healthBar">
-            <div
-              className="healthBarFill"
-              style={{ width: `${health}%` }}
-            ></div>
-          </div>
-        </div>
-
-        <div className="counterContainer">
-          <p>
-            {currentCardIndex + 1} / {totalFlashcards}
-          </p>
-        </div>
-
-        {/* Flashcards */}
-        <div className="carousel">
-          <div className="card-container">
-            {/* Current Card */}
-            <div
-              className={`card current-card ${
-                isTransitioning ? "fade-out" : ""
-              }`}
-              onClick={() => toggleFlip(currentCardIndex)}
-            >
+        <TitleHeading titleText={deck.deck_title.toUpperCase()} />
+        <ContentArea>
+          <div className="healthBarContainer">
+            <div className="healthBar">
+              <img
+                className="healthBarHeartIcon"
+                src={pixelHeart}
+                alt="Heart Icon"
+              />
               <div
-                className={`card-inner ${
-                  flipStates[currentCardIndex] ? "flipped" : ""
+                className="healthBarFill"
+                style={{ width: `${health}%` }}
+              ></div>
+            </div>
+          </div>
+          <div className="counterContainer">
+            <p className="counterText">
+              {currentCardIndex + 1} / {totalFlashcards}
+            </p>
+          </div>
+          {/* Flashcards */}
+          <div className="carousel">
+            <div className="card-container">
+              {/* Current Card */}
+              <div
+                className={`card current-card ${
+                  isTransitioning ? "fade-out" : ""
                 }`}
+                onClick={() => toggleFlip(currentCardIndex)}
               >
-                <div className="card-front">
-                  <h3>{cards[currentCardIndex].card_definition}</h3>
-                </div>
-                <div className="card-back">
-                  <p>{cards[currentCardIndex].card_term}</p>
+                <div
+                  className={`card-inner ${
+                    flipStates[currentCardIndex] ? "flipped" : ""
+                  }`}
+                >
+                  <div className="card-front">
+                    <h3>{cards[currentCardIndex].card_definition}</h3>
+                  </div>
+                  <div className="card-back">
+                    <p>{cards[currentCardIndex].card_term}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* NAVIGATIONS */}
-        <div className="navigationButtons">
-          <button onClick={handlePrev} disabled={currentCardIndex === 0}>
-            {"<--"}
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={hasWon} // Disable if the user has won
-          >
-            {"-->"}
-          </button>
-          <label className="shuffleSwitch">
-            <input
-              type="checkbox"
-              checked={isShuffled}
-              onChange={toggleShuffle}
-            />
-            Shuffle
-          </label>
-        </div>
-        {hasWon && (
-          <DarkBackgroundContainer>
-            <div className="darkbackgroundContainer-wrapper">
-              <h2>You Win!</h2>
-              <button
-                onClick={() => {
-                  setHasWon(false);
-                  restoreDeck();
-                }}
-              >
-                Battle Again!
-              </button>
-              <button onClick={() => navigate(`/opened_deck/${deck_id}`)}>
-                Back to Deck
-              </button>
-            </div>
-          </DarkBackgroundContainer>
-        )}
+          {/* NAVIGATIONS */}
+          <div className="navigationButtons">
+            <button
+              onClick={handlePrev}
+              disabled={currentCardIndex === 0}
+              className="arrow-button study-left-button "
+            ></button>
+            <button
+              onClick={handleNext}
+              disabled={hasWon}
+              className="arrow-button study-right-button" // Disable if the user has won
+            ></button>
+            {/* <label className="shuffleSwitch">
+              <input
+                type="checkbox"
+                checked={isShuffled}
+                onChange={toggleShuffle}
+              />
+              Shuffle
+            </label>*/}
+          </div>
+          {hasWon && (
+            <DarkBackgroundContainer>
+              <div className="darkbackgroundContainer-wrapper">
+                <h2>You Win!</h2>
+                <button
+                  onClick={() => {
+                    setHasWon(false);
+                    restoreDeck();
+                  }}
+                >
+                  Battle Again!
+                </button>
+                <button onClick={() => navigate(`/opened_deck/${deck_id}`)}>
+                  Back to Deck
+                </button>
+              </div>
+            </DarkBackgroundContainer>
+          )}
+        </ContentArea>
       </MainContainer>
     </Page>
   );

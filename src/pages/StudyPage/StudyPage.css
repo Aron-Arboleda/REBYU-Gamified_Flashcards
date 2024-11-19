@@ -2,6 +2,9 @@
 .healthBarHeartIcon {
   width: 40px;
   height: 40px;
+  position: absolute;
+  left: -18px;
+  top: -13px;
 }
 
 .healthBarContainer {
@@ -12,16 +15,18 @@
 }
 
 .healthBar {
-  width: 200px;
-  height: 20px;
+  position: relative;
+  width: 20vw;
+  height: 15px;
   background-color: #ccc;
   margin-left: 10px;
   border-radius: 10px;
-  overflow: hidden;
+  border: 2px solid black;
 }
 
 .healthBarFill {
   height: 100%;
+  border-radius: 10px;
   background-color: red;
   transition: width 0.3s ease;
 }
@@ -32,16 +37,17 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 50vw;
   margin: auto;
 }
 
 /* Card container */
 .card-container {
+  margin-top: 1rem;
   position: relative;
   perspective: 1000px;
   width: 100%;
-  height: 200px;
+  height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,12 +62,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   backface-visibility: hidden;
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   opacity: 1;
+  user-select: none;
+  font-size: 1.7rem;
 }
 
 /* Card flip effect */
@@ -71,6 +77,8 @@
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.1s;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 
 .card-inner.flipped {
@@ -88,15 +96,16 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  font-family: "SmallPixel";
 }
 
 .card-front {
-  background-color: #f8f9fa;
+  background-color: white;
 }
 
 .card-back {
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: var(--pallete-highlight-beige);
+  color: black;
   transform: rotateY(180deg);
 }
 
@@ -140,9 +149,13 @@
 }
 
 .counterContainer {
-  font-family: "PixelifySans";
   text-align: center;
   margin-top: 10px;
+}
+
+.counterText {
+  font-family: "VCR";
+  font-size: 1.2rem;
 }
 
 .navigationButtons {
@@ -152,24 +165,38 @@
   margin-top: 20px;
 }
 
-.navigationButtons button {
-  padding: 10px 20px;
-  font-size: 1.2em;
-  cursor: pointer;
+.arrow-button {
+  width: 50px;
+  height: 35px;
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
   border: none;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: white;
-  transition: background-color 0.3s;
 }
 
-.navigationButtons button:disabled {
-  background-color: #ccc;
+.arrow-button:disabled {
   cursor: not-allowed;
 }
 
-.navigationButtons button:hover:not(:disabled) {
-  background-color: #45a049;
+.study-left-button {
+  background-image: url(/images/pixel_art_graphics/UIs/buttons/arrow_button_left.png);
+}
+
+.study-left-button:disabled {
+  background-image: url(/images/pixel_art_graphics/UIs/buttons/arrow_button_left_disabled.png);
+}
+
+.study-left-button:hover,
+.study-right-button:hover {
+  background-color: transparent;
+}
+
+.study-right-button {
+  background-image: url(/images/pixel_art_graphics/UIs/buttons/arrow_button_right.png);
+}
+
+.study-right-button:disabled {
+  background-image: url(/images/pixel_art_graphics/UIs/buttons/arrow_button_right_disabled.png);
 }
 
 /* Undo and Shuffle switch styles */
