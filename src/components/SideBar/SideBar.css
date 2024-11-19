@@ -1,0 +1,84 @@
+/* Container */
+.container {
+  display: flex;
+  position: fixed;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: fixed;
+  padding: 1rem;
+  top: 0;
+  left: -300px; /* Initially hidden */
+  width: 250px;
+  height: 100%;
+  background-color: white;
+  color: black;
+  font-family: "PixelifySans";
+  overflow: auto;
+  transition: left 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  left: 0; /* Slide in */
+}
+
+.sidebar.closed {
+  left: -300px; /* Slide out */
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 15px;
+  cursor: pointer;
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+
+.sidebar ul li:hover {
+  background-color: var(--pallete-highlight-yellow);
+}
+
+/* Menu Button */
+.menu-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.menu-button:hover {
+  background-color: #555;
+}
+
+/* Main Content */
+.content {
+  margin-left: 0; /* Adjust this if needed */
+  padding: 20px;
+  flex: 1;
+}
+
+.menu-list {
+}
+
+@media (max-width: 570px) {
+  .name_heading {
+    display: none;
+  }
+}

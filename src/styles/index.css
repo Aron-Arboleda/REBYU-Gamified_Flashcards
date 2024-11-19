@@ -11,6 +11,16 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --pallete-cloud-blue: #377fe8;
+  --pallete-cloud-white: #b9d9fe;
+  --pallete-rebyu-bright-yellow: #fbf236;
+  --pallete-rebyu-bright-gold: #fbbe36;
+  --pallete-highlight-yellow: #faeec5;
+  --pallete-game-ui-light-brown: #eec39a;
+  --pallete-game-ui-regular-brown: #d9a066;
+  --pallete-game-ui-dark-brown: #8f563b;
+  --pallete-game-ui-dark-outline-brown: #8f563b;
 }
 
 @font-face {

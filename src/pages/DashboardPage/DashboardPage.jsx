@@ -8,6 +8,7 @@ import AuthContext from "../../contexts/AuthContext";
 import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer/DarkBackgroundContainer";
 import { useNavigate } from "react-router-dom";
 import useCheckSession from "../../hooks/useSessionCheck";
+import SideBar from "../../components/SideBar/SideBar";
 
 const DashboardPage = () => {
   //useCheckSession();
@@ -35,6 +36,7 @@ const DashboardPage = () => {
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [logoutError, setLogoutError] = useState(null);
 
+  const [clickedMenu, setClickedMenu] = useState(false);
   const [clickedProfile, setClickedProfile] = useState(false);
 
   const handleLogoutConfirm = async () => {
@@ -54,7 +56,7 @@ const DashboardPage = () => {
     <Page>
       <Header>
         <div className="menu_title_container">
-          <div className="menu_container">
+          <div className="menu_container" onClick={() => setClickedMenu(true)}>
             <img src="/images/pixel_art_graphics/UIs/menu_button.png" alt="" />
           </div>
           <div className="title_container">
@@ -94,6 +96,9 @@ const DashboardPage = () => {
           </button> */}
         {/*  */}
       </Header>
+
+      <SideBar clickedMenu={clickedMenu} setClickedMenu={setClickedMenu} />
+
       {clickedProfile && (
         <div className="profile_panel">
           <div className="profile_panel_info_container">
