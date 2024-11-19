@@ -9,6 +9,8 @@ import "./DecksPage.css";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext"; // Still need this to access the authenticated user
 import useSessionCheck from "../../hooks/useSessionCheck";
+import ContentArea from "../../components/ContentArea/ContentArea";
+import TitleHeading from "../../components/TitleHeading/TitleHeading";
 
 const DecksPage = () => {
   const { user, setUser } = useContext(AuthContext); // Access user info from AuthContext
@@ -62,28 +64,28 @@ const DecksPage = () => {
   }
 
   return (
-    <Page>
+    <Page classList="page">
+      <Header />
       <MainContainer>
-        <Header>
-          <h1>Decks</h1>
-          <div className="headerColumn2">
-            <ExitButton url="/dashboard" />
-          </div>
-        </Header>
-        <ScrollContainer>
-          <div id="decksPage-decksContainer">
-            {/* Render the decks list */}
-            {decks.map((deck, index) => {
-              return (
-                <Deck
-                  key={index}
-                  deckTitle={deck.deck_title}
-                  onClickEvent={() => navigate(`/opened_deck/${deck.deck_id}`)}
-                />
-              );
-            })}
-          </div>
-        </ScrollContainer>
+        <ContentArea>
+          <TitleHeading titleText="DECKS" />
+          <ScrollContainer>
+            <div id="decksPage-decksContainer">
+              {/* Render the decks list */}
+              {decks.map((deck, index) => {
+                return (
+                  <Deck
+                    key={index}
+                    deckTitle={deck.deck_title}
+                    onClickEvent={() =>
+                      navigate(`/opened_deck/${deck.deck_id}`)
+                    }
+                  />
+                );
+              })}
+            </div>
+          </ScrollContainer>
+        </ContentArea>
       </MainContainer>
     </Page>
   );
