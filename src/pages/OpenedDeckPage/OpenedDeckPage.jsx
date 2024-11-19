@@ -119,8 +119,7 @@ const OpenedDeckPage = () => {
             </button>
             <button
               onClick={() => setClickedDelete(true)}
-              className="openedDeck-button"
-              id="openedDeck-deletebutton"
+              className="openedDeck-button openedDeck-deletebutton"
             >
               Delete
             </button>
@@ -134,8 +133,10 @@ const OpenedDeckPage = () => {
           {clickedDelete && (
             <DarkBackgroundContainer>
               <div className="deleteContainer">
-                <h1 className="hDelete">Destroy this deck? </h1>
-                <h2 className="hDelete">{deck.deck_title}</h2>
+                <h1 className="hDelete">
+                  {"Destroy this deck?".toUpperCase()}
+                </h1>
+                <h2 className="hDelete">{deck.deck_title.toUpperCase()}</h2>
                 <p className="pDelete">
                   Are you truly ready to destroy this deck? This isn't just a
                   delete— <b> it's a final farewell. </b> The cards within hold
@@ -151,12 +152,16 @@ const OpenedDeckPage = () => {
                 </p>
                 {deleteError && <p className="error">{deleteError}</p>}
                 <div className="cancelAndDeleteContainer">
-                  <button onClick={() => setClickedDelete(false)}>
+                  <button
+                    onClick={() => setClickedDelete(false)}
+                    className="openedDeck-button"
+                  >
                     Cancel
                   </button>
                   <button
                     onClick={handleDeleteConfirm}
                     disabled={deleteLoading}
+                    className="openedDeck-button openedDeck-deletebutton"
                   >
                     {deleteLoading ? "Annihilating..." : "Annihilate"}
                   </button>

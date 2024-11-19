@@ -107,10 +107,10 @@ const Header = () => {
       {clickedLogout && (
         <DarkBackgroundContainer>
           <div className="logoutContainer">
-            <h1 className="hLogout">Prepare for Departure, Hero</h1>
+            <h1 className="hLogout">PREPARE FOR DEPARTURE, HERO</h1>
             <h2 className="hLogout">
-              Are you certain you wish to leave,{" "}
-              {user ? user.user_username : "Loading..."}?
+              ARE YOU CERTAIN YOU WISH TO LEAVE,
+              {user ? user.user_username.toUpperCase() : "Loading..."}?
             </h2>
 
             <p className="pLogout">
@@ -129,8 +129,17 @@ const Header = () => {
             </p>
             {logoutError && <p className="error">{logoutError}</p>}
             <div className="cancelAndLogoutContainer">
-              <button onClick={() => setClickedLogout(false)}>Cancel</button>
-              <button onClick={handleLogoutConfirm} disabled={logoutLoading}>
+              <button
+                onClick={() => setClickedLogout(false)}
+                className="openedDeck-button"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleLogoutConfirm}
+                disabled={logoutLoading}
+                className="openedDeck-button openedDeck-deletebutton"
+              >
                 {logoutLoading ? "Escaping..." : "Log out"}
               </button>
             </div>

@@ -2,7 +2,7 @@
   font-family: "PixelifySans";
   font-size: 2rem;
   background-color: rgba(0, 0, 0, 0.516);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;

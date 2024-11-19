@@ -78,7 +78,7 @@
   padding: 3px 15px;
 }
 
-#openedDeck-deletebutton:hover {
+.openedDeck-deletebutton:hover {
   background-color: tomato;
   color: white;
 }
