@@ -1,9 +1,15 @@
 .rectangleContainer {
   width: 1fr;
   height: auto;
-  background-color: rgb(241, 205, 138);
+  background-color: rgb(255, 228, 181);
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 10px 10px;
+  border: 5px solid var(--pallete-game-ui-dark-brown);
+  border-radius: 10px;
+}
+
+.rectangleContainer input {
+  width: 95%;
 }

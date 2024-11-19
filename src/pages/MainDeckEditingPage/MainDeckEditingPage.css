@@ -10,9 +10,20 @@
   margin: 20px 0px;
   gap: 10px;
   overflow: auto;
-  max-height: 400px;
 }
 
 #mainDeckEditingPage-createButton {
-  margin: 10px auto;
+  margin: 2rem auto;
+  font-size: 2rem;
+  padding: 5px 20px;
+  border-radius: 5px;
+}
+
+.mainDeckEditingPage-inputsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.mainDeckEditingPage-removeContainer {
+  max-width: 70px;
 }

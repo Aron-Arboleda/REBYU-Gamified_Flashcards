@@ -6,14 +6,17 @@
 
 .page {
   background-image: url("/images/pixel_art_graphics/backgrounds/movingclouds.gif");
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* background-size: cover; */
+  background-repeat: repeat-y;
+  background-position: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: auto;
+}
+
+.pageUnscrollable {
   height: 100%;
-  background-size: cover;
-  background-position: center;
 }
 
 .center_x_y_container {
@@ -34,7 +37,10 @@
 }
 
 .main-container {
-  width: 70vw;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: transparent;
   text-align: center;
 }

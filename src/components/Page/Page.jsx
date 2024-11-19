@@ -1,5 +1,5 @@
-const Page = ({ children }) => {
-  return <div className="page">{children}</div>;
+const Page = ({ children, classList = "page" }) => {
+  return <div className={classList}>{children}</div>;
 };
 
 export default Page;

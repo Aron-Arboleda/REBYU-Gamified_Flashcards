@@ -9,6 +9,8 @@ import RectangleContainer from "../../components/RectangleContainer/RectangleCon
 import "./MainDeckEditingPage.css";
 // import DecksContext from "../../contexts/DecksContext";
 import AuthContext from "../../contexts/AuthContext";
+import TitleHeading from "../../components/TitleHeading/TitleHeading";
+import ContentArea from "../../components/ContentArea/ContentArea";
 
 const MainDeckEditingPage = ({ mode, initialDeck }) => {
   const { user } = useContext(AuthContext);
@@ -124,65 +126,76 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
 
   return (
     <Page>
+      <Header />
       <MainContainer>
-        <Header>
-          {mode === "edit" ? <h1>Update deck</h1> : <h1>Create a deck</h1>}
-          <div className="headerColumn2">
-            <ExitButton url="/dashboard" />
-          </div>
-        </Header>
-        <ScrollContainer>
-          <div className="mainDeckEditingPage-deckInitialInputsContainer">
-            <input
-              type="text"
-              placeholder="Enter deck title"
-              value={deckTitle}
-              onChange={(e) => setDeckTitle(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Enter deck description"
-              value={deckDescription}
-              onChange={(e) => setDeckDescription(e.target.value)}
-            />
-          </div>
-          <div className="mainDeckEditingPage-cardsContainer">
-            {cards.map((card, index) => (
-              <RectangleContainer key={index}>
-                <input
-                  type="text"
-                  placeholder="Enter term"
-                  value={card.card_term}
-                  onChange={(e) =>
-                    handleInputChange(index, "card_term", e.target.value)
-                  }
-                />
-                <input
-                  type="text"
-                  placeholder="Enter definition"
-                  value={card.card_definition}
-                  onChange={(e) =>
-                    handleInputChange(index, "card_definition", e.target.value)
-                  }
-                />
-                <button onClick={() => removeCard(index)}>Remove</button>
-              </RectangleContainer>
-            ))}
-            <button onClick={addCard}>Add Card</button>
-          </div>
-        </ScrollContainer>
-        <button
-          id="mainDeckEditingPage-createButton"
-          onClick={() => {
-            if (mode === "edit") {
-              handleUpdateDeck();
-            } else {
-              handleCreateDeck();
-            }
-          }}
-        >
-          {mode === "edit" ? "Done" : "Create"}
-        </button>
+        <ContentArea>
+          <TitleHeading
+            titleText={mode === "edit" ? "UPDATE" : "CREATE A DECK"}
+          />
+          <ScrollContainer>
+            <div className="mainDeckEditingPage-deckInitialInputsContainer">
+              <input
+                type="text"
+                placeholder="Enter deck title"
+                value={deckTitle}
+                onChange={(e) => setDeckTitle(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Enter deck description"
+                value={deckDescription}
+                onChange={(e) => setDeckDescription(e.target.value)}
+              />
+            </div>
+            <div className="mainDeckEditingPage-cardsContainer">
+              {cards.map((card, index) => (
+                <RectangleContainer key={index}>
+                  <div className="mainDeckEditingPage-inputsContainer">
+                    <input
+                      type="text"
+                      placeholder="Enter term"
+                      value={card.card_term}
+                      onChange={(e) =>
+                        handleInputChange(index, "card_term", e.target.value)
+                      }
+                    />
+                    <input
+                      type="text"
+                      placeholder="Enter definition"
+                      value={card.card_definition}
+                      onChange={(e) =>
+                        handleInputChange(
+                          index,
+                          "card_definition",
+                          e.target.value
+                        )
+                      }
+                    />
+                  </div>
+                  <button
+                    className="mainDeckEditingPage-removeContainer"
+                    onClick={() => removeCard(index)}
+                  >
+                    Remove
+                  </button>
+                </RectangleContainer>
+              ))}
+              <button onClick={addCard}>Add Card</button>
+            </div>
+          </ScrollContainer>
+          <button
+            id="mainDeckEditingPage-createButton"
+            onClick={() => {
+              if (mode === "edit") {
+                handleUpdateDeck();
+              } else {
+                handleCreateDeck();
+              }
+            }}
+          >
+            {mode === "edit" ? "Done" : "Create"}
+          </button>
+        </ContentArea>
       </MainContainer>
     </Page>
   );

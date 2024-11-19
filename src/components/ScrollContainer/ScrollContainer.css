@@ -1,1 +1,15 @@
-
+.scrollContainer {
+  display: block;
+  height: auto;
+  background-color: #eec39a;
+  border-radius: 20px;
+  margin: 20px auto;
+  text-align: left;
+  border: 88px solid transparent; /* Reserve space for the border */
+  border-image: url(/images/pixel_art_graphics/UIs/tilesets/scroll_container.png)
+    286 stretch;
+  /* background-size: cover; */ /* Stretch the image to cover the container */
+  /* background-repeat: no-repeat; */ /* Specify the image */
+  border-image-outset: 0.5;
+  margin-top: 4rem;
+}

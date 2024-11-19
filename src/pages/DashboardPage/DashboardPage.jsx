@@ -6,9 +6,8 @@ import SignboardButton from "../../components/SignboardButton/SignboardButton";
 
 const DashboardPage = () => {
   return (
-    <Page>
+    <Page classList="page pageUnscrollable">
       <Header />
-
       <MainContainer>
         <div id="dashboardPage-twoHalvesMiddleSection">
           <div></div>

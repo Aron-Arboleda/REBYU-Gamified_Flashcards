@@ -1,0 +1,10 @@
+.content-area {
+  display: block;
+  width: 80vw;
+}
+
+@media (max-width: 700px) {
+  .content-area {
+    max-width: 90vw;
+  }
+}
