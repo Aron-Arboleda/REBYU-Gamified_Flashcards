@@ -12,10 +12,15 @@ const DashboardPage = () => {
         <div id="dashboardPage-twoHalvesMiddleSection">
           <div></div>
           <div>
-            <div id="dashboardPage-signBoard">
-              <SignboardButton text="Create" pageToRedirect="/edit_deck/new" />
-              <SignboardButton text="Decks" pageToRedirect="/decks" />
-              <SignboardButton text="About" pageToRedirect="/about" />
+            <div id="dashboardPage-signBoardContainer">
+              <div id="dashboardPage-signBoard">
+                <SignboardButton
+                  text="Create"
+                  pageToRedirect="/edit_deck/new"
+                />
+                <SignboardButton text="Decks" pageToRedirect="/decks" />
+                <SignboardButton text="About" pageToRedirect="/about" />
+              </div>
             </div>
           </div>
         </div>

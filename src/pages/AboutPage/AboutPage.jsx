@@ -9,7 +9,7 @@ import TitleHeading from "../../components/TitleHeading/TitleHeading";
 
 const AboutPage = () => {
   return (
-    <Page>
+    <Page classList="page pageUnscrollable">
       <Header />
       <MainContainer>
         <ContentArea>

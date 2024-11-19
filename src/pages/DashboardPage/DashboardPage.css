@@ -10,12 +10,24 @@
   justify-content: left;
 }
 
-#dashboardPage-signBoard {
+#dashboardPage-signBoardContainer {
   display: flex;
   padding: 20px;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+}
+
+#dashboardPage-signBoard {
+  max-width: 40%;
+  border-radius: 88px;
+  border: 88px solid transparent; /* Reserve space for the border */
+  border-image: url(/images/pixel_art_graphics/UIs/tilesets/wood_container.png)
+    286 round;
+  background-color: #8f563b;
+  /* background-size: cover; */ /* Stretch the image to cover the container */
+  /* background-repeat: no-repeat; */ /* Specify the image */
+  border-image-outset: 0.2;
 }
 
 .logout-button {

@@ -173,7 +173,7 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
                     />
                   </div>
                   <button
-                    className="mainDeckEditingPage-removeContainer"
+                    className="mainDeckEditingPage-removeButton"
                     onClick={() => removeCard(index)}
                   >
                     Remove

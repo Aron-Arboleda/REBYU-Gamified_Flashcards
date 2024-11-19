@@ -1,7 +1,21 @@
 .dashboardPage-navButtons {
+  background-color: #eec39a;
+  border-radius: 17rem;
+  border: 44px solid transparent; /* Reserve space for the border */
+  border-image: url(/images/pixel_art_graphics/UIs/tilesets/signboard_container.png)
+    143 stretch;
+  /* background-size: cover; */ /* Stretch the image to cover the container */
+  /* background-repeat: no-repeat; */ /* Specify the image */
+  border-image-outset: 0;
   font-family: "PixelifySans";
   font-size: 2rem;
   width: 300px;
   height: 120px;
-  background-color: lightgoldenrodyellow;
+}
+
+.dashboardPage-navButtons:hover,
+.dashboardPage-navButtons:focus {
+  background-color: #f6e1b1;
+  border-image: url(/images/pixel_art_graphics/UIs/tilesets/signboard_container_hovered.png)
+    143 stretch;
 }

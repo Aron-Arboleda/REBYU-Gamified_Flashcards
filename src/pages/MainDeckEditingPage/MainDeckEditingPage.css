@@ -22,8 +22,22 @@
 .mainDeckEditingPage-inputsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-.mainDeckEditingPage-removeContainer {
+.mainDeckEditingPage-removeButton {
   max-width: 70px;
+}
+
+.mainDeckEditingPage-removeButton:focus,
+.mainDeckEditingPage-removeButton:hover {
+  background-color: tomato;
+  color: white;
+}
+
+@media (max-width: 1000px) {
+  .mainDeckEditingPage-inputsContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 }
