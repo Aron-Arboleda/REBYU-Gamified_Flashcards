@@ -13,6 +13,10 @@
   background-color: white;
   padding: 10px;
   margin-top: 10px;
+  border-radius: 10px;
+  border: 3px solid var(--pallete-game-ui-dark-brown);
+  font-family: "SmallPixel";
+  font-size: 1.5rem;
 }
 
 .openedDeckPage-cardPreviewTerm {
@@ -49,4 +53,43 @@
   justify-content: right;
   gap: 10px;
   padding-top: 20px;
+}
+
+.openedDeck-description {
+  font-family: "SmallPixel";
+  font-size: 1.5rem;
+}
+
+.openedDeck-goToBattleButton {
+  margin: 2rem auto;
+  font-size: 2rem;
+  padding: 5px 20px;
+  border-radius: 5px;
+}
+
+.openedDeck-updateAndDeleteContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.openedDeck-button {
+  font-size: 1.5rem;
+  padding: 3px 15px;
+}
+
+#openedDeck-deletebutton:hover {
+  background-color: tomato;
+  color: white;
+}
+
+@media (max-width: 750px) {
+  .openedDeckPage-cardPreview {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .openedDeckPage-cardPreviewTerm {
+    border-right: none;
+    border-bottom: 2px solid #e6e6e690;
+  }
 }

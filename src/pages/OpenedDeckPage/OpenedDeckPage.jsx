@@ -7,6 +7,8 @@ import "./OpenedDeckPage.css";
 import ExitButton from "../../components/ExitButton/ExitButton";
 import { useNavigate, useParams } from "react-router-dom";
 import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer";
+import ContentArea from "../../components/ContentArea/ContentArea";
+import TitleHeading from "../../components/TitleHeading/TitleHeading";
 
 const OpenedDeckPage = () => {
   const { deck_id } = useParams();
@@ -89,64 +91,80 @@ const OpenedDeckPage = () => {
 
   return (
     <Page>
+      <Header />
       <MainContainer>
-        <Header>
-          <h1>{deck.deck_title}</h1>
-          <div className="headerColumn2">
-            <ExitButton url="/decks" />
-          </div>
-        </Header>
-        <ScrollContainer>
-          <p>{deck.deck_description}</p>
-          <div id="openedDeckPage-cardsContainer">
-            {cards.map((card, index) => (
-              <div className="openedDeckPage-cardPreview" key={index}>
-                <div className="openedDeckPage-cardPreviewTerm">
-                  {card.card_term}
+        <ContentArea>
+          <TitleHeading titleText={deck.deck_title.toUpperCase()} />
+          <ScrollContainer>
+            <p className="openedDeck-description">{deck.deck_description}</p>
+            <div id="openedDeckPage-cardsContainer">
+              {cards.map((card, index) => (
+                <div className="openedDeckPage-cardPreview" key={index}>
+                  <div className="openedDeckPage-cardPreviewTerm">
+                    {card.card_term}
+                  </div>
+                  <div className="openedDeckPage-cardPreviewDefinition">
+                    {card.card_definition}
+                  </div>
                 </div>
-                <div className="openedDeckPage-cardPreviewDefinition">
-                  {card.card_definition}
-                </div>
-              </div>
-            ))}
-          </div>
-        </ScrollContainer>
-        <button onClick={() => navigate(`/edit_deck/update/${deck.deck_id}`)}>
-          Update
-        </button>
-        <button onClick={() => setClickedDelete(true)}>Delete</button>
-        <button onClick={() => navigate(`/study/${deck.deck_id}`)}>
-          Go to Battle!
-        </button>
-        {clickedDelete && (
-          <DarkBackgroundContainer>
-            <div className="deleteContainer">
-              <h1 className="hDelete">Destroy this deck? </h1>
-              <h2 className="hDelete">{deck.deck_title}</h2>
-
-              <p className="pDelete">
-                Are you truly ready to destroy this deck? This isn't just a
-                delete— <b> it's a final farewell. </b> The cards within hold
-                every question, every moment, every challenge you've conquered.
-                Once destroyed, there's no coming back; it's erased, lost to the
-                void. No magic, no power-up can undo it.
-              </p>
-              <p className="pDelete">
-                <b>
-                  Do you have the courage to let it go forever? This choice is
-                  irreversible... proceed with caution, hero.
-                </b>
-              </p>
-              {deleteError && <p className="error">{deleteError}</p>}
-              <div className="cancelAndDeleteContainer">
-                <button onClick={() => setClickedDelete(false)}>Cancel</button>
-                <button onClick={handleDeleteConfirm} disabled={deleteLoading}>
-                  {deleteLoading ? "Annihilating..." : "Annihilate"}
-                </button>
-              </div>
+              ))}
             </div>
-          </DarkBackgroundContainer>
-        )}
+          </ScrollContainer>
+          <div className="openedDeck-updateAndDeleteContainer">
+            <button
+              onClick={() => navigate(`/edit_deck/update/${deck.deck_id}`)}
+              className="openedDeck-button"
+            >
+              Update
+            </button>
+            <button
+              onClick={() => setClickedDelete(true)}
+              className="openedDeck-button"
+              id="openedDeck-deletebutton"
+            >
+              Delete
+            </button>
+          </div>
+          <button
+            className="openedDeck-goToBattleButton"
+            onClick={() => navigate(`/study/${deck.deck_id}`)}
+          >
+            Go to Battle!
+          </button>
+          {clickedDelete && (
+            <DarkBackgroundContainer>
+              <div className="deleteContainer">
+                <h1 className="hDelete">Destroy this deck? </h1>
+                <h2 className="hDelete">{deck.deck_title}</h2>
+                <p className="pDelete">
+                  Are you truly ready to destroy this deck? This isn't just a
+                  delete— <b> it's a final farewell. </b> The cards within hold
+                  every question, every moment, every challenge you've
+                  conquered. Once destroyed, there's no coming back; it's
+                  erased, lost to the void. No magic, no power-up can undo it.
+                </p>
+                <p className="pDelete">
+                  <b>
+                    Do you have the courage to let it go forever? This choice is
+                    irreversible... proceed with caution, hero.
+                  </b>
+                </p>
+                {deleteError && <p className="error">{deleteError}</p>}
+                <div className="cancelAndDeleteContainer">
+                  <button onClick={() => setClickedDelete(false)}>
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleDeleteConfirm}
+                    disabled={deleteLoading}
+                  >
+                    {deleteLoading ? "Annihilating..." : "Annihilate"}
+                  </button>
+                </div>
+              </div>
+            </DarkBackgroundContainer>
+          )}
+        </ContentArea>
       </MainContainer>
     </Page>
   );

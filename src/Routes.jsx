@@ -24,9 +24,30 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-      <Route path="/opened_deck/:deck_id" element={<OpenedDeckPage />} />
-      <Route path="/edit_deck/new" element={<NewDeckPage />} />
-      <Route path="/edit_deck/update/:deck_id" element={<UpdateDeckPage />} />
+      <Route
+        path="/opened_deck/:deck_id"
+        element={
+          <ProtectedRoute>
+            <OpenedDeckPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/edit_deck/new"
+        element={
+          <ProtectedRoute>
+            <NewDeckPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/edit_deck/update/:deck_id"
+        element={
+          <ProtectedRoute>
+            <UpdateDeckPage />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/study/:deck_id" element={<StudyPage />} />
       <Route
         path="/decks"
