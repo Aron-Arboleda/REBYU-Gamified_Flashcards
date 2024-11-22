@@ -1,15 +1,30 @@
 .scrollContainer {
+  width: 1fr;
+  height: 100%;
   display: block;
   height: auto;
   background-color: #eec39a;
   border-radius: 20px;
-  margin: 20px auto;
   text-align: left;
-  border: 88px solid transparent; /* Reserve space for the border */
-  border-image: url(/images/pixel_art_graphics/UIs/tilesets/scroll_container.png)
-    286 stretch;
-  /* background-size: cover; */ /* Stretch the image to cover the container */
-  /* background-repeat: no-repeat; */ /* Specify the image */
+  border-width: 88px; /* Top and Bottom only */
+  border-style: solid;
+  border-image-source: url(/images/pixel_art_graphics/UIs/tilesets/scroll_container.png);
+  border-image-slice: 286; /* Adjust the slicing to your image design */
+  border-image-repeat: stretch; /* Stretch the image for top and bottom */
   border-image-outset: 0.5;
   margin-top: 4rem;
+}
+
+.parent-stackedDiv {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.child-stackedDiv {
+  grid-area: 1 / 1;
+}
+
+.content-stackedDiv {
+  padding: 120px 20px 40px 5px; /* Top and Bottom only */
 }
