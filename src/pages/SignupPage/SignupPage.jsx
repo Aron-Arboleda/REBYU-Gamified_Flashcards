@@ -100,11 +100,11 @@ const SignupPage = () => {
         });
         navigate("/login");
       } else {
-        setResponseMessage(data.message || "An error occurred");
+        setErrorMessage(data.message || "An error occurred");
       }
     } catch (error) {
       console.error("Error:", error);
-      setResponseMessage("Failed to create user.");
+      setErrorMessage("Failed to create user: " + data.error);
     }
   };
 
@@ -177,7 +177,15 @@ const SignupPage = () => {
               />
             </div>
             {errorMessage && (
-              <p style={{ color: "red", textAlign: "center" }}>
+              <p
+                style={{
+                  color: "red",
+                  textAlign: "center",
+                  marginTop: "1rem",
+                  fontFamily: "SmallPixel",
+                  fontSize: "1.2rem",
+                }}
+              >
                 {errorMessage}
               </p>
             )}
@@ -188,7 +196,14 @@ const SignupPage = () => {
             </div>
           </form>
           {responseMessage && (
-            <p style={{ textAlign: "center", marginTop: "1rem" }}>
+            <p
+              style={{
+                textAlign: "center",
+                marginTop: "1rem",
+                fontFamily: "SmallPixel",
+                fontSize: "1.5rem",
+              }}
+            >
               {responseMessage}
             </p>
           )}

@@ -12,7 +12,7 @@ const DashboardPage = () => {
         <div id="dashboardPage-twoHalvesMiddleSection">
           <div className="islandContainer">
             <img
-              src="public/images/pixel_art_graphics/backgrounds/small_island.gif"
+              src="/images/pixel_art_graphics/backgrounds/small_island.gif"
               alt=""
               className="islandImage"
             />

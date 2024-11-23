@@ -41,18 +41,32 @@ $first_name = $conn->real_escape_string($data['user_first_name']);
 $last_name = $conn->real_escape_string($data['user_last_name']);
 
 // Insert into the database
-$sql = "INSERT INTO users (user_username, user_password, user_email, user_first_name, user_last_name) VALUES ('$username', '$password', '$email', '$first_name', '$last_name')";
+$sql = "INSERT INTO users (user_username, user_password, user_email, user_first_name, user_last_name) 
+        VALUES ('$username', '$password', '$email', '$first_name', '$last_name')";
 
 try {
     if ($conn->query($sql) === TRUE) {
         http_response_code(201); // Created
         echo json_encode(["message" => "User created successfully.", "user_id" => $conn->insert_id]);
-    } else {
-        throw new Exception("Error: " . $conn->error);
     }
 } catch (Exception $e) {
-    http_response_code(500); // Internal Server Error
-    echo json_encode(["message" => "Failed to create user.", "error" => $e->getMessage()]);
+    if ($conn->errno === 1062) {
+        // Parse the duplicate key error to identify the specific column
+        if (strpos($e->getMessage(), 'user_username') !== false) {
+            http_response_code(409); // Conflict
+            echo json_encode(["message" => "Username already taken."]);
+        } elseif (strpos($e->getMessage(), 'user_email') !== false) {
+            http_response_code(409); // Conflict
+            echo json_encode(["message" => "Email already exists."]);
+        } else {
+            http_response_code(409); // Conflict
+            echo json_encode(["message" => "Duplicate entry detected."]);
+        }
+    } else {
+        // Handle other database errors
+        http_response_code(500); // Internal Server Error
+        echo json_encode(["message" => "Failed to create user.", "error" => $e->getMessage()]);
+    }
 }
 
 // Close the database connection

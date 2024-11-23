@@ -3,7 +3,7 @@ import ExitButton from "../../components/ExitButton/ExitButton";
 import Header from "../../components/Header/Header";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Page from "../../components/Page/Page";
-import pixelHeart from "../../assets/images/icons/pixelHeart.png";
+import pixelHeart from "/images/pixel_art_graphics/UIs/pixelHeart.png";
 import "./StudyPage.css";
 import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer";
 import { useNavigate, useParams } from "react-router-dom";
