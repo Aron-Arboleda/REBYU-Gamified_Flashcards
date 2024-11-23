@@ -71,18 +71,21 @@ const DecksPage = () => {
           <TitleHeading titleText="DECKS" />
           <ScrollContainer>
             <div id="decksPage-decksContainer">
-              {/* Render the decks list */}
-              {decks.map((deck, index) => {
-                return (
-                  <Deck
-                    key={index}
-                    deckTitle={deck.deck_title}
-                    onClickEvent={() =>
-                      navigate(`/opened_deck/${deck.deck_id}`)
-                    }
-                  />
-                );
-              })}
+              {decks.length === 0 ? (
+                <p>No decks created</p>
+              ) : (
+                decks.map((deck, index) => {
+                  return (
+                    <Deck
+                      key={index}
+                      deckTitle={deck.deck_title}
+                      onClickEvent={() =>
+                        navigate(`/opened_deck/${deck.deck_id}`)
+                      }
+                    />
+                  );
+                })
+              )}
             </div>
           </ScrollContainer>
         </ContentArea>

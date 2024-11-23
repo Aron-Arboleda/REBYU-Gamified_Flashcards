@@ -5,31 +5,6 @@
   height: 90vh;
 }
 
-#dashboardPage-shopIconContainer {
-  display: flex;
-  justify-content: left;
-}
-
-#dashboardPage-signBoardContainer {
-  display: flex;
-  padding: 20px;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-#dashboardPage-signBoard {
-  max-width: 40%;
-  border-radius: 88px;
-  border: 88px solid transparent; /* Reserve space for the border */
-  border-image: url(/images/pixel_art_graphics/UIs/tilesets/wood_container.png)
-    286 round;
-  background-color: #8f563b;
-  /* background-size: cover; */ /* Stretch the image to cover the container */
-  /* background-repeat: no-repeat; */ /* Specify the image */
-  border-image-outset: 0.2;
-}
-
 .logout-button {
   background-color: #f44336;
   color: white;
@@ -90,4 +65,27 @@
   width: 720px;
   margin-left: 15px;
   margin-bottom: 10px;
+}
+
+.signboardContainer {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  #dashboardPage-twoHalvesMiddleSection {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    height: auto;
+  }
+
+  .islandImage {
+    width: 400px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
+  .signboardContainer {
+    margin-top: 50px;
+  }
 }

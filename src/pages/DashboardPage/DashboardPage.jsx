@@ -2,7 +2,8 @@ import Page from "../../components/Page/Page";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Header from "../../components/Header/Header";
 import "./DashboardPage.css";
-import SignboardButton from "../../components/SignboardButton/SignboardButton";
+//import SignboardButton from "../../components/SignboardButton/SignboardButton";
+import Signboard from "../../components/Signboard/Signboard";
 
 const DashboardPage = () => {
   return (
@@ -17,17 +18,8 @@ const DashboardPage = () => {
               className="islandImage"
             />
           </div>
-          <div>
-            <div id="dashboardPage-signBoardContainer">
-              <div id="dashboardPage-signBoard">
-                <SignboardButton
-                  text="Create"
-                  pageToRedirect="/edit_deck/new"
-                />
-                <SignboardButton text="Decks" pageToRedirect="/decks" />
-                <SignboardButton text="About" pageToRedirect="/about" />
-              </div>
-            </div>
+          <div className="signboardContainer">
+            <Signboard />
           </div>
         </div>
       </MainContainer>
