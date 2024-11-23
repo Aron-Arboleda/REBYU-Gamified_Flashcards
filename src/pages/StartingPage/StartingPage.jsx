@@ -36,7 +36,7 @@ const StartingPage = () => {
   };
 
   return (
-    <Page>
+    <Page classList="page pageUnscrollable" id="starting-page">
       <div className="center_x_y_container">
         <div className="titleREBYU"></div>
         <button id="startButton" onClick={() => checkSession()}></button>

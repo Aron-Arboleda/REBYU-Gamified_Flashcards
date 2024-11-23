@@ -93,6 +93,7 @@ try {
             $card_definition = $conn->real_escape_string($card['card_definition']);
 
             $sql_card = "INSERT INTO cards (card_term, card_definition, deck_id) VALUES ('$card_term', '$card_definition', '$deck_id')";
+
             if (!$conn->query($sql_card)) {
                 throw new Exception("Error creating card: " . $conn->error);
             }
