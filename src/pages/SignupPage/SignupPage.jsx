@@ -35,6 +35,18 @@ const SignupPage = () => {
     );
   };
 
+  const isValidUsername = (username) => {
+    const minLength = 3;
+    const maxLength = 20;
+    const validPattern = /^[a-zA-Z0-9_]+$/;
+
+    return (
+      username.length >= minLength &&
+      username.length <= maxLength &&
+      validPattern.test(username)
+    );
+  };
+
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,6 +63,13 @@ const SignupPage = () => {
     if (!isValidPassword(formData.user_password)) {
       setErrorMessage(
         "Password must have atleast an uppercase, lowercase, number, special character and 8 minimum characters."
+      );
+      return;
+    }
+
+    if (!isValidUsername(formData.user_username)) {
+      setErrorMessage(
+        "Username should be between 3 and 20 characters long and contains only letters, numbers, and underscores."
       );
       return;
     }
