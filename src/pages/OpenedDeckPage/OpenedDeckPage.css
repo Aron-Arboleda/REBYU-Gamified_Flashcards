@@ -4,7 +4,6 @@
   margin: 20px 0px;
   gap: 10px;
   overflow: auto;
-  max-height: 450px;
 }
 
 .openedDeckPage-cardPreview {

@@ -1,9 +1,29 @@
 .deck {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   width: 180px;
   height: 280px;
-  background-color: lightyellow;
   color: black;
   font-family: "PixelifySans";
   cursor: pointer;
-  border-radius: 10px;
+  place-items: center;
+}
+
+.deck-container {
+  border-radius: 88px;
+  border-width: 88px;
+  border-style: solid;
+  border-image-source: url(/images/pixel_art_graphics/UIs/tilesets/card_tileset_original.png);
+  border-image-slice: 143;
+  border-image-repeat: round;
+  border-image-outset: 0.09;
+  /* background-color: #fffdca; */
+  background-color: #dddddd;
+  padding: 50px 0px;
+}
+
+.deck-container:hover {
+  background-color: #fffdca;
+  border-image-source: url(/images/pixel_art_graphics/UIs/tilesets/card_tileset.png);
 }

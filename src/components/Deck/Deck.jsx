@@ -2,9 +2,10 @@ import "./Deck.css";
 
 const Deck = ({ deckTitle, onClickEvent }) => {
   return (
-    <button className="deck" onClick={onClickEvent}>
-      {deckTitle}
-    </button>
+    <div className="deck" onClick={onClickEvent}>
+      <div className="stacked-div deck-container"></div>
+      <div className="stacked-div deck-content">{deckTitle}</div>
+    </div>
   );
 };
 
