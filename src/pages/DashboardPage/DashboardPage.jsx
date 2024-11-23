@@ -10,7 +10,13 @@ const DashboardPage = () => {
       <Header />
       <MainContainer>
         <div id="dashboardPage-twoHalvesMiddleSection">
-          <div></div>
+          <div className="islandContainer">
+            <img
+              src="public/images/pixel_art_graphics/backgrounds/small_island.gif"
+              alt=""
+              className="islandImage"
+            />
+          </div>
           <div>
             <div id="dashboardPage-signBoardContainer">
               <div id="dashboardPage-signBoard">

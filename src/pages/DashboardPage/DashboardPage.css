@@ -2,7 +2,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 60vh;
+  height: 90vh;
 }
 
 #dashboardPage-shopIconContainer {
@@ -78,4 +78,16 @@
   justify-content: right;
   gap: 10px;
   padding-top: 20px;
+}
+
+.islandContainer {
+  display: flex;
+  justify-content: left;
+  align-items: flex-end;
+}
+
+.islandImage {
+  width: 720px;
+  margin-left: 15px;
+  margin-bottom: 10px;
 }

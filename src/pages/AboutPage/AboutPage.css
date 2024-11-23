@@ -7,3 +7,15 @@
   padding: 5px 10px;
   font-family: "PixelifySans";
 }
+
+.about-info {
+  font-family: "SmallPixel";
+  font-size: 1.5rem;
+  text-align: left;
+  line-height: 28px;
+  font-weight: 100;
+}
+
+.about-h2 {
+  margin: 1rem 0px;
+}

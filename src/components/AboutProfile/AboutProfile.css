@@ -2,5 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100px;
+  width: 200px;
+}
+
+.member-name {
+  font-family: "SmallPixel";
+  font-size: 1.5rem;
 }
