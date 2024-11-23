@@ -1,5 +1,6 @@
 .signup-form-labels {
   font-size: 1.5rem;
+  font-family: "SmallPixel";
 }
 
 .form-title {
@@ -14,4 +15,13 @@
     font-size: 1rem;
     margin-top: 10px;
   }
+}
+
+.mainForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formContainer {
+  width: 100%;
 }

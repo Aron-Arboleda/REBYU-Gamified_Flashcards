@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
   margin: 1rem 0rem 2rem 0rem;
   column-gap: 20px;
   row-gap: 10px;
@@ -46,6 +46,11 @@
 
 #user_password:focus {
   background-color: #faeec5;
+}
+
+.auth-p {
+  font-family: "SmallPixel";
+  font-size: 1.2rem;
 }
 
 @media (max-width: 685px) {

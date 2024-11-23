@@ -1,8 +1,8 @@
 .standard-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 400px;
+  width: 1fr;
+  height: 100%;
   height: auto;
   background-color: #eec39a;
   border-radius: 88px;
@@ -12,12 +12,32 @@
   /* background-size: cover; */ /* Stretch the image to cover the container */
   /* background-repeat: no-repeat; */ /* Specify the image */
   border-image-outset: 0;
-  font-family: SmallPixel;
+  font-family: "SmallPixel";
   gap: 2rem;
+}
+
+.parent-stackedDiv {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.child-stackedDiv {
+  grid-area: 1 / 1;
+}
+
+.standard-container-content-stackedDiv {
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 @media (max-width: 685px) {
   .standard-container {
     gap: 0.8rem;
+  }
+  .standard-container-content-stackedDiv {
+    padding: 80px 50px;
   }
 }

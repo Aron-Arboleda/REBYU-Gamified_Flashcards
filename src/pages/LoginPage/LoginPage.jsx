@@ -100,7 +100,7 @@ const LoginPage = () => {
               </button>
             </div>
           </form>
-          <p>
+          <p className="auth-p">
             Don't have an account?{" "}
             <button
               className="form-redirect"

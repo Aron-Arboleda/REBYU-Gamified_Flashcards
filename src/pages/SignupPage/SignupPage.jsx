@@ -192,7 +192,7 @@ const SignupPage = () => {
               {responseMessage}
             </p>
           )}
-          <p>
+          <p className="auth-p">
             Already have an account?{" "}
             <button onClick={() => navigate("/login")}>Log in</button>
           </p>
