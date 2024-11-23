@@ -17,6 +17,23 @@ const SignupPage = () => {
   });
 
   const [responseMessage, setResponseMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const isValidPassword = (password) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    return (
+      password.length >= minLength &&
+      hasUpperCase &&
+      hasLowerCase &&
+      hasNumber &&
+      hasSpecialChar
+    );
+  };
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -30,6 +47,13 @@ const SignupPage = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isValidPassword(formData.user_password)) {
+      setErrorMessage(
+        "Password must have atleast an uppercase, lowercase, number, special character and 8 minimum characters."
+      );
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -55,6 +79,7 @@ const SignupPage = () => {
           user_email: "",
           user_password: "",
         });
+        navigate("/login");
       } else {
         setResponseMessage(data.message || "An error occurred");
       }
@@ -132,6 +157,11 @@ const SignupPage = () => {
                 required
               />
             </div>
+            {errorMessage && (
+              <p style={{ color: "red", textAlign: "center" }}>
+                {errorMessage}
+              </p>
+            )}
             <div className="buttonContainer">
               <button type="submit" className="form-submit">
                 Sign Up

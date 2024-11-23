@@ -58,7 +58,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Page>
+    <Page classList="page pageUnscrollable">
       <div className="center_x_y_container">
         <StandardContainer>
           <h1 style={{ textAlign: "center" }}>LOG IN </h1>
