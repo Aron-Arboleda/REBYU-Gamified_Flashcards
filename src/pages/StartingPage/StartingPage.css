@@ -22,3 +22,22 @@
     width: 200px;
   }
 }
+
+.long-background {
+  height: 100%;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  0% {
+  }
+  100% {
+    transform: translateY(-1300px);
+  }
+}
+
+.long-background-image {
+  animation-name: slideUp;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+}

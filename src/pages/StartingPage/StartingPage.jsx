@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./StartingPage.css";
 import { useNavigate } from "react-router-dom";
 import Page from "../../components/Page/Page";
@@ -6,7 +6,10 @@ import AuthContext from "../../contexts/AuthContext";
 
 const StartingPage = () => {
   const { setUser } = useContext(AuthContext);
+  const [clickedStartGame, setClickedStartGame] = useState(false);
   const navigate = useNavigate();
+
+  const handleStartGame = () => {};
 
   const checkSession = async () => {
     try {
@@ -22,8 +25,11 @@ const StartingPage = () => {
 
       if (data.loggedIn === true) {
         console.log("Checked session. User is logged in");
-        setUser(data.user);
-        navigate("/dashboard"); // Redirect to login if not logged in
+        setClickedStartGame(true);
+        setTimeout(() => {
+          setUser(data.user);
+          navigate("/dashboard"); // Redirect to login if not logged in
+        }, 3000);
       } else {
         setUser(null);
         navigate("/login"); // Redirect to login if not logged in
@@ -37,10 +43,22 @@ const StartingPage = () => {
 
   return (
     <Page classList="page pageUnscrollable" id="starting-page">
-      <div className="center_x_y_container">
-        <div className="titleREBYU"></div>
-        <button id="startButton" onClick={() => checkSession()}></button>
-      </div>
+      {!clickedStartGame && (
+        <div className="center_x_y_container">
+          <div className="titleREBYU"></div>
+          <button id="startButton" onClick={() => checkSession()}></button>
+        </div>
+      )}
+      {clickedStartGame && (
+        <div className="long-background ">
+          <img
+            src="/images/pixel_art_graphics/backgrounds/long_background.gif"
+            alt=""
+            className="long-background-image"
+          />
+          sds
+        </div>
+      )}
     </Page>
   );
 };
