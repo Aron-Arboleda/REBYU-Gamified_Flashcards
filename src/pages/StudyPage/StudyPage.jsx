@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ExitButton from "../../components/ExitButton/ExitButton";
 import Header from "../../components/Header/Header";
 import MainContainer from "../../components/MainContainer/MainContainer";
@@ -6,13 +6,16 @@ import Page from "../../components/Page/Page";
 import pixelHeart from "/images/pixel_art_graphics/UIs/pixelHeart.png";
 import "./StudyPage.css";
 import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ContentArea from "../../components/ContentArea/ContentArea";
 import TitleHeading from "../../components/TitleHeading/TitleHeading";
+import AuthContext from "../../contexts/AuthContext";
 
 const StudyPage = () => {
+  const { user } = useContext(AuthContext);
   const { deck_id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [deckData, setDeckData] = useState({ deck: "", cards: [] });
   const [loading, setLoading] = useState(true);
@@ -33,22 +36,27 @@ const StudyPage = () => {
     const fetchDeckData = async () => {
       try {
         const response = await fetch(
-          `http://localhost/REBYU-Gamified_Flashcards/includes/decks/read_deckWithCards.php?deck_id=${deck_id}`
+          `http://localhost/REBYU-Gamified_Flashcards/includes/decks/read_deckWithCards.php?deck_id=${deck_id}&user_id=${user.user_id}`
         );
         if (!response.ok) {
-          throw new Error("Failed to fetch deck data");
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Something went wrong!");
         }
         const data = await response.json();
         setDeckData(data);
         setLoading(false);
       } catch (err) {
-        setError(err.message);
-        setLoading(false);
+        navigate("/not-found", {
+          state: {
+            errorMessage: err.message || "An unknown error occurred.",
+            pathName: location.pathname,
+          },
+        });
       }
     };
 
-    fetchDeckData();
-  }, [deck_id]);
+    user && fetchDeckData();
+  }, [user, deck_id]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -183,10 +191,14 @@ const StudyPage = () => {
                   }`}
                 >
                   <div className="card-front">
-                    <h3>{cards[currentCardIndex].card_definition}</h3>
+                    <p className="card-front-p">
+                      {cards[currentCardIndex].card_definition}
+                    </p>
                   </div>
                   <div className="card-back">
-                    <p>{cards[currentCardIndex].card_term}</p>
+                    <p className="card-back-p">
+                      {cards[currentCardIndex].card_term}
+                    </p>
                   </div>
                 </div>
               </div>

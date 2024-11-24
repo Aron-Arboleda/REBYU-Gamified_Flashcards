@@ -5,16 +5,26 @@ import Header from "../../components/Header/Header";
 import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import "./OpenedDeckPage.css";
 import ExitButton from "../../components/ExitButton/ExitButton";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer";
 import ContentArea from "../../components/ContentArea/ContentArea";
 import TitleHeading from "../../components/TitleHeading/TitleHeading";
+import AuthContext from "../../contexts/AuthContext";
 
 const OpenedDeckPage = () => {
+  const { user } = useContext(AuthContext);
+  const location = useLocation();
   const { deck_id } = useParams();
   const navigate = useNavigate();
   const [clickedDelete, setClickedDelete] = useState(false);
-  const [deckData, setDeckData] = useState(null); // State to store deck and cards
+  const [deckData, setDeckData] = useState({
+    deck: {
+      deck_id: 1,
+      deck_title: "Loading...",
+      deck_description: "Loading...",
+    },
+    cards: [],
+  }); // State to store deck and cards
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
   const [deleteError, setDeleteError] = useState(null); // Error state for delete
@@ -25,22 +35,29 @@ const OpenedDeckPage = () => {
     const fetchDeckData = async () => {
       try {
         const response = await fetch(
-          `http://localhost/REBYU-Gamified_Flashcards/includes/decks/read_deckWithCards.php?deck_id=${deck_id}`
+          `http://localhost/REBYU-Gamified_Flashcards/includes/decks/read_deckWithCards.php?deck_id=${deck_id}&user_id=${user.user_id}`
         );
         if (!response.ok) {
-          throw new Error("Failed to fetch deck data");
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Something went wrong!");
         }
         const data = await response.json();
         setDeckData(data); // Store the deck and cards
         setLoading(false); // Stop loading
       } catch (err) {
-        setError(err.message); // Handle error
+        navigate("/not-found", {
+          state: {
+            errorMessage: err.message || "An unknown error occurred.",
+            pathName: location.pathname,
+          },
+        });
+        //console.log("Going in the error block: ", err.message);
+
         setLoading(false); // Stop loading
       }
     };
-
-    fetchDeckData();
-  }, [deck_id]); // Run when deck_id changes
+    user && fetchDeckData();
+  }, [user, deck_id]); // Run when deck_id changes
 
   const handleDeleteConfirm = async () => {
     setDeleteLoading(true); // Start loading for delete action
@@ -75,17 +92,17 @@ const OpenedDeckPage = () => {
     }
   };
 
-  if (loading) {
-    return <p>Loading...</p>; // Show loading indicator
-  }
+  // if (loading) {
+  //   return <p>Loading...</p>; // Show loading indicator
+  // }
 
-  if (error) {
-    return <p>Error: {error}</p>; // Show error message
-  }
+  // if (error) {
+  //   return <p>Error: {error}</p>; // Show error message
+  // }
 
-  if (!deckData) {
-    return <p>Deck not found</p>; // Show if no deck is found
-  }
+  // if (!deckData) {
+  //   return <p>Deck not found</p>; // Show if no deck is found
+  // }
 
   const { deck, cards } = deckData;
 

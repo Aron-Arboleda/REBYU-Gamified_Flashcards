@@ -11,6 +11,7 @@ import NewDeckPage from "./pages/NewDeckPage/NewDeckPage";
 import UpdateDeckPage from "./pages/UpdateDeckPage/UpdateDeckPage";
 //import Flashcards from "./pages/Flashcards/Flashcards";
 import ProtectedRoute from "./components/ProtectedRoute";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 const AppRoutes = () => {
   return (
@@ -74,6 +75,22 @@ const AppRoutes = () => {
       />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
+      <Route
+        path="/not-found"
+        element={
+          <ProtectedRoute>
+            <NotFoundPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <ProtectedRoute>
+            <NotFoundPage />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 };

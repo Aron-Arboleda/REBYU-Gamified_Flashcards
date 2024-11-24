@@ -115,6 +115,15 @@ h1 {
 
 h2 {
   font-size: 2rem;
+  font-family: "SG12";
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 2rem;
+  font-family: "SmallPixel";
+  margin: 10px 0px;
+  text-align: left;
 }
 
 p {
@@ -122,6 +131,26 @@ p {
   padding: 0;
   font-family: "SmallPixel";
   font-size: 1.3rem;
+  text-align: left;
+}
+
+li {
+  font-family: "SmallPixel";
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+code {
+  font-family: "Courier New";
+  font-size: 0.8rem;
+  background-color: rgb(36, 35, 35);
+  color: white;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+span {
+  text-decoration: underline;
 }
 
 .stacked-div {

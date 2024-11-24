@@ -99,6 +99,11 @@
   font-family: "SmallPixel";
 }
 
+.card-front-p,
+.card-back-p {
+  margin: 80px;
+}
+
 .card-front {
   background-color: white;
 }
@@ -156,6 +161,7 @@
 .counterText {
   font-family: "VCR";
   font-size: 1.2rem;
+  text-align: center;
 }
 
 .navigationButtons {
