@@ -23,7 +23,11 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
     { card_term: "", card_definition: "" },
     { card_term: "", card_definition: "" },
   ]);
-  // const { decks, setDecks } = useContext(DecksContext);
+  const [errors, setErrors] = useState({
+    deckTitle: false,
+    deckDescription: false,
+    cards: [],
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,6 +37,28 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
       setCards(initialDeck.cards || []);
     }
   }, [mode, initialDeck]);
+
+  const validateFields = () => {
+    const cardErrors = cards.map((card) => ({
+      card_term: !card.card_term,
+      card_definition: !card.card_definition,
+    }));
+
+    const newErrors = {
+      deckTitle: !deckTitle,
+      deckDescription: !deckDescription,
+      cards: cardErrors,
+    };
+
+    setErrors(newErrors);
+
+    const isValidDeck = !newErrors.deckTitle && !newErrors.deckDescription;
+    const areValidCards = cardErrors.every(
+      (error) => !error.card_term && !error.card_definition
+    );
+
+    return isValidDeck && areValidCards;
+  };
 
   const handleInputChange = (index, field, value) => {
     const updatedCards = [...cards];
@@ -73,84 +99,92 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
   };
 
   const handleCreateDeck = async () => {
-    const payload = {
-      deck_title: deckTitle,
-      user_id: user.user_id,
-      deck_description: deckDescription,
-      cards: cards.filter(
-        (card) => card.card_term.trim() && card.card_definition.trim()
-      ),
-    };
+    if (validateFields()) {
+      const payload = {
+        deck_title: deckTitle,
+        user_id: user.user_id,
+        deck_description: deckDescription,
+        cards: cards.filter(
+          (card) => card.card_term.trim() && card.card_definition.trim()
+        ),
+      };
 
-    try {
-      console.log("Payload:", JSON.stringify(payload));
+      try {
+        console.log("Payload:", JSON.stringify(payload));
 
-      const response = await fetch(
-        "http://localhost/REBYU-Gamified_Flashcards/includes/decks/create.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
+        const response = await fetch(
+          "http://localhost/REBYU-Gamified_Flashcards/includes/decks/create.php",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("An error occurred while creating the deck.");
         }
-      );
 
-      if (!response.ok) {
-        throw new Error("An error occurred while creating the deck.");
+        const data = await response.json();
+        alert("Deck created successfully!");
+        // setDecks([...decks, { ...payload, deck_id: data.deck_id }]);
+        navigate(`/opened_deck/${data.deck_id}`);
+      } catch (error) {
+        console.error("Error creating deck:", error);
+        alert("An error occurred while creating the deck.");
       }
-
-      const data = await response.json();
-      alert("Deck created successfully!");
-      // setDecks([...decks, { ...payload, deck_id: data.deck_id }]);
-      navigate(`/opened_deck/${data.deck_id}`);
-    } catch (error) {
-      console.error("Error creating deck:", error);
-      alert("An error occurred while creating the deck.");
+    } else {
+      toast.error("Please fill in all fields.");
     }
   };
 
   const handleUpdateDeck = async () => {
-    const payload = {
-      deck_id: initialDeck.deck.deck_id,
-      deck_title: deckTitle,
-      deck_description: deckDescription,
-      cards: cards.filter(
-        (card) => card.card_term.trim() && card.card_definition.trim()
-      ),
-    };
+    if (validateFields()) {
+      const payload = {
+        deck_id: initialDeck.deck.deck_id,
+        deck_title: deckTitle,
+        deck_description: deckDescription,
+        cards: cards.filter(
+          (card) => card.card_term.trim() && card.card_definition.trim()
+        ),
+      };
 
-    try {
-      console.log("Update Payload:", JSON.stringify(payload));
+      try {
+        console.log("Update Payload:", JSON.stringify(payload));
 
-      const response = await fetch(
-        "http://localhost/REBYU-Gamified_Flashcards/includes/decks/update.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
+        const response = await fetch(
+          "http://localhost/REBYU-Gamified_Flashcards/includes/decks/update.php",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("An error occurred while updating the deck.");
         }
-      );
 
-      if (!response.ok) {
-        throw new Error("An error occurred while updating the deck.");
+        const data = await response.json();
+        alert("Deck updated successfully!");
+        // setDecks(
+        //   decks.map((deck) =>
+        //     deck.deck_id === initialDeck.deck.deck_id
+        //       ? { ...deck, ...payload }
+        //       : deck
+        //   )
+        // );
+        navigate(`/opened_deck/${initialDeck.deck.deck_id}`);
+      } catch (error) {
+        console.error("Error updating deck:", error);
+        alert("An error occurred while updating the deck.");
       }
-
-      const data = await response.json();
-      alert("Deck updated successfully!");
-      // setDecks(
-      //   decks.map((deck) =>
-      //     deck.deck_id === initialDeck.deck.deck_id
-      //       ? { ...deck, ...payload }
-      //       : deck
-      //   )
-      // );
-      navigate(`/opened_deck/${initialDeck.deck.deck_id}`);
-    } catch (error) {
-      console.error("Error updating deck:", error);
-      alert("An error occurred while updating the deck.");
+    } else {
+      toast.error("Please fill in all fields.");
     }
   };
 
@@ -169,7 +203,9 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
                 placeholder="Enter deck title"
                 value={deckTitle}
                 onChange={(e) => setDeckTitle(e.target.value)}
-                className="mainDeckEditingPage-deckTitleInput"
+                className={`mainDeckEditingPage-deckTitleInput ${
+                  errors.deckTitle ? "error" : ""
+                }`}
               />
               <textarea
                 placeholder="Enter deck description"
@@ -179,7 +215,9 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
                   e.target.style.height = "auto";
                   e.target.style.height = `${e.target.scrollHeight}px`;
                 }}
-                className="mainDeckEditingPage-deckDescriptionInput"
+                className={`mainDeckEditingPage-deckDescriptionInput ${
+                  errors.deckDescription ? "error" : ""
+                }`}
               />
             </div>
             <div className="mainDeckEditingPage-cardsContainer">
@@ -197,7 +235,9 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
                           e.target.style.height = "auto";
                           e.target.style.height = `${e.target.scrollHeight}px`;
                         }}
-                        className="mainDeckEditingPage-cardTermInput"
+                        className={`mainDeckEditingPage-cardTermInput ${
+                          errors.cards[index]?.card_term ? "error" : ""
+                        }`}
                       />
                     </div>
                     <div>
@@ -215,7 +255,9 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
                           e.target.style.height = "auto";
                           e.target.style.height = `${e.target.scrollHeight}px`;
                         }}
-                        className="mainDeckEditingPage-cardDefinitionInput"
+                        className={`mainDeckEditingPage-cardDefinitionInput ${
+                          errors.cards[index]?.card_definition ? "error" : ""
+                        }`}
                       />
                     </div>
                   </div>
