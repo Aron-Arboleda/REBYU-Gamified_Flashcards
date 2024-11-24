@@ -57,12 +57,13 @@
 
 .islandContainer {
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: flex-end;
+  transform: translateY(20%);
 }
 
 .islandImage {
-  width: 720px;
+  width: 600px;
   margin-left: 15px;
   margin-bottom: 10px;
 }
