@@ -1,0 +1,13 @@
+.title-heading {
+  font-family: "SG12";
+  font-size: 3.5rem;
+  margin: 1rem 0rem;
+  color: white;
+  -webkit-text-stroke: 2px black;
+}
+
+@media (max-width: 768px) {
+  .title-heading {
+    font-size: 2.5rem;
+  }
+}
