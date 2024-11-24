@@ -16,11 +16,10 @@
   flex-direction: column;
   margin: 20px 0px;
   gap: 10px;
-  overflow: auto;
 }
 
 #mainDeckEditingPage-createButton {
-  margin: 2rem auto;
+  margin: 4rem auto 1rem auto;
   font-size: 2rem;
   padding: 5px 20px;
   border-radius: 5px;
@@ -42,9 +41,39 @@
   color: white;
 }
 
-@media (max-width: 1000px) {
+.mainDeckEditingPage-buttonsContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.mainDeckEditingPage-moveUpButton,
+.mainDeckEditingPage-moveDownButton,
+.mainDeckEditingPage-removeButton {
+  font-family: "SmallPixel";
+  font-size: 1rem;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.mainDeckEditingPage-moveUpButton:disabled,
+.mainDeckEditingPage-moveDownButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.mainDeckEditingPage-addButton {
+  font-size: 2rem;
+  padding: 10px 0px;
+}
+
+@media (max-width: 768px) {
+  .mainDeckEditingPage-deckTitleInput {
+    font-size: 1.5rem;
+  }
   .mainDeckEditingPage-inputsContainer {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
   }
 }

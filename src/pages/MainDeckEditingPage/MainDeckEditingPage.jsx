@@ -11,12 +11,18 @@ import "./MainDeckEditingPage.css";
 import AuthContext from "../../contexts/AuthContext";
 import TitleHeading from "../../components/TitleHeading/TitleHeading";
 import ContentArea from "../../components/ContentArea/ContentArea";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MainDeckEditingPage = ({ mode, initialDeck }) => {
   const { user } = useContext(AuthContext);
   const [deckTitle, setDeckTitle] = useState("");
   const [deckDescription, setDeckDescription] = useState("");
-  const [cards, setCards] = useState([{ card_term: "", card_definition: "" }]);
+  const [cards, setCards] = useState([
+    { card_term: "", card_definition: "" },
+    { card_term: "", card_definition: "" },
+    { card_term: "", card_definition: "" },
+  ]);
   // const { decks, setDecks } = useContext(DecksContext);
   const navigate = useNavigate();
 
@@ -39,7 +45,31 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
   };
 
   const removeCard = (index) => {
-    setCards(cards.filter((_, i) => i !== index));
+    if (cards.length > 3) {
+      setCards(cards.filter((_, i) => i !== index));
+    } else {
+      toast.warning("A deck must have at least 3 cards.", { autoClose: 3000 });
+    }
+  };
+
+  const moveCardUp = (index) => {
+    if (index > 0) {
+      const newCards = [...cards];
+      const temp = newCards[index - 1];
+      newCards[index - 1] = newCards[index];
+      newCards[index] = temp;
+      setCards(newCards);
+    }
+  };
+
+  const moveCardDown = (index) => {
+    if (index < cards.length - 1) {
+      const newCards = [...cards];
+      const temp = newCards[index + 1];
+      newCards[index + 1] = newCards[index];
+      newCards[index] = temp;
+      setCards(newCards);
+    }
   };
 
   const handleCreateDeck = async () => {
@@ -189,15 +219,36 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
                       />
                     </div>
                   </div>
-                  <button
-                    className="mainDeckEditingPage-removeButton"
-                    onClick={() => removeCard(index)}
-                  >
-                    Remove
-                  </button>
+                  <div className="mainDeckEditingPage-buttonsContainer">
+                    <button
+                      className="mainDeckEditingPage-moveUpButton"
+                      onClick={() => moveCardUp(index)}
+                      disabled={index === 0}
+                    >
+                      ↑
+                    </button>
+                    <button
+                      className="mainDeckEditingPage-moveDownButton"
+                      onClick={() => moveCardDown(index)}
+                      disabled={index === cards.length - 1}
+                    >
+                      ↓
+                    </button>
+                    <button
+                      className="mainDeckEditingPage-removeButton"
+                      onClick={() => removeCard(index)}
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </RectangleContainer>
               ))}
-              <button onClick={addCard}>Add Card</button>
+              <button
+                onClick={addCard}
+                className="mainDeckEditingPage-addButton"
+              >
+                Add Card
+              </button>
             </div>
           </ScrollContainer>
           <button
@@ -214,6 +265,7 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
           </button>
         </ContentArea>
       </MainContainer>
+      <ToastContainer />
     </Page>
   );
 };
