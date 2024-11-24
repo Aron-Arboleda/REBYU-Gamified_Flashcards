@@ -16,7 +16,8 @@
 
 .healthBar {
   position: relative;
-  width: 20vw;
+  width: 100%;
+  max-width: 400px;
   height: 15px;
   background-color: #ccc;
   margin-left: 10px;
@@ -37,7 +38,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 50vw;
+  max-width: 800px;
   margin: auto;
 }
 
@@ -76,7 +77,7 @@
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.1s;
+  transition: transform 0.3s;
   border: 2px solid black;
   border-radius: 10px;
 }
@@ -101,7 +102,9 @@
 
 .card-front-p,
 .card-back-p {
+  font-size: 2rem;
   margin: 80px;
+  line-height: 35px;
 }
 
 .card-front {
@@ -265,4 +268,13 @@
 .darkbackgroundContainer-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .card-front-p,
+  .card-back-p {
+    font-size: 1.5rem;
+    margin: 20px;
+    line-height: 28px;
+  }
 }
