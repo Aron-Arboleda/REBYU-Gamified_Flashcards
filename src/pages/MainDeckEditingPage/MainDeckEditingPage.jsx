@@ -139,38 +139,55 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
                 placeholder="Enter deck title"
                 value={deckTitle}
                 onChange={(e) => setDeckTitle(e.target.value)}
+                className="mainDeckEditingPage-deckTitleInput"
               />
-              <input
-                type="text"
+              <textarea
                 placeholder="Enter deck description"
                 value={deckDescription}
                 onChange={(e) => setDeckDescription(e.target.value)}
+                onInput={(e) => {
+                  e.target.style.height = "auto";
+                  e.target.style.height = `${e.target.scrollHeight}px`;
+                }}
+                className="mainDeckEditingPage-deckDescriptionInput"
               />
             </div>
             <div className="mainDeckEditingPage-cardsContainer">
               {cards.map((card, index) => (
                 <RectangleContainer key={index}>
                   <div className="mainDeckEditingPage-inputsContainer">
-                    <input
-                      type="text"
-                      placeholder="Enter term"
-                      value={card.card_term}
-                      onChange={(e) =>
-                        handleInputChange(index, "card_term", e.target.value)
-                      }
-                    />
-                    <input
-                      type="text"
-                      placeholder="Enter definition"
-                      value={card.card_definition}
-                      onChange={(e) =>
-                        handleInputChange(
-                          index,
-                          "card_definition",
-                          e.target.value
-                        )
-                      }
-                    />
+                    <div>
+                      <textarea
+                        placeholder="Enter term"
+                        value={card.card_term}
+                        onChange={(e) =>
+                          handleInputChange(index, "card_term", e.target.value)
+                        }
+                        onInput={(e) => {
+                          e.target.style.height = "auto";
+                          e.target.style.height = `${e.target.scrollHeight}px`;
+                        }}
+                        className="mainDeckEditingPage-cardTermInput"
+                      />
+                    </div>
+                    <div>
+                      <textarea
+                        placeholder="Enter definition"
+                        value={card.card_definition}
+                        onChange={(e) =>
+                          handleInputChange(
+                            index,
+                            "card_definition",
+                            e.target.value
+                          )
+                        }
+                        onInput={(e) => {
+                          e.target.style.height = "auto";
+                          e.target.style.height = `${e.target.scrollHeight}px`;
+                        }}
+                        className="mainDeckEditingPage-cardDefinitionInput"
+                      />
+                    </div>
                   </div>
                   <button
                     className="mainDeckEditingPage-removeButton"

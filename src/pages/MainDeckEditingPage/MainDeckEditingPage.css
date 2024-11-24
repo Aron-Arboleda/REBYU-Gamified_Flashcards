@@ -4,6 +4,13 @@
   gap: 20px;
 }
 
+.mainDeckEditingPage-deckTitleInput {
+  font-size: 2.5rem;
+}
+.mainDeckEditingPage-deckDescriptionInput {
+  font-size: 1.5rem;
+}
+
 .mainDeckEditingPage-cardsContainer {
   display: flex;
   flex-direction: column;
@@ -21,7 +28,7 @@
 
 .mainDeckEditingPage-inputsContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
   gap: 10px;
 }
 

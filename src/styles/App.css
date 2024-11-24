@@ -80,7 +80,8 @@ button {
   font-family: "SmallPixel";
 }
 
-input {
+input,
+textarea {
   font-family: "SmallPixel";
   font-size: 1.3rem;
   border-radius: 3px;
@@ -88,9 +89,18 @@ input {
   padding-left: 10px;
 }
 
+textarea {
+  width: 100%;
+  min-height: 50px; /* Set a minimum height */
+  resize: none; /* Prevent manual resizing */
+  overflow: hidden; /* Hide the scrollbar */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
 button:hover,
 button:focus,
-input:focus {
+input:focus,
+textarea:focus {
   background-color: #faeec5;
 }
 
