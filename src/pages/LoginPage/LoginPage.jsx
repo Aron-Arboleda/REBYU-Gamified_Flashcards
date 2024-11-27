@@ -5,6 +5,7 @@ import StandardContainer from "../../components/StandardContainer/StandardContai
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import AuthContext from "../../contexts/AuthContext";
+import { CONFIG } from "../../config";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const LoginPage = () => {
 
     try {
       const response = await fetch(
-        "http://localhost/REBYU-Gamified_Flashcards/includes/auth_sessions/login.php",
+        `${CONFIG.BACKEND_API}auth_sessions/login.php`,
         {
           method: "POST",
           headers: {

@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
+import { CONFIG } from "../config";
 
 const useSessionCheck = () => {
   const { setUser } = useContext(AuthContext);
@@ -10,7 +11,7 @@ const useSessionCheck = () => {
     const checkSession = async () => {
       try {
         const response = await fetch(
-          "http://localhost/REBYU-Gamified_Flashcards/includes/auth_sessions/session_check.php",
+          `${CONFIG.BACKEND_API}auth_sessions/session_check.php`,
           {
             credentials: "include",
           }

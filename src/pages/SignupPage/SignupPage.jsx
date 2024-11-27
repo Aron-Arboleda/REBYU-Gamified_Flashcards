@@ -4,6 +4,7 @@ import Page from "../../components/Page/Page";
 import StandardContainer from "../../components/StandardContainer/StandardContainer";
 import { useNavigate } from "react-router-dom";
 import "./SignupPage.css";
+import { CONFIG } from "../../config";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -75,16 +76,13 @@ const SignupPage = () => {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost/REBYU-Gamified_Flashcards/includes/users/create.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(`${CONFIG.BACKEND_API}users/create.php`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       const data = await response.json();
 

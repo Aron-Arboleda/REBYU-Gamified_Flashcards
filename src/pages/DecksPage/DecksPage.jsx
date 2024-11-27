@@ -11,6 +11,7 @@ import AuthContext from "../../contexts/AuthContext"; // Still need this to acce
 import useSessionCheck from "../../hooks/useSessionCheck";
 import ContentArea from "../../components/ContentArea/ContentArea";
 import TitleHeading from "../../components/TitleHeading/TitleHeading";
+import { CONFIG } from "../../config";
 
 const DecksPage = () => {
   const { user, setUser } = useContext(AuthContext); // Access user info from AuthContext
@@ -30,7 +31,7 @@ const DecksPage = () => {
       if (user) {
         try {
           const response = await fetch(
-            `http://localhost/REBYU-Gamified_Flashcards/includes/decks/read_decksOfUser.php?user_id=${user.user_id}`
+            `${CONFIG.BACKEND_API}decks/read_decksOfUser.php?user_id=${user.user_id}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch decks.");

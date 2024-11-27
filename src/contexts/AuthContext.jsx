@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { CONFIG } from "../config";
 
 const AuthContext = createContext();
 
@@ -15,13 +16,10 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch(
-        "http://localhost/REBYU-Gamified_Flashcards/includes/auth_sessions/logout.php",
-        {
-          method: "POST",
-          credentials: "include",
-        }
-      );
+      await fetch(`${CONFIG.BACKEND_API}auth_sessions/logout.php`, {
+        method: "POST",
+        credentials: "include",
+      });
       setUser(null);
       navigate("/");
     } catch (error) {

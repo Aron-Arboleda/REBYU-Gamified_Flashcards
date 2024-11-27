@@ -13,6 +13,7 @@ import TitleHeading from "../../components/TitleHeading/TitleHeading";
 import ContentArea from "../../components/ContentArea/ContentArea";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CONFIG } from "../../config";
 
 const MainDeckEditingPage = ({ mode, initialDeck }) => {
   const { user } = useContext(AuthContext);
@@ -112,16 +113,13 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
       try {
         console.log("Payload:", JSON.stringify(payload));
 
-        const response = await fetch(
-          "http://localhost/REBYU-Gamified_Flashcards/includes/decks/create.php",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          }
-        );
+        const response = await fetch(`${CONFIG.BACKEND_API}decks/create.php`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
 
         if (!response.ok) {
           throw new Error("An error occurred while creating the deck.");
@@ -154,16 +152,13 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
       try {
         console.log("Update Payload:", JSON.stringify(payload));
 
-        const response = await fetch(
-          "http://localhost/REBYU-Gamified_Flashcards/includes/decks/update.php",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          }
-        );
+        const response = await fetch(`${CONFIG.BACKEND_API}decks/update.php`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
 
         if (!response.ok) {
           throw new Error("An error occurred while updating the deck.");

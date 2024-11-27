@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import MainDeckEditingPage from "../MainDeckEditingPage/MainDeckEditingPage";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthContext";
+import { CONFIG } from "../../config";
 // import DecksContext from "../../contexts/DecksContext";
 // import { useContext } from "react";
 
@@ -18,7 +19,7 @@ const UpdateDeckPage = () => {
     const fetchDeckData = async () => {
       try {
         const response = await fetch(
-          `http://localhost/REBYU-Gamified_Flashcards/includes/decks/read_deckWithCards.php?deck_id=${deck_id}&user_id=${user.user_id}`
+          `${CONFIG.BACKEND_API}decks/read_deckWithCards.php?deck_id=${deck_id}&user_id=${user.user_id}`
         );
         if (!response.ok) {
           const errorData = await response.json();

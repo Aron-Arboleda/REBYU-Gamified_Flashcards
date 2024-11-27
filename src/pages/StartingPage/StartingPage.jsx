@@ -3,6 +3,7 @@ import "./StartingPage.css";
 import { useNavigate } from "react-router-dom";
 import Page from "../../components/Page/Page";
 import AuthContext from "../../contexts/AuthContext";
+import { CONFIG } from "../../config";
 
 const StartingPage = () => {
   const { setUser } = useContext(AuthContext);
@@ -14,7 +15,7 @@ const StartingPage = () => {
   const checkSession = async () => {
     try {
       const response = await fetch(
-        "http://localhost/REBYU-Gamified_Flashcards/includes/auth_sessions/session_check.php",
+        `${CONFIG.BACKEND_API}auth_sessions/session_check.php`,
         {
           credentials: "include",
         }

@@ -10,6 +10,7 @@ import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/Da
 import ContentArea from "../../components/ContentArea/ContentArea";
 import TitleHeading from "../../components/TitleHeading/TitleHeading";
 import AuthContext from "../../contexts/AuthContext";
+import { CONFIG } from "../../config";
 
 const OpenedDeckPage = () => {
   const { user } = useContext(AuthContext);
@@ -35,7 +36,7 @@ const OpenedDeckPage = () => {
     const fetchDeckData = async () => {
       try {
         const response = await fetch(
-          `http://localhost/REBYU-Gamified_Flashcards/includes/decks/read_deckWithCards.php?deck_id=${deck_id}&user_id=${user.user_id}`
+          `${CONFIG.BACKEND_API}decks/read_deckWithCards.php?deck_id=${deck_id}&user_id=${user.user_id}`
         );
         if (!response.ok) {
           const errorData = await response.json();
@@ -64,16 +65,13 @@ const OpenedDeckPage = () => {
     setDeleteError(null); // Clear previous delete error
 
     try {
-      const response = await fetch(
-        "http://localhost/REBYU-Gamified_Flashcards/includes/decks/delete.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ deck_id }),
-        }
-      );
+      const response = await fetch(`${CONFIG.BACKEND_API}decks/delete.php`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ deck_id }),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to delete the deck.");

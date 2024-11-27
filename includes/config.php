@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // Database connection
 $servername = "localhost";
 $username = "root";
-$password = "ONTynZjNNxpYke6q";
+$password = "";
+// $password = "ONTynZjNNxpYke6q";
 $dbname = "rebyu_webapp_db";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
