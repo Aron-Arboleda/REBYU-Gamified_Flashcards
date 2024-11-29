@@ -6,10 +6,15 @@ const SignboardButton = ({ pageToRedirect, buttonClass }) => {
   const navigate = useNavigate();
 
   return (
-    <button
-      className={`dashboardPage-navButtons ${buttonClass}`}
+    <div
+      className="dashboardPage-navButtons"
       onClick={() => navigate(pageToRedirect)}
-    ></button>
+    >
+      <div className="stacked-div signBoardButton-container"></div>
+      <div
+        className={`stacked-div ${buttonClass} signBoardButton-content`}
+      ></div>
+    </div>
   );
 };
 

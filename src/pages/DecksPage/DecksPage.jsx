@@ -7,27 +7,20 @@ import Page from "../../components/Page/Page";
 import ScrollContainer from "../../components/ScrollContainer/ScrollContainer";
 import "./DecksPage.css";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../contexts/AuthContext"; // Still need this to access the authenticated user
-import useSessionCheck from "../../hooks/useSessionCheck";
+import AuthContext from "../../contexts/AuthContext";
 import ContentArea from "../../components/ContentArea/ContentArea";
 import TitleHeading from "../../components/TitleHeading/TitleHeading";
 import { CONFIG } from "../../config";
 
 const DecksPage = () => {
-  const { user, setUser } = useContext(AuthContext); // Access user info from AuthContext
-  const [decks, setDecks] = useState([]); // Local state for decks
-  const [loading, setLoading] = useState(true); // Track loading state
-  const [error, setError] = useState(null); // Track error state
+  const { user } = useContext(AuthContext);
+  const [decks, setDecks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserDecks = async () => {
-      // if (!user || !user.user_id) {
-      //   setError("User not authenticated.");
-      //   setLoading(false);
-
-      //   return;
-      // }
       if (user) {
         try {
           const response = await fetch(
@@ -39,12 +32,12 @@ const DecksPage = () => {
 
           const data = await response.json();
           if (data.decks) {
-            setDecks(data.decks); // Set the decks data locally
+            setDecks(data.decks);
           } else {
             setError("No decks found for this user.");
           }
         } catch (err) {
-          setError(err.message); // Handle fetch errors
+          setError(err.message);
         } finally {
           setLoading(false);
         }
