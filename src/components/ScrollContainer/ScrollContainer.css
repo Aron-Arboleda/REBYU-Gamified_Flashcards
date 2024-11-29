@@ -8,7 +8,7 @@
   text-align: left;
   border-width: 88px; /* Top and Bottom only */
   border-style: solid;
-  border-image-source: url(/images/pixel_art_graphics/UIs/tilesets/scroll_container.png);
+  border-image-source: url(/images/pixel_art_graphics/UIs/tilesets/scroll_tileset2.png);
   border-image-slice: 286; /* Adjust the slicing to your image design */
   border-image-repeat: stretch; /* Stretch the image for top and bottom */
   border-image-outset: 0.5;
@@ -26,5 +26,5 @@
 }
 
 .content-stackedDiv {
-  padding: 120px 20px 40px 5px; /* Top and Bottom only */
+  padding: 120px 5px 40px 25px; /* Top and Bottom only */
 }
