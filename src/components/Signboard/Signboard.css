@@ -11,7 +11,7 @@
 }
 
 #signBoard-container {
-  padding: 260px 13vw;
+  padding: 220px 11vw;
   border-radius: 100px;
   border: 44px solid transparent; /* Reserve space for the border */
   border-image: url(/images/pixel_art_graphics/UIs/tilesets/paper_tileset.png)
@@ -46,7 +46,7 @@
 
 .signBoardButton-content {
   margin: 10px 3vw;
-  height: 80px;
+  height: 60px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

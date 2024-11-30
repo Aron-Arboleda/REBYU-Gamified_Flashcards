@@ -10,14 +10,15 @@ const DashboardPage = () => {
     <Page classList="page pageUnscrollable">
       <Header />
       <MainContainer>
-        <div id="dashboardPage-twoHalvesMiddleSection">
-          <div className="islandContainer">
+        <div id="dashboardPage-mainContainer">
+          {/* <div className="islandContainer">
             <img
               src="/images/pixel_art_graphics/backgrounds/small_island.gif"
               alt=""
               className="islandImage"
             />
-          </div>
+          </div> */}
+
           <div className="signboardContainer">
             <Signboard />
           </div>

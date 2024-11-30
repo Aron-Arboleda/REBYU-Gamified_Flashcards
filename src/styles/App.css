@@ -5,10 +5,11 @@
 }
 
 .page {
-  background-image: url("/images/pixel_art_graphics/backgrounds/movingclouds.gif");
+  background-image: url("/images/pixel_art_graphics/backgrounds/dashboard_background.gif");
   /* background-size: cover; */
   background-repeat: repeat-y;
   background-position: center;
+  background-size: cover;
   flex-direction: column;
   align-items: center;
   justify-content: center;
