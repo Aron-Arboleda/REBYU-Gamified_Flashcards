@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./StartingPage.css";
 import { useNavigate } from "react-router-dom";
 import Page from "../../components/Page/Page";
@@ -9,8 +9,6 @@ const StartingPage = () => {
   const { setUser } = useContext(AuthContext);
   const [clickedStartGame, setClickedStartGame] = useState(false);
   const navigate = useNavigate();
-
-  const handleStartGame = () => {};
 
   const checkSession = async () => {
     try {

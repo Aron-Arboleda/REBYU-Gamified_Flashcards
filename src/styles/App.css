@@ -81,6 +81,28 @@ button {
   font-family: "SmallPixel";
 }
 
+#audio-button {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  border: none;
+  background-color: transparent;
+  margin: 10px;
+  /* background-image: url(/images/pixel_art_graphics/UIs/buttons/audio_button_off.png); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+}
+
+.audio-button-on {
+  background-image: url(/images/pixel_art_graphics/UIs/buttons/audio_button_on.png);
+}
+
+.audio-button-off {
+  background-image: url(/images/pixel_art_graphics/UIs/buttons/audio_button_off.png);
+}
+
 input,
 textarea {
   font-family: "SmallPixel";
