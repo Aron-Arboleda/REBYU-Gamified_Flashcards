@@ -1,14 +1,19 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signboard.css";
+import CharacterContext from "../../contexts/CharacterContext";
 
 const SignboardButton = ({ pageToRedirect, buttonClass }) => {
   const navigate = useNavigate();
+  const { teleport } = useContext(CharacterContext);
 
   return (
     <div
       className="dashboardPage-navButtons"
-      onClick={() => navigate(pageToRedirect)}
+      onClick={() => {
+        teleport();
+        setTimeout(() => navigate(pageToRedirect), 2300);
+      }}
     >
       <div className="stacked-div signBoardButton-container"></div>
       <div

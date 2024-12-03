@@ -4,24 +4,22 @@ import Header from "../../components/Header/Header";
 import "./DashboardPage.css";
 //import SignboardButton from "../../components/SignboardButton/SignboardButton";
 import Signboard from "../../components/Signboard/Signboard";
+import Character from "../../components/Character/Character";
+import CharacterContext from "../../contexts/CharacterContext";
+import { useContext } from "react";
 
 const DashboardPage = () => {
+  const { teleporting } = useContext(CharacterContext);
+
   return (
     <Page classList="page pageUnscrollable">
       <Header />
       <MainContainer>
         <div id="dashboardPage-mainContainer">
-          {/* <div className="islandContainer">
-            <img
-              src="/images/pixel_art_graphics/backgrounds/small_island.gif"
-              alt=""
-              className="islandImage"
-            />
-          </div> */}
-
           <div className="signboardContainer">
             <Signboard />
           </div>
+          <Character toggleTeleporting={teleporting} />
         </div>
       </MainContainer>
     </Page>

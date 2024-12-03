@@ -11,19 +11,14 @@
 }
 
 .deck-container {
-  border-radius: 88px;
-  border-width: 88px;
+  border-width: 55px;
   border-style: solid;
-  border-image-source: url(/images/pixel_art_graphics/UIs/tilesets/card_tileset_original.png);
-  border-image-slice: 143;
+  border-image-source: url(/images/pixel_art_graphics/UIs/tilesets/card_front_tileset.png);
+  border-image-slice: 130;
   border-image-repeat: round;
   border-image-outset: 0.09;
-  /* background-color: #fffdca; */
-  background-color: #dddddd;
-  padding: 50px 0px;
-}
-
-.deck-container:hover {
-  background-color: #fffdca;
-  border-image-source: url(/images/pixel_art_graphics/UIs/tilesets/card_tileset.png);
+  background-color: #ffe8b5;
+  width: 50%;
+  padding: 80px 0px;
+  box-shadow: -5px 5px 0px rgba(0, 0, 0, 0.457);
 }

@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import AppRoutes from "./Routes";
 import { useEffect, useRef, useState } from "react";
+import { CharacterProvider } from "./contexts/CharacterContext";
 
 function App() {
   const audioRef = useRef(null);
@@ -29,18 +30,20 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <AppRoutes />
-        <audio
-          ref={audioRef}
-          src="/audio/background_music/starting_background_music.MP3"
-          preload="auto"
-          loop
-        />
-        <button
-          id="audio-button"
-          className={isMuted ? "audio-button-off" : "audio-button-on"}
-          onClick={toggleMute}
-        ></button>
+        <CharacterProvider>
+          <AppRoutes />
+          <audio
+            ref={audioRef}
+            src="/audio/background_music/starting_background_music.MP3"
+            preload="auto"
+            loop
+          />
+          <button
+            id="audio-button"
+            className={isMuted ? "audio-button-off" : "audio-button-on"}
+            onClick={toggleMute}
+          ></button>
+        </CharacterProvider>
       </AuthProvider>
     </Router>
   );
