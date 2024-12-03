@@ -25,10 +25,11 @@ const StartingPage = () => {
       if (data.loggedIn === true) {
         console.log("Checked session. User is logged in");
         setClickedStartGame(true);
-        setTimeout(() => {
-          setUser(data.user);
-          navigate("/dashboard"); // Redirect to login if not logged in
-        }, 3000);
+        navigate("/dashboard"); // Redirect to login if not logged in
+        // setTimeout(() => {
+        //   setUser(data.user);
+        //   navigate("/dashboard"); // Redirect to login if not logged in
+        // }, 3000);
       } else {
         setUser(null);
         navigate("/login"); // Redirect to login if not logged in
@@ -48,7 +49,7 @@ const StartingPage = () => {
           <button id="startButton" onClick={() => checkSession()}></button>
         </div>
       )}
-      {clickedStartGame && (
+      {/* {clickedStartGame && (
         <div className="long-background ">
           <img
             src="/images/pixel_art_graphics/backgrounds/long_background.gif"
@@ -57,7 +58,7 @@ const StartingPage = () => {
           />
           sds
         </div>
-      )}
+      )} */}
     </Page>
   );
 };

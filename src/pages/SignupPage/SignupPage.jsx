@@ -107,7 +107,7 @@ const SignupPage = () => {
   };
 
   return (
-    <Page>
+    <Page classList="page pageUnscrollable">
       <div className="center_x_y_container">
         <StandardContainer>
           <h1 className="form-title">REGISTER</h1>

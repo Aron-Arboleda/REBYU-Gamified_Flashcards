@@ -1,6 +1,7 @@
 .content-area {
   display: block;
   width: 80vw;
+  padding-bottom: 200px;
 }
 
 @media (max-width: 700px) {
