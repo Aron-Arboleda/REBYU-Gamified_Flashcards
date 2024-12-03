@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signboard.css";
 
@@ -19,6 +19,22 @@ const SignboardButton = ({ pageToRedirect, buttonClass }) => {
 };
 
 const Signboard = () => {
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    // Play audio once when the component renders
+    const playAudio = async () => {
+      try {
+        if (audioRef.current) {
+          await audioRef.current.play();
+        }
+      } catch (error) {
+        console.error("Audio playback failed:", error);
+      }
+    };
+    playAudio();
+  }, []); // Empty dependency array ensures it runs only on mount
+
   return (
     <div id="dashboardPage-signBoardContainer">
       <div className="signboard-stackedDiv" id="signBoard-container"></div>
@@ -36,6 +52,11 @@ const Signboard = () => {
           buttonClass="signboard-button-about"
         />
       </div>
+      <audio
+        ref={audioRef}
+        src="/audio/sound_effects/pageFlip.MP3"
+        preload="auto"
+      />
     </div>
   );
 };

@@ -1,9 +1,23 @@
+@keyframes slide-up-paper {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+
 #dashboardPage-signBoardContainer {
   display: grid;
   place-items: center;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   max-width: fit-content;
+  transform-origin: center bottom; /* Fold starts from the bottom */
+  animation: slide-up-paper 0.5s ease-in-out forwards;
+  animation-direction: reverse;
 }
 
 .signboard-stackedDiv {
