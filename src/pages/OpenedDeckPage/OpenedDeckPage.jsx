@@ -105,7 +105,7 @@ const OpenedDeckPage = () => {
   const { deck, cards } = deckData;
 
   return (
-    <Page>
+    <Page classList="movingClouds">
       <Header />
       <MainContainer>
         <ContentArea>

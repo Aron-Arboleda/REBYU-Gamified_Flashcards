@@ -157,7 +157,7 @@ const StudyPage = () => {
       <Header />
       <MainContainer>
         <TitleHeading titleText={deck.deck_title.toUpperCase()} />
-        <ContentArea>
+        <div className="studyPage-contentArea">
           <div className="healthBarContainer">
             <div className="healthBar">
               <img
@@ -218,13 +218,13 @@ const StudyPage = () => {
               className="arrow-button study-right-button" // Disable if the user has won
             ></button>
             {/* <label className="shuffleSwitch">
-              <input
-                type="checkbox"
-                checked={isShuffled}
-                onChange={toggleShuffle}
-              />
-              Shuffle
-            </label>*/}
+                <input
+                  type="checkbox"
+                  checked={isShuffled}
+                  onChange={toggleShuffle}
+                />
+                Shuffle
+              </label>*/}
           </div>
           {hasWon && (
             <DarkBackgroundContainer>
@@ -244,7 +244,7 @@ const StudyPage = () => {
               </div>
             </DarkBackgroundContainer>
           )}
-        </ContentArea>
+        </div>
       </MainContainer>
     </Page>
   );

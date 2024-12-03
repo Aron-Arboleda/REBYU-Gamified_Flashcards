@@ -9,7 +9,7 @@ import TitleHeading from "../../components/TitleHeading/TitleHeading";
 
 const AboutPage = () => {
   return (
-    <Page classList="page">
+    <Page classList="page movingClouds">
       <Header />
       <MainContainer>
         <ContentArea>

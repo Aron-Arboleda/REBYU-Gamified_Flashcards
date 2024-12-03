@@ -270,6 +270,18 @@
   flex-direction: column;
 }
 
+.studyPage-contentArea {
+  display: block;
+  width: 80vw;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 700px) {
+  .studyPage-contentArea {
+    max-width: 90vw;
+  }
+}
+
 @media (max-width: 768px) {
   .card-front-p,
   .card-back-p {

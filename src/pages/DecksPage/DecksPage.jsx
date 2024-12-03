@@ -58,7 +58,7 @@ const DecksPage = () => {
   }
 
   return (
-    <Page classList="page">
+    <Page classList="page movingClouds">
       <Header />
       <MainContainer>
         <ContentArea>

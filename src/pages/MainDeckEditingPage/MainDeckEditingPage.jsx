@@ -184,7 +184,7 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
   };
 
   return (
-    <Page>
+    <Page classList="movingClouds">
       <Header />
       <MainContainer>
         <ContentArea>
