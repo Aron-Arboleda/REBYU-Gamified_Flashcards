@@ -256,27 +256,32 @@ const MainDeckEditingPage = ({ mode, initialDeck }) => {
                       />
                     </div>
                   </div>
-                  <div className="mainDeckEditingPage-buttonsContainer">
-                    <button
-                      className="mainDeckEditingPage-moveUpButton"
-                      onClick={() => moveCardUp(index)}
-                      disabled={index === 0}
-                    >
-                      ↑
-                    </button>
-                    <button
-                      className="mainDeckEditingPage-moveDownButton"
-                      onClick={() => moveCardDown(index)}
-                      disabled={index === cards.length - 1}
-                    >
-                      ↓
-                    </button>
-                    <button
-                      className="mainDeckEditingPage-removeButton"
-                      onClick={() => removeCard(index)}
-                    >
-                      Remove
-                    </button>
+                  <div className="mainDeckEditingPage-infosContainer">
+                    <div>
+                      <p>{index + 1}</p>
+                    </div>
+                    <div className="mainDeckEditingPage-buttonsContainer">
+                      <button
+                        className="mainDeckEditingPage-moveUpButton"
+                        onClick={() => moveCardUp(index)}
+                        disabled={index === 0}
+                      >
+                        ↑
+                      </button>
+                      <button
+                        className="mainDeckEditingPage-moveDownButton"
+                        onClick={() => moveCardDown(index)}
+                        disabled={index === cards.length - 1}
+                      >
+                        ↓
+                      </button>
+                      <button
+                        className="mainDeckEditingPage-removeButton"
+                        onClick={() => removeCard(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
                 </RectangleContainer>
               ))}

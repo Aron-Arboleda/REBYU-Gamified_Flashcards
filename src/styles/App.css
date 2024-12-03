@@ -166,6 +166,16 @@ p {
   text-align: left;
 }
 
+.pMessage {
+  font-size: 1.3rem;
+  color: rgb(20, 19, 19);
+  line-height: 1.3rem;
+}
+
+.hMessage {
+  color: rgb(20, 19, 19);
+}
+
 li {
   font-family: "SmallPixel";
   font-size: 1.3rem;

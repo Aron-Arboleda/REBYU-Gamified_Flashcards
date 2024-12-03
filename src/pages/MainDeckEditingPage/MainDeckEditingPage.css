@@ -41,9 +41,13 @@
   color: white;
 }
 
+.mainDeckEditingPage-infosContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .mainDeckEditingPage-buttonsContainer {
   display: flex;
-  justify-content: flex-end;
   gap: 5px;
 }
 

@@ -38,15 +38,6 @@
   background-color: rgb(252, 233, 191);
 }
 
-.pLogout {
-  font-size: small;
-  color: rgb(20, 19, 19);
-}
-
-.hLogout {
-  color: rgb(20, 19, 19);
-}
-
 .cancelAndLogoutContainer {
   display: flex;
   flex-direction: row;

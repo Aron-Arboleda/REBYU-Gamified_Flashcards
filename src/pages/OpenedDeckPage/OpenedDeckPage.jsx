@@ -148,18 +148,18 @@ const OpenedDeckPage = () => {
           {clickedDelete && (
             <DarkBackgroundContainer>
               <div className="deleteContainer">
-                <h1 className="hDelete">
+                <h1 className="hMessage">
                   {"Destroy this deck?".toUpperCase()}
                 </h1>
-                <h2 className="hDelete">{deck.deck_title.toUpperCase()}</h2>
-                <p className="pDelete">
+                <h2 className="hMessage">{deck.deck_title.toUpperCase()}</h2>
+                <p className="pMessage">
                   Are you truly ready to destroy this deck? This isn't just a
                   delete— <b> it's a final farewell. </b> The cards within hold
                   every question, every moment, every challenge you've
                   conquered. Once destroyed, there's no coming back; it's
                   erased, lost to the void. No magic, no power-up can undo it.
                 </p>
-                <p className="pDelete">
+                <p className="pMessage">
                   <b>
                     Do you have the courage to let it go forever? This choice is
                     irreversible... proceed with caution, hero.

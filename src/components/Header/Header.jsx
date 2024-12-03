@@ -107,20 +107,20 @@ const Header = () => {
       {clickedLogout && (
         <DarkBackgroundContainer>
           <div className="logoutContainer">
-            <h1 className="hLogout">PREPARE FOR DEPARTURE, HERO</h1>
-            <h2 className="hLogout">
+            <h1 className="hMessage">PREPARE FOR DEPARTURE, HERO</h1>
+            <h2 className="hMessage">
               ARE YOU CERTAIN YOU WISH TO LEAVE,
               {user ? user.user_username.toUpperCase() : "Loading..."}?
             </h2>
 
-            <p className="pLogout">
+            <p className="pMessage">
               This isn't just a logout— <b> it's a parting of ways.</b> The
               adventure you've embarked on, the cards you've conquered, and the
               knowledge you've gathered will all be left behind. Once you leave,
               your journey pauses, waiting for your return, but time lost can
               never be regained.
             </p>
-            <p className="pLogout">
+            <p className="pMessage">
               <b>
                 Will you truly step away from this quest, hero? The choice is
                 yours, but remember— you may never know when the path will call
