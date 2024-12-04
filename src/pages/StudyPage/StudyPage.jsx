@@ -177,7 +177,7 @@ const StudyPage = () => {
   };
 
   return (
-    <Page classList={hasWon ? "page pageUnscrollable" : "page"}>
+    <Page classList={"page"}>
       <>
         <Header />
         <MainContainer>
@@ -326,11 +326,12 @@ const StudyPage = () => {
               )}
             </>
           )}
-          <Character page="study" toggleFiring={isFiring} />
+          <div className="character-container">
+            <Character page="study" toggleFiring={isFiring} />
+          </div>
         </MainContainer>
+        {hasWon && <div className="whiteBackground fadeInOut"></div>}
       </>
-
-      {hasWon && <div className="whiteBackground fadeInOut"></div>}
     </Page>
   );
 };

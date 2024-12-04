@@ -1,5 +1,6 @@
 .header {
   display: block;
+  z-index: 1000;
 }
 
 .header_wrapper {

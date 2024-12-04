@@ -93,6 +93,8 @@
   height: 100%;
   backface-visibility: hidden;
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
@@ -105,6 +107,9 @@
   margin: 80px;
   line-height: 35px;
 }
+.card-back-p {
+  text-align: center;
+}
 
 .card-front-container,
 .card-back-container {
@@ -113,7 +118,6 @@
   border-image-slice: 130;
   border-image-repeat: round;
   border-image-outset: 0.09;
-  width: 45vw;
   height: 75%;
   /* padding: 100px 0px; */
 }
@@ -197,6 +201,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
+  z-index: 200;
 }
 
 .arrow-button:disabled {
@@ -317,6 +322,8 @@
   left: 0;
   bottom: 0;
   right: 0;
+  pointer-events: none;
+  z-index: 10;
 }
 
 @keyframes moveUp {
@@ -329,11 +336,11 @@
 }
 
 .medal-container {
+  height: 70vh;
   display: flex;
-  position: fixed;
   justify-content: center;
   align-items: center;
-  bottom: 20px;
+  transform: translateY(10vh);
 }
 
 .medal {
@@ -367,10 +374,12 @@
   font-family: "PixelifySans";
   background-color: #377fe8;
   border: 5px solid #05032a;
+  z-index: 700;
 }
 
 .dialog-p {
   font-size: 3rem;
+  line-height: 40px;
 }
 
 .youWin-NavContainers {
@@ -398,5 +407,18 @@
     font-size: 1.5rem;
     margin: 20px;
     line-height: 28px;
+  }
+
+  .dialog {
+    padding: 1rem 1rem 4rem 1rem;
+  }
+
+  .dialog-p {
+    font-size: 2rem;
+    line-height: 28px;
+  }
+
+  .youWin-NavButton {
+    font-size: 1.1rem;
   }
 }

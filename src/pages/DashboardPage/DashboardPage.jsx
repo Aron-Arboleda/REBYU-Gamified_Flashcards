@@ -19,7 +19,9 @@ const DashboardPage = () => {
           <div className="signboardContainer">
             <Signboard />
           </div>
-          <Character toggleTeleporting={teleporting} />
+          <div className="character-container">
+            <Character toggleTeleporting={teleporting} />
+          </div>
         </div>
       </MainContainer>
     </Page>

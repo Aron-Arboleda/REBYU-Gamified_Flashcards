@@ -1,17 +1,26 @@
-.character,
-.character_front {
-  position: absolute;
-  bottom: 100px;
-  left: 120px;
-  width: 130px;
-  -webkit-box-reflect: below 0px
-    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+.character-container {
+  width: 100%;
+  display: flex;
+  bottom: 0;
 }
 
 .character {
+  transform: translate(8vw, -100px);
+  -webkit-box-reflect: below 0px
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
   width: 130px;
 }
 
 .character_front {
+  transform: translate(8vw, -20vh);
+  -webkit-box-reflect: below 0px
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
   width: 200px;
+}
+
+@media (max-width: 768px) {
+  .character-container {
+    margin-top: 60px;
+    justify-content: center;
+  }
 }
