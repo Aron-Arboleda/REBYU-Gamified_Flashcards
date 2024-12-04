@@ -356,7 +356,7 @@
   grid-template-columns: 18% 1fr;
   position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: 40px;
   right: 0;
   height: auto;
   z-index: 100;
@@ -370,7 +370,7 @@
 .dialog {
   position: relative;
   color: white;
-  padding: 2rem;
+  padding: 2rem 2rem 3rem 2rem;
   font-family: "PixelifySans";
   background-color: #377fe8;
   border: 5px solid #05032a;

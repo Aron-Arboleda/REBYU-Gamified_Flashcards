@@ -48,9 +48,9 @@ const StartingPage = () => {
         <div className="center_x_y_container">
           <div className="titleREBYU"></div>
           <button id="startButton" onClick={() => checkSession()}></button>
-          {/* <div className="character-container start-game-character">
-              <Character />
-            </div> */}
+          <div className="character-container start-game-character">
+            <Character />
+          </div>
         </div>
       )}
     </Page>
