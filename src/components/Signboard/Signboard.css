@@ -14,7 +14,7 @@
   place-items: center;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  max-width: fit-content;
+  max-width: 500px;
   transform-origin: center bottom; /* Fold starts from the bottom */
   animation: slide-up-paper 0.5s ease-in-out forwards;
   animation-direction: reverse;
@@ -45,6 +45,8 @@
 
 .dashboardPage-navButtons {
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   width: 100%;
   cursor: pointer;
 }
@@ -93,10 +95,20 @@
 }
 
 @media (max-width: 768px) {
-  #signBoard-container {
-    padding: 170px 15vw;
-  }
   .dashboardPage-navButtons {
-    width: 80%;
+    width: 400px;
+  }
+  #signBoard-container {
+    padding: 220px 1vw;
+    width: 100%;
+  }
+}
+
+@media (max-width: 545px) {
+  .dashboardPage-navButtons {
+    width: 200px;
+  }
+  #signBoard-container {
+    padding: 220px 0px;
   }
 }

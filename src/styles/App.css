@@ -26,6 +26,7 @@
 .center_x_y_container {
   display: flex;
   flex-direction: column;
+  position: relative;
   padding: 0px 0px;
   justify-content: center;
   align-items: center;
@@ -215,12 +216,11 @@ span {
 }
 
 @media (max-width: 768px) {
-  .center_x_y_container {
-    padding: 50px 0px;
+  .pageUnscrollable {
     height: auto;
   }
 
-  .pageUnscrollable {
-    height: auto;
+  .pageHeightFull {
+    height: 100%;
   }
 }

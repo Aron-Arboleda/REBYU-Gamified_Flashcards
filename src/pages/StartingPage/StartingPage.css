@@ -17,12 +17,6 @@
   background-image: url("/images/pixel_art_graphics/UIs/buttons/start_game_active.png");
 }
 
-@media (min-width: 768px) {
-  #startButton {
-    width: 200px;
-  }
-}
-
 .long-background {
   height: 100%;
   overflow: hidden;
@@ -40,4 +34,20 @@
   animation-name: slideUp;
   animation-duration: 3s;
   animation-iteration-count: 1;
+}
+
+.start-game-character {
+  position: absolute;
+  bottom: 0;
+}
+
+.full-height-div {
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .start-game-character {
+    display: none;
+    opacity: 0;
+  }
 }

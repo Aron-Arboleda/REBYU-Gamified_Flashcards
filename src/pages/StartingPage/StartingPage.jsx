@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Page from "../../components/Page/Page";
 import AuthContext from "../../contexts/AuthContext";
 import { CONFIG } from "../../config";
+import Character from "../../components/Character/Character";
 
 const StartingPage = () => {
   const { setUser } = useContext(AuthContext);
@@ -42,23 +43,16 @@ const StartingPage = () => {
   };
 
   return (
-    <Page classList="page pageUnscrollable" id="starting-page">
+    <Page classList="page pageUnscrollable pageHeightFull" id="starting-page">
       {!clickedStartGame && (
         <div className="center_x_y_container">
           <div className="titleREBYU"></div>
           <button id="startButton" onClick={() => checkSession()}></button>
+          {/* <div className="character-container start-game-character">
+              <Character />
+            </div> */}
         </div>
       )}
-      {/* {clickedStartGame && (
-        <div className="long-background ">
-          <img
-            src="/images/pixel_art_graphics/backgrounds/long_background.gif"
-            alt=""
-            className="long-background-image"
-          />
-          sds
-        </div>
-      )} */}
     </Page>
   );
 };
