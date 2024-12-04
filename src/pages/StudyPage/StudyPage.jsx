@@ -192,14 +192,14 @@ const StudyPage = () => {
     setHealth(100);
   };
 
-  const toggleShuffle = () => {
-    if (isShuffled) {
-      restoreDeck();
-    } else {
-      shuffleDeck();
-    }
-    setIsShuffled(!isShuffled);
-  };
+  // const toggleShuffle = () => {
+  //   if (isShuffled) {
+  //     restoreDeck();
+  //   } else {
+  //     shuffleDeck();
+  //   }
+  //   setIsShuffled(!isShuffled);
+  // };
 
   return (
     <Page classList={"page"}>
@@ -208,7 +208,9 @@ const StudyPage = () => {
         <MainContainer>
           {visible ? (
             <>
-              <TitleHeading titleText={deck.deck_title.toUpperCase()} />
+              <div className="titleHeading-container">
+                <TitleHeading titleText={deck.deck_title.toUpperCase()} />
+              </div>
               <div className="studyPage-contentArea">
                 <div className="healthBarContainer">
                   <div className="healthBar">
