@@ -69,40 +69,40 @@ const Header = () => {
             </div>
           </div>
         </div>
+
+        {clickedProfile && (
+          <div className="profile_panel">
+            <div className="profile_panel_info_container">
+              <div className="dashboard_profile_container">
+                <img
+                  src="/images/pixel_art_graphics/UIs/profile_placeholder.jpg"
+                  alt=""
+                />
+              </div>
+              <div>
+                <p className="profile_panel_p">
+                  {user ? user.user_username : "Loading..."}
+                </p>
+                <p className="profile_panel_p">
+                  {user ? user.user_email : "Loading..."}
+                </p>
+              </div>
+            </div>
+            <div>
+              <button
+                className="logout-button"
+                onClick={() => {
+                  setClickedLogout(true);
+                }}
+              >
+                Log Out
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       <SideBar clickedMenu={clickedMenu} setClickedMenu={setClickedMenu} />
-
-      {clickedProfile && (
-        <div className="profile_panel">
-          <div className="profile_panel_info_container">
-            <div className="dashboard_profile_container">
-              <img
-                src="/images/pixel_art_graphics/UIs/profile_placeholder.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <p className="profile_panel_p">
-                {user ? user.user_username : "Loading..."}
-              </p>
-              <p className="profile_panel_p">
-                {user ? user.user_email : "Loading..."}
-              </p>
-            </div>
-          </div>
-          <div>
-            <button
-              className="logout-button"
-              onClick={() => {
-                setClickedLogout(true);
-              }}
-            >
-              Log Out
-            </button>
-          </div>
-        </div>
-      )}
 
       {clickedLogout && (
         <DarkBackgroundContainer>

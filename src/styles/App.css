@@ -50,6 +50,7 @@
   align-items: center;
   background-color: transparent;
   text-align: center;
+  z-index: 5;
 }
 
 .iconTextButtons {
