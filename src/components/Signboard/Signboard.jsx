@@ -12,6 +12,11 @@ const SignboardButton = ({ pageToRedirect, buttonClass }) => {
       className="dashboardPage-navButtons"
       onClick={() => {
         teleport();
+
+        const audio = new Audio("/audio/sound_effects/teleport.mp3");
+        audio.volume = 0.3;
+        audio.play();
+
         setTimeout(() => navigate(pageToRedirect), 2300);
       }}
     >

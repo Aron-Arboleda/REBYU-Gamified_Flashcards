@@ -89,6 +89,13 @@ const StudyPage = () => {
 
   const firing = () => {
     setIsFiring(true);
+
+    setTimeout(() => {
+      const audio = new Audio("/audio/sound_effects/fireball.mp3");
+      audio.volume = 0.3;
+      audio.play();
+    }, 500);
+
     setTimeout(() => {
       setIsFiring(false);
     }, 1700);
@@ -104,6 +111,13 @@ const StudyPage = () => {
     setTimeout(() => {
       setVisible(false);
     }, 2000);
+
+    setTimeout(() => {
+      const audio = new Audio("/audio/sound_effects/game-win.MP3");
+      audio.volume = 0.3;
+      audio.play();
+    }, 2000);
+
     setTimeout(() => {
       setDialogueVisible(true);
     }, 7500);
