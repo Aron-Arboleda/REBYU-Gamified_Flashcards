@@ -302,6 +302,25 @@ const StudyPage = () => {
                     <p className="dialog-p">
                       Well done! You have successfully completed the deck!
                     </p>
+                    <div className="youWin-NavContainers">
+                      <button
+                        onClick={() => {
+                          setHasWon(false);
+                          setDialogueVisible(false);
+                          setVisible(true);
+                          restoreDeck();
+                        }}
+                        className="youWin-NavButton"
+                      >
+                        Battle Again!
+                      </button>
+                      <button
+                        onClick={() => navigate(`/opened_deck/${deck_id}`)}
+                        className="youWin-NavButton"
+                      >
+                        Back to Deck
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}

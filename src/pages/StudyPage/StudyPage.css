@@ -337,7 +337,7 @@
 }
 
 .medal {
-  width: 280px;
+  width: 300px;
   /* position: absolute;
   top: 50%;
   left: 50%;
@@ -361,6 +361,7 @@
 }
 
 .dialog {
+  position: relative;
   color: white;
   padding: 2rem;
   font-family: "PixelifySans";
@@ -370,6 +371,19 @@
 
 .dialog-p {
   font-size: 3rem;
+}
+
+.youWin-NavContainers {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+}
+
+.youWin-NavButton {
+  font-size: 1.5rem;
 }
 
 @media (max-width: 700px) {
