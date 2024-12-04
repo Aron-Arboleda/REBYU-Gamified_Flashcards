@@ -1,17 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
-import ExitButton from "../../components/ExitButton/ExitButton";
 import Header from "../../components/Header/Header";
 import MainContainer from "../../components/MainContainer/MainContainer";
 import Page from "../../components/Page/Page";
 import pixelHeart from "/images/pixel_art_graphics/UIs/pixelHeart.png";
 import "./StudyPage.css";
-import DarkBackgroundContainer from "../../components/DarkBackgroundContainer/DarkBackgroundContainer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import ContentArea from "../../components/ContentArea/ContentArea";
 import TitleHeading from "../../components/TitleHeading/TitleHeading";
 import AuthContext from "../../contexts/AuthContext";
 import { CONFIG } from "../../config";
 import Character from "../../components/Character/Character";
+
+const messages = [
+  "I see that spark in you",
+  "Whatever you choose to do in life, you'll be great. Stand proud.",
+  "You did it!, You deserve to feel proud of your progress, no matter how small it is.",
+  "See? All those efforts were worth it after all.",
+  "You did great! I knew you were special.",
+  "The best version of yourself is waiting for you.",
+  "Don't stop until someone appreciates all your hard work/effort.",
+];
+
+const getMessage = () => {
+  return messages[Math.floor(Math.random() * messages.length)];
+};
 
 const StudyPage = () => {
   const { user } = useContext(AuthContext);
@@ -299,9 +310,7 @@ const StudyPage = () => {
                     className="knight-profile"
                   />
                   <div className="dialog">
-                    <p className="dialog-p">
-                      Well done! You have successfully completed the deck!
-                    </p>
+                    <p className="dialog-p">{getMessage()}</p>
                     <div className="youWin-NavContainers">
                       <button
                         onClick={() => {
