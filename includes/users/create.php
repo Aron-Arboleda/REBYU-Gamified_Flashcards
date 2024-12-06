@@ -3,18 +3,18 @@
 include '../config.php';
 
 // Handle CORS preflight request
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    header("Access-Control-Allow-Origin: *");  // Allow any origin or specify a specific one
-    header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type, Authorization");
-    http_response_code(200);  // Send a success response for preflight
-    exit(0);  // End the request here for OPTIONS
-}
+// if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+//     header("Access-Control-Allow-Origin: *");  // Allow any origin or specify a specific one
+//     header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+//     header("Access-Control-Allow-Headers: Content-Type, Authorization");
+//     http_response_code(200);  // Send a success response for preflight
+//     exit(0);  // End the request here for OPTIONS
+// }
 
 // Your regular POST request handling code below
-header("Access-Control-Allow-Origin: *"); // Allow any origin or specify a specific one
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
+// header("Access-Control-Allow-Origin: *"); // Allow any origin or specify a specific one
+// header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+// header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
