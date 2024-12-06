@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import AuthContext from "../../contexts/AuthContext";
 import { CONFIG } from "../../config";
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -16,6 +17,11 @@ const LoginPage = () => {
     user_password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const toggleVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
 
   // Handle input changes
   const handleChange = (e) => {
@@ -80,15 +86,29 @@ const LoginPage = () => {
               <label htmlFor="user_password" className="form-labels">
                 Password:
               </label>
-              <input
-                type="password"
-                name="user_password"
-                id="user_password"
-                className="form-textboxes"
-                value={formData.user_password}
-                onChange={handleChange}
-                required
-              />
+              <div style={{ position: "relative", display: "inline-block" }}>
+                <input
+                  type={passwordVisible ? "text" : "password"}
+                  name="user_password"
+                  id="user_password"
+                  className="form-textboxes"
+                  value={formData.user_password}
+                  onChange={handleChange}
+                  required
+                />
+                <span
+                  onClick={toggleVisibility}
+                  style={{
+                    position: "absolute",
+                    right: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    cursor: "pointer",
+                  }}
+                >
+                  {passwordVisible ? <EyeOff size={20} /> : <Eye size={20} />}
+                </span>
+              </div>
             </div>
             {errorMessage && (
               <p style={{ color: "red", textAlign: "center" }}>
