@@ -70,6 +70,8 @@ const Header = () => {
           </div>
         </div>
 
+        {/* Profile panel rendering: */}
+
         {clickedProfile && (
           <div className="profile_panel">
             <div className="profile_panel_info_container">
