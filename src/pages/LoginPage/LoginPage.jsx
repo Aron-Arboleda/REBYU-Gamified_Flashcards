@@ -65,7 +65,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Page classList="page pageUnscrollable">
+    <Page classList="page pageUnscrollable authPage">
       <div className="center_x_y_container">
         <StandardContainer>
           <h1 style={{ textAlign: "center" }}>LOG IN </h1>
@@ -86,7 +86,7 @@ const LoginPage = () => {
               <label htmlFor="user_password" className="form-labels">
                 Password:
               </label>
-              <div style={{ position: "relative", display: "inline-block" }}>
+              <div className="passwordContainer">
                 <input
                   type={passwordVisible ? "text" : "password"}
                   name="user_password"
@@ -106,7 +106,11 @@ const LoginPage = () => {
                     cursor: "pointer",
                   }}
                 >
-                  {passwordVisible ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {passwordVisible ? (
+                    <EyeOff size={20} style={{ paddingTop: "4px" }} />
+                  ) : (
+                    <Eye size={20} style={{ paddingTop: "4px" }} />
+                  )}
                 </span>
               </div>
             </div>

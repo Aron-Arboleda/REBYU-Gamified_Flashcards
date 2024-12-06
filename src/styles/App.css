@@ -19,6 +19,10 @@
   height: 100%;
 }
 
+.authPage {
+  height: 100%;
+}
+
 .movingClouds {
   background-image: url("/images/pixel_art_graphics/backgrounds/movingclouds.gif");
 }
@@ -220,6 +224,10 @@ span {
 @media (max-width: 768px) {
   .pageUnscrollable {
     height: auto;
+  }
+
+  .authPage {
+    height: 100%;
   }
 
   .pageHeightFull {

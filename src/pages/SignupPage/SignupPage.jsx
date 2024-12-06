@@ -113,7 +113,7 @@ const SignupPage = () => {
   };
 
   return (
-    <Page classList="page pageUnscrollable">
+    <Page classList="page pageUnscrollable authPage">
       <div className="center_x_y_container">
         <StandardContainer>
           <h1 className="form-title">REGISTER</h1>
@@ -170,7 +170,7 @@ const SignupPage = () => {
               <label htmlFor="user_password" className="signup-form-labels">
                 Password:
               </label>
-              <div style={{ position: "relative", display: "inline-block" }}>
+              <div style={{ position: "relative", display: "grid" }}>
                 <input
                   type={passwordVisible ? "text" : "password"}
                   name="user_password"
@@ -190,7 +190,11 @@ const SignupPage = () => {
                     cursor: "pointer",
                   }}
                 >
-                  {passwordVisible ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {passwordVisible ? (
+                    <EyeOff size={20} style={{ paddingTop: "4px" }} />
+                  ) : (
+                    <Eye size={20} style={{ paddingTop: "4px" }} />
+                  )}
                 </span>
               </div>
             </div>

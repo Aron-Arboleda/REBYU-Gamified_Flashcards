@@ -48,6 +48,13 @@
   background-color: #faeec5;
 }
 
+.passwordContainer {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
 .auth-p {
   text-align: center;
   font-family: "SmallPixel";
