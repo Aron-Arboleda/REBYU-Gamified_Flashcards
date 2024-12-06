@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./SideBar.css"; // CSS styles
 import { useNavigate } from "react-router-dom";
 
 const SideBar = ({ clickedMenu, setClickedMenu }) => {
   const navigate = useNavigate();
+  const sidebarRef = useRef(null);
 
   // Toggle sidebar open/close
   const toggleSidebar = () => {
@@ -16,9 +17,30 @@ const SideBar = ({ clickedMenu, setClickedMenu }) => {
     navigate(url);
   };
 
+  // Detect clicks outside the sidebar
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setClickedMenu(false); // Close sidebar if clicked outside
+        console.log("Clicked outside");
+      }
+    };
+
+    // Attach event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setClickedMenu]);
+
   return (
     <div className="container">
-      <div className={`sidebar ${clickedMenu ? "open" : "closed"}`}>
+      <div
+        ref={sidebarRef}
+        className={`sidebar ${clickedMenu ? "open" : "closed"}`}
+      >
         <div className="menu_title_container">
           <div className="menu_container" onClick={() => toggleSidebar()}>
             <img src="/images/pixel_art_graphics/UIs/menu_button.png" alt="" />
