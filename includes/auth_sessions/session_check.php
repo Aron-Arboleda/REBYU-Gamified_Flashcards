@@ -5,8 +5,8 @@ include '../config.php';
 ini_set('session.cookie_lifetime', 259200); // 3 days 
 ini_set('session.gc_maxlifetime', 259200);
 ini_set('session.cookie_path', '/'); // Makes session cookies accessible site-wide
-ini_set('session.cookie_samesite', 'None');
-ini_set('session.cookie_secure', false); // Only if using HTTPS
+// ini_set('session.cookie_samesite', 'None');
+// ini_set('session.cookie_secure', false); // Only if using HTTPS
 // Start session
 session_start(); // Start the session
 
