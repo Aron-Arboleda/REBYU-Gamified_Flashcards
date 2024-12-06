@@ -233,4 +233,8 @@ span {
   .pageHeightFull {
     height: 100%;
   }
+
+  .hMessage {
+    font-size: 1.5rem;
+  }
 }
