@@ -5,6 +5,7 @@ import StandardContainer from "../../components/StandardContainer/StandardContai
 import { useNavigate } from "react-router-dom";
 import "./SignupPage.css";
 import { CONFIG } from "../../config";
+import { Eye, EyeOff } from "lucide-react";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -19,6 +20,11 @@ const SignupPage = () => {
 
   const [responseMessage, setResponseMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const toggleVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
 
   const isValidPassword = (password) => {
     const minLength = 8;
@@ -50,16 +56,14 @@ const SignupPage = () => {
     );
   };
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value, // Update the correct key in the state
+      [name]: value,
     });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -89,8 +93,8 @@ const SignupPage = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setResponseMessage(data.message); // Success message
-        // Optionally clear the form
+        setResponseMessage(data.message);
+
         setFormData({
           user_username: "",
           user_first_name: "",
@@ -120,11 +124,11 @@ const SignupPage = () => {
               </label>
               <input
                 type="text"
-                name="user_username" // Ensure name matches formData key
+                name="user_username"
                 id="user_username"
                 className="form-textboxes"
-                value={formData.user_username} // Bind value to formData
-                onChange={handleChange} // Correct handler
+                value={formData.user_username}
+                onChange={handleChange}
                 required
               />
               <label htmlFor="user_first_name" className="signup-form-labels">
@@ -132,7 +136,7 @@ const SignupPage = () => {
               </label>
               <input
                 type="text"
-                name="user_first_name" // Ensure name matches formData key
+                name="user_first_name"
                 id="user_first_name"
                 className="form-textboxes"
                 value={formData.user_first_name}
@@ -144,7 +148,7 @@ const SignupPage = () => {
               </label>
               <input
                 type="text"
-                name="user_last_name" // Ensure name matches formData key
+                name="user_last_name"
                 id="user_last_name"
                 className="form-textboxes"
                 value={formData.user_last_name}
@@ -156,7 +160,7 @@ const SignupPage = () => {
               </label>
               <input
                 type="email"
-                name="user_email" // Ensure name matches formData key
+                name="user_email"
                 id="user_email"
                 className="form-textboxes"
                 value={formData.user_email}
@@ -166,28 +170,32 @@ const SignupPage = () => {
               <label htmlFor="user_password" className="signup-form-labels">
                 Password:
               </label>
-              <input
-                type="password"
-                name="user_password" // Ensure name matches formData key
-                id="user_password"
-                className="form-textboxes"
-                value={formData.user_password}
-                onChange={handleChange}
-                required
-              />
+              <div style={{ position: "relative", display: "inline-block" }}>
+                <input
+                  type={passwordVisible ? "text" : "password"}
+                  name="user_password"
+                  id="user_password"
+                  className="form-textboxes"
+                  value={formData.user_password}
+                  onChange={handleChange}
+                  required
+                />
+                <span
+                  onClick={toggleVisibility}
+                  style={{
+                    position: "absolute",
+                    right: "10px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    cursor: "pointer",
+                  }}
+                >
+                  {passwordVisible ? <EyeOff size={20} /> : <Eye size={20} />}
+                </span>
+              </div>
             </div>
             {errorMessage && (
-              <p
-                style={{
-                  color: "red",
-                  textAlign: "center",
-                  marginTop: "1rem",
-                  fontFamily: "SmallPixel",
-                  fontSize: "1.2rem",
-                }}
-              >
-                {errorMessage}
-              </p>
+              <p className="auth-error-message">{errorMessage}</p>
             )}
             <div className="buttonContainer">
               <button type="submit" className="form-submit">

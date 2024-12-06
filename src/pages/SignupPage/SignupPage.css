@@ -25,3 +25,21 @@
 .formContainer {
   width: 100%;
 }
+
+.auth-error-message {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+  font-family: "SmallPixel";
+  font-size: 1.2rem;
+  max-width: 360px;
+}
+
+#user_password::-ms-reveal,
+#user_password::-ms-clear,
+#user_password::-webkit-clear-button,
+#user_password::-webkit-inner-spin-button,
+#user_password::-webkit-calendar-picker-indicator,
+#user_password::-webkit-password-toggle-button {
+  display: none; /* Hides the default browser-provided toggle */
+}
