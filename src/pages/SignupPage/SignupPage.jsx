@@ -26,6 +26,16 @@ const SignupPage = () => {
     setPasswordVisible((prev) => !prev);
   };
 
+  const isValidName = (name) => {
+    const validPattern = /^[a-zA-Z]+$/;
+    return validPattern.test(name);
+  };
+
+  const isValidEmail = (email) => {
+    const validPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return validPattern.test(email);
+  };
+
   const isValidPassword = (password) => {
     const minLength = 8;
     const hasUpperCase = /[A-Z]/.test(password);
@@ -48,11 +58,13 @@ const SignupPage = () => {
     const minLength = 3;
     const maxLength = 20;
     const validPattern = /^[a-zA-Z0-9_]+$/;
+    const hasLetter = /[a-zA-Z]/.test(username);
 
     return (
       username.length >= minLength &&
       username.length <= maxLength &&
-      validPattern.test(username)
+      validPattern.test(username) &&
+      hasLetter
     );
   };
 
@@ -67,18 +79,42 @@ const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      !isValidName(formData.user_first_name) ||
+      !isValidName(formData.user_last_name)
+    ) {
+      setErrorMessage("First and last names can only contain letters.");
+      return;
+    } else if (
+      isValidName(formData.user_first_name) &&
+      isValidName(formData.user_last_name)
+    ) {
+      setErrorMessage("");
+    }
+
+    if (!isValidUsername(formData.user_username)) {
+      setErrorMessage(
+        "Username should atleast have a letter, 3 to 20 characters, and contains only letters, numbers, and underscores."
+      );
+      return;
+    } else if (isValidUsername(formData.user_username)) {
+      setErrorMessage("");
+    }
+
+    if (!isValidEmail(formData.user_email)) {
+      setErrorMessage("Invalid email address.");
+      return;
+    } else if (isValidEmail(formData.user_email)) {
+      setErrorMessage("");
+    }
+
     if (!isValidPassword(formData.user_password)) {
       setErrorMessage(
         "Password must have atleast an uppercase, lowercase, number, special character and 8 minimum characters."
       );
       return;
-    }
-
-    if (!isValidUsername(formData.user_username)) {
-      setErrorMessage(
-        "Username should be between 3 and 20 characters long and contains only letters, numbers, and underscores."
-      );
-      return;
+    } else if (isValidPassword(formData.user_password)) {
+      setErrorMessage("");
     }
 
     try {
