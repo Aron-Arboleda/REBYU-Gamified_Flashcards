@@ -1,8 +1,47 @@
-# React + Vite
+# REBYU: Gamified Flashcards
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div style="text-align: center;">
+  <img src="public/images/pixel_art_graphics/backgrounds/title.png" width="50%" />
+</div>
 
-Currently, two official plugins are available:
+## Full-stack Web application that utilizes pixel graphics to implement gamified learning.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+REBYU (Review, Educate, Boost, Your Understanding) is a
+flashcard-based web app designed to bring a dynamic, game-like
+experience to studying. Much like Quizlet, it allows users to
+create, review, and test themselves with digital flashcards, but
+it stands out by incorporating a vibrant, gamified visual style to
+make learning more engaging and enjoyable. With REBYU, studying
+becomes an interactive journey, encouraging users to progress and
+stay motivated as they explore their chosen topics through playful
+graphics and thoughtful design.
+
+## Instructions
+
+### To access the website
+
+- Go to the link --> http://rebyu.ct.ws
+
+## Features still in development
+
+- Custom domain name
+- Features such as shop, experience points, and game currency.
+- Additional fuctionalities such as user folders and collaboration classes like Quizlet.
+
+## REBYU Team
+
+UI/UX Designer:
+
+- [Alex](https://www.instagram.com/lexsusicat)
+
+Developer:
+
+- [Aron](https://github.com/Aron-Arboleda)
+
+Documentation:
+
+- [Jenny](https://www.instagram.com/jentiglao_)
+- [Kim](https://www.facebook.com/itsmefantasma)
+- [Hetio](https://www.facebook.com/carlohetio)
+
+<br>&copy; 2024 REBYU Team. All rights reserved.
