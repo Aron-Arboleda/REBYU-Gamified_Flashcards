@@ -44,4 +44,9 @@ Documentation:
 - [Kim](https://www.facebook.com/itsmefantasma)
 - [Hetio](https://www.facebook.com/carlohetio)
 
+## License
+
+- The **code** in this repository is licensed under the [MIT License](./LICENSE).
+- All **assets** (e.g., images, icons, sounds, etc.) are **All Rights Reserved** and may not be used, copied, modified, or distributed without explicit permission from the author.
+
 <br>&copy; 2024 REBYU Team. All rights reserved.
