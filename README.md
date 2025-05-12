@@ -20,7 +20,7 @@ graphics and thoughtful design.
 
 ### To access the website
 
-- Go to the link --> http://rebyu.ct.ws
+- Go to the link --> https://rebyu.ct.ws
 
 ## Features still in development
 

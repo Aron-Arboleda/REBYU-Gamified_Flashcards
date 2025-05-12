@@ -3,5 +3,5 @@ export const CONFIG = {
 };
 
 // export const CONFIG = {
-//   BACKEND_API: "http://rebyu.ct.ws/includes/",
+//   BACKEND_API: "https://rebyu.ct.ws/includes/",
 // };
